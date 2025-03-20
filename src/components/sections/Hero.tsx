@@ -33,7 +33,6 @@ const Hero: React.FC = () => {
               size="lg" 
               className="flex items-center w-full sm:w-auto" 
               isBookDemo={true}
-              href="https://calendly.com/niahai"
             >
               <Calendar className="mr-2 h-5 w-5" />
               Book a Free Demo

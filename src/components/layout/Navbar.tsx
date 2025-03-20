@@ -74,7 +74,6 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block">
             <CTAButton 
               isBookDemo={true}
-              href="https://calendly.com/niahai"
             >
               Book a Demo
             </CTAButton>
@@ -115,7 +114,6 @@ const Navbar: React.FC = () => {
             <CTAButton 
               className="w-full" 
               isBookDemo={true}
-              href="https://calendly.com/niahai"
             >
               Book a Demo
             </CTAButton>

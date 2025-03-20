@@ -8,10 +8,11 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   icon?: boolean;
   isBookDemo?: boolean;
+  href?: string; // Added href prop
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
-  ({ className, variant = 'primary', size = 'md', icon = true, isBookDemo = false, children, onClick, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', icon = true, isBookDemo = false, href, children, onClick, ...props }, ref) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (isBookDemo) {
         e.preventDefault();
