@@ -7,10 +7,22 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   icon?: boolean;
+  isBookDemo?: boolean;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
-  ({ className, variant = 'primary', size = 'md', icon = true, children, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', icon = true, isBookDemo = false, children, onClick, ...props }, ref) => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (isBookDemo) {
+        e.preventDefault();
+        window.open('https://calendly.com/niaai', '_blank');
+      }
+      
+      if (onClick) {
+        onClick(e);
+      }
+    };
+
     return (
       <button
         ref={ref}
@@ -27,6 +39,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
           },
           className
         )}
+        onClick={handleClick}
         {...props}
       >
         {children}

@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
             Nia helps dental clinics attract more patients, reduce no-shows, and automate operations —all in one cloud-based dental clinic management system.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <CTAButton size="lg" className="flex items-center">
+            <CTAButton size="lg" className="flex items-center" isBookDemo={true}>
               <Calendar className="mr-2 h-5 w-5" />
               Book a Free Demo
             </CTAButton>

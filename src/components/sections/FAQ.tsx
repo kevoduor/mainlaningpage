@@ -42,15 +42,14 @@ const FAQ: React.FC = () => {
               key={index}
               question={faq.question}
               answer={faq.answer}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className={`animate-fade-in delay-${index * 50}`}
             />
           ))}
         </div>
         
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">Still have questions?</p>
-          <CTAButton>
+          <CTAButton isBookDemo={true}>
             Book a Free Demo
           </CTAButton>
         </div>

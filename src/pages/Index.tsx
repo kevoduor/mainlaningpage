@@ -50,6 +50,7 @@ const Index = () => {
               <CTAButton 
                 className="bg-white text-nia-700 hover:bg-nia-100" 
                 icon={false}
+                isBookDemo={true}
               >
                 Try Nia Free – Book a Demo Now!
               </CTAButton>
@@ -74,6 +75,7 @@ const Index = () => {
               size="lg" 
               className="bg-white text-nia-700 hover:bg-nia-100"
               icon={false}
+              isBookDemo={true}
             >
               Limited Spots Available – Book a Free Demo Now!
             </CTAButton>

@@ -45,8 +45,7 @@ const Challenges: React.FC = () => {
           {challenges.map((item, index) => (
             <div 
               key={index}
-              className="mb-6 p-6 rounded-xl border border-border bg-white shadow-sm hover:shadow-md transition-shadow animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`mb-6 p-6 rounded-xl border border-border bg-white shadow-sm hover:shadow-md transition-shadow animate-fade-in delay-${index * 100}`}
             >
               <div className="flex flex-col md:flex-row md:items-center">
                 <div className="flex-1 mb-4 md:mb-0">
@@ -71,7 +70,7 @@ const Challenges: React.FC = () => {
           ))}
           
           <div className="text-center mt-12">
-            <CTAButton size="lg">
+            <CTAButton size="lg" isBookDemo={true}>
               Get a Free Demo – See How Nia Works!
             </CTAButton>
           </div>

@@ -61,6 +61,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         className="w-full" 
         variant={popular ? 'primary' : 'outline'} 
         icon={false}
+        isBookDemo={true}
       >
         Book a Free Demo
       </CTAButton>
