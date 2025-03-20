@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import CTAButton from '../ui/CTAButton';
 
 const Navbar: React.FC = () => {
@@ -37,9 +38,9 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <div className="text-xl font-bold text-nia-900">
+            <Link to="/" className="text-xl font-bold text-nia-900">
               <span className="text-nia-600">nia</span>.
-            </div>
+            </Link>
           </div>
           
           <div className="hidden md:block">
@@ -57,7 +58,7 @@ const Navbar: React.FC = () => {
           </div>
           
           <div className="hidden md:block">
-            <CTAButton>Sign Up</CTAButton>
+            <CTAButton isBookDemo={true}>Book a Demo</CTAButton>
           </div>
           
           <div className="md:hidden">
@@ -89,7 +90,7 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <div className="px-3 py-2">
-            <CTAButton className="w-full">Sign Up</CTAButton>
+            <CTAButton className="w-full" isBookDemo={true}>Book a Demo</CTAButton>
           </div>
         </div>
       </div>

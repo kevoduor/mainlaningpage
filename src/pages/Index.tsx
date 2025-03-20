@@ -79,8 +79,8 @@ const Index = () => {
               Limited Spots Available – Book a Free Demo Now!
             </CTAButton>
             <div className="mt-8 text-nia-200">
-              <p className="mb-2">📞 Call/WhatsApp: +254755792377</p>
-              <p>📧 Email: hello@heynia.com</p>
+              <p className="mb-2">Call/WhatsApp: +254755792377</p>
+              <p>Email: hello@heynia.com</p>
             </div>
           </div>
         </section>

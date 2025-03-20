@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -29,32 +30,32 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Our Mission</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Our Vision</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Contact Us</a></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Our Mission</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Our Vision</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Careers</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-medium mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">E-Books</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Free Tools</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Testimonials</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Case Studies</a></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">E-Books</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Free Tools</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Testimonials</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Case Studies</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-medium mb-4">Comparisons</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Nia vs Dentrix</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Nia vs Open Dental</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Nia vs Eaglesoft</a></li>
-              <li><a href="#" className="text-nia-300 hover:text-white transition-colors">Best Dentrix Alternative</a></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Nia vs Dentrix</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Nia vs Open Dental</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Nia vs Eaglesoft</Link></li>
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Best Dentrix Alternative</Link></li>
             </ul>
           </div>
         </div>
@@ -65,9 +66,9 @@ const Footer: React.FC = () => {
               © {currentYear} Nia. All rights reserved.
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-nia-400 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-nia-400 hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="text-nia-400 hover:text-white transition-colors">Cookies</a>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
             </div>
           </div>
         </div>
