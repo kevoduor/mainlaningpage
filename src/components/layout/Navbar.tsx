@@ -29,6 +29,16 @@ const Navbar: React.FC = () => {
     { name: 'Blog', href: '#blog' },
   ];
 
+  const scrollToSection = (sectionId: string) => {
+    setIsOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else if (sectionId === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -50,6 +60,10 @@ const Navbar: React.FC = () => {
                   key={link.name}
                   href={link.href}
                   className="text-sm font-medium text-gray-700 hover:text-nia-600 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href.replace('#', ''));
+                  }}
                 >
                   {link.name}
                 </a>
@@ -58,7 +72,12 @@ const Navbar: React.FC = () => {
           </div>
           
           <div className="hidden md:block">
-            <CTAButton isBookDemo={true}>Book a Demo</CTAButton>
+            <CTAButton 
+              isBookDemo={true}
+              href="https://calendly.com/niahai"
+            >
+              Book a Demo
+            </CTAButton>
           </div>
           
           <div className="md:hidden">
@@ -84,13 +103,22 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-nia-600 hover:bg-nia-50"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.href.replace('#', ''));
+              }}
             >
               {link.name}
             </a>
           ))}
           <div className="px-3 py-2">
-            <CTAButton className="w-full" isBookDemo={true}>Book a Demo</CTAButton>
+            <CTAButton 
+              className="w-full" 
+              isBookDemo={true}
+              href="https://calendly.com/niahai"
+            >
+              Book a Demo
+            </CTAButton>
           </div>
         </div>
       </div>
