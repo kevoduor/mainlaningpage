@@ -5,7 +5,7 @@ import { Calendar } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
+    <section className="relative pt-24 md:pt-32 pb-16 md:pb-20 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-br from-nia-100 via-white to-white -z-10"></div>
       
@@ -13,26 +13,26 @@ const Hero: React.FC = () => {
       <div className="absolute top-0 inset-0 bg-grid-nia-100/40 bg-[length:20px_20px] -z-10 opacity-30"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">
+        <div className="text-center max-w-4xl mx-auto mb-8 md:mb-12 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 text-balance">
             3X More Patients, 50% Less Admin Work
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 text-balance max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 text-balance max-w-3xl mx-auto">
             Nia helps dental clinics attract more patients, reduce no-shows, and automate operations —all in one cloud-based dental clinic management system.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <CTAButton size="lg" className="flex items-center" isBookDemo={true}>
+            <CTAButton size="lg" className="flex items-center w-full sm:w-auto" isBookDemo={true}>
               <Calendar className="mr-2 h-5 w-5" />
               Book a Free Demo
             </CTAButton>
-            <CTAButton size="lg" variant="outline">
+            <CTAButton size="lg" variant="outline" className="w-full sm:w-auto">
               View Features
             </CTAButton>
           </div>
         </div>
         
         {/* Hero image */}
-        <div className="relative mx-auto max-w-5xl animate-fade-in" style={{animationDelay: '200ms'}}>
+        <div className="relative mx-auto max-w-5xl animate-fade-in delay-300">
           <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent"></div>
             <img 

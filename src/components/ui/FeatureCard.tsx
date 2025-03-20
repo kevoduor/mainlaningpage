@@ -4,10 +4,11 @@ import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
 
 interface FeatureCardProps {
+  icon: LucideIcon;
   title: string;
   description: string;
-  icon: LucideIcon;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Check } from 'lucide-react';
@@ -15,6 +14,7 @@ interface PricingCardProps {
   features: PricingFeature[];
   popular?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -24,6 +24,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   features,
   popular = false,
   className,
+  style,
 }) => {
   return (
     <div 
@@ -32,6 +33,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         popular ? 'scale-[1.02] border-nia-300 shadow-lg shadow-nia-200/20' : 'hover:shadow-md',
         className
       )}
+      style={style}
     >
       {popular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-nia-600 text-white text-xs font-medium">

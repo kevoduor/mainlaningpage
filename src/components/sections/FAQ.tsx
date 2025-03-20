@@ -29,7 +29,7 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Frequently Asked Questions"
@@ -42,14 +42,14 @@ const FAQ: React.FC = () => {
               key={index}
               question={faq.question}
               answer={faq.answer}
-              className={`animate-fade-in delay-${index * 50}`}
+              className={`animate-fade-in delay-${(index % 5 + 1) * 100}`}
             />
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 md:mt-12">
           <p className="text-muted-foreground mb-4">Still have questions?</p>
-          <CTAButton isBookDemo={true}>
+          <CTAButton isBookDemo={true} className="w-full sm:w-auto">
             Book a Free Demo
           </CTAButton>
         </div>

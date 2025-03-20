@@ -39,7 +39,7 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white">
+    <section id="features" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Essential Features for Smarter Dental Practice Management"
@@ -47,15 +47,14 @@ const Features: React.FC = () => {
           center={true}
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`animate-fade-in delay-${(index % 5 + 1) * 100}`}
             />
           ))}
         </div>

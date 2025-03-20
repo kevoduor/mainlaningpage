@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Quote } from 'lucide-react';
 
 interface TestimonialCardProps {
   quote: string;
   author: string;
-  role?: string;
+  role: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -15,15 +14,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   author,
   role,
   className,
+  style,
 }) => {
   return (
-    <div className={cn('p-6 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-lg', className)}>
-      <Quote className="h-6 w-6 text-nia-500 mb-4 opacity-70" />
-      <p className="text-base mb-4 italic text-balance">{quote}</p>
-      <div>
-        <div className="font-medium">{author}</div>
-        {role && <div className="text-sm text-muted-foreground">{role}</div>}
-      </div>
+    <div className={cn("rounded-md border p-4 bg-card text-card-foreground shadow-sm", className)} style={style}>
+      <blockquote className="text-sm text-muted-foreground">
+        {quote}
+      </blockquote>
+      <footer className="mt-4">
+        <p className="text-sm font-medium">{author}</p>
+        <p className="text-xs text-muted-foreground">{role}</p>
+      </footer>
     </div>
   );
 };

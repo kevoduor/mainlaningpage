@@ -15,7 +15,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (isBookDemo) {
         e.preventDefault();
-        window.open('https://calendly.com/niaai', '_blank');
+        window.open('https://calendly.com/niahai', '_blank');
       }
       
       if (onClick) {
@@ -30,7 +30,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
           'relative inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
           {
             'bg-nia-600 text-white hover:bg-nia-700 shadow-lg shadow-nia-600/20': variant === 'primary',
-            'bg-nia-100 text-nia-800 hover:bg-nia-200': variant === 'secondary',
+            'bg-nia-100 text-nia-700 hover:bg-nia-200': variant === 'secondary',
             'border border-nia-300 bg-transparent hover:bg-nia-50 text-nia-800': variant === 'outline',
             'bg-transparent text-nia-800 hover:bg-nia-50': variant === 'ghost',
             'h-9 px-4 text-sm': size === 'sm',

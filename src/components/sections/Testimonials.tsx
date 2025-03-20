@@ -23,7 +23,7 @@ const Testimonials: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-nia-50">
+    <section className="py-16 md:py-20 bg-nia-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="What Dentists Are Saying"
@@ -38,8 +38,7 @@ const Testimonials: React.FC = () => {
               quote={testimonial.quote}
               author={testimonial.author}
               role={testimonial.role}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`animate-fade-in delay-${(index + 1) * 100}`}
             />
           ))}
         </div>

@@ -20,13 +20,13 @@ const Index = () => {
         <Hero />
         
         {/* Why Dentists Love Nia */}
-        <section className="py-16 bg-nia-600 text-white">
+        <section className="py-16 md:py-20 bg-nia-600 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-semibold mb-6">Why Dentists Love Nia</h2>
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 md:mb-6">Why Dentists Love Nia</h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {[
                 "More Patient Time",
                 "Peace of Mind",
@@ -37,8 +37,7 @@ const Index = () => {
               ].map((benefit, index) => (
                 <div 
                   key={index} 
-                  className="flex items-start animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className={`flex items-start animate-fade-in delay-${(index % 5 + 1) * 100}`}
                 >
                   <CheckCircle className="h-6 w-6 mr-3 text-nia-200 shrink-0" />
                   <p className="font-medium">{benefit}</p>
@@ -46,7 +45,7 @@ const Index = () => {
               ))}
             </div>
             
-            <div className="text-center mt-12">
+            <div className="text-center mt-8 md:mt-12">
               <CTAButton 
                 className="bg-white text-nia-700 hover:bg-nia-100" 
                 icon={false}
@@ -65,22 +64,22 @@ const Index = () => {
         <FAQ />
         
         {/* Final CTA */}
-        <section className="py-20 bg-gradient-to-r from-nia-600 to-nia-800 text-white">
+        <section className="py-16 md:py-20 bg-gradient-to-r from-nia-600 to-nia-700 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-6">Ready to Grow Your Dental Practice?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-nia-100">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 md:mb-6">Ready to Grow Your Dental Practice?</h2>
+            <p className="text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto text-nia-100">
               Join hundreds of successful dental clinics using Nia to attract more patients and automate their operations.
             </p>
             <CTAButton 
               size="lg" 
-              className="bg-white text-nia-700 hover:bg-nia-100"
+              className="bg-white text-nia-700 hover:bg-nia-100 w-full sm:w-auto"
               icon={false}
               isBookDemo={true}
             >
               Limited Spots Available – Book a Free Demo Now!
             </CTAButton>
             <div className="mt-8 text-nia-200">
-              <p>📞 Call/WhatsApp: +254755792377</p>
+              <p className="mb-2">📞 Call/WhatsApp: +254755792377</p>
               <p>📧 Email: hello@heynia.com</p>
             </div>
           </div>

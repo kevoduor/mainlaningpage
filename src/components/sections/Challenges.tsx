@@ -33,7 +33,7 @@ const Challenges: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-nia-50">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-white to-nia-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Common Dental Practice Challenges"
@@ -45,7 +45,7 @@ const Challenges: React.FC = () => {
           {challenges.map((item, index) => (
             <div 
               key={index}
-              className={`mb-6 p-6 rounded-xl border border-border bg-white shadow-sm hover:shadow-md transition-shadow animate-fade-in delay-${index * 100}`}
+              className={`mb-6 p-4 md:p-6 rounded-xl border border-border bg-white shadow-sm hover:shadow-md transition-shadow animate-fade-in delay-${(index % 5 + 1) * 100}`}
             >
               <div className="flex flex-col md:flex-row md:items-center">
                 <div className="flex-1 mb-4 md:mb-0">
@@ -53,7 +53,7 @@ const Challenges: React.FC = () => {
                     <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-3 shrink-0">
                       <X className="h-5 w-5 text-red-600" />
                     </div>
-                    <p className="font-medium text-lg">{item.problem}</p>
+                    <p className="font-medium text-base md:text-lg">{item.problem}</p>
                   </div>
                 </div>
                 
@@ -69,8 +69,8 @@ const Challenges: React.FC = () => {
             </div>
           ))}
           
-          <div className="text-center mt-12">
-            <CTAButton size="lg" isBookDemo={true}>
+          <div className="text-center mt-8 md:mt-12">
+            <CTAButton size="lg" isBookDemo={true} className="w-full sm:w-auto">
               Get a Free Demo – See How Nia Works!
             </CTAButton>
           </div>

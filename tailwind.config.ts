@@ -66,19 +66,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Nia custom colors
+				// Slack-inspired colors
 				nia: {
-					50: '#F6F4FE',
-					100: '#EAE5FD',
-					200: '#D5CDFA',
-					300: '#BCB1F7',
-					400: '#A393F4',
-					500: '#8A74F1',
-					600: '#6F57EC',
-					700: '#5B3DE7',
-					800: '#4226CF',
-					900: '#3414B2',
-					950: '#270D7A',
+					50: '#F5F0FF',
+					100: '#EAE3FF',
+					200: '#D5C6FF',
+					300: '#B79BFF',
+					400: '#9A70FF',
+					500: '#611F69', // Slack primary purple
+					600: '#4A154B', // Darker purple
+					700: '#350D36', // Even darker purple
+					800: '#1E1D1E', // Slack dark gray
+					900: '#121016',
+					950: '#0C0A0D',
 				},
 			},
 			borderRadius: {

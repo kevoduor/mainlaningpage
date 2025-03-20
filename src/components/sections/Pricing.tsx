@@ -49,7 +49,7 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-white">
+    <section id="pricing" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Affordable AI-Powered Dental Software for Every Practice"
@@ -66,8 +66,7 @@ const Pricing: React.FC = () => {
               description={plan.description}
               features={plan.features}
               popular={plan.popular}
-              className="flex-1 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`flex-1 animate-fade-in delay-${(index + 1) * 100}`}
             />
           ))}
         </div>
