@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
             3X More Patients, 50% Less Admin Work
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 text-balance max-w-3xl mx-auto px-2">
-            Nia helps dental clinics attract more patients, reduce no-shows, and automate operations —all in one cloud-based dental clinic management system.
+            Nia helps you attract more patients, reduce no-shows and automate your clinic's operations - all in one easy to use system.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
             <CTAButton 
