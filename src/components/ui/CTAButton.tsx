@@ -8,7 +8,7 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   icon?: boolean;
   isBookDemo?: boolean;
-  href?: string; // Added href prop
+  href?: string;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
@@ -19,11 +19,22 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         window.open('https://calendly.com/niahai', '_blank', 'noopener,noreferrer');
       } else if (href) {
         e.preventDefault();
-        // Check if the URL is external
-        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
-          window.open(href, '_blank', 'noopener,noreferrer');
-        } else {
+        
+        // Check if the URL already has a protocol
+        const hasProtocol = href.startsWith('http://') || href.startsWith('https://') || 
+                           href.startsWith('mailto:') || href.startsWith('tel:');
+        
+        // If internal link (starts with /)
+        if (href.startsWith('/')) {
           window.location.href = href;
+        } 
+        // If external link but missing protocol, add https://
+        else if (!hasProtocol) {
+          window.open(`https://${href}`, '_blank', 'noopener,noreferrer');
+        } 
+        // External link with protocol
+        else {
+          window.open(href, '_blank', 'noopener,noreferrer');
         }
       }
       
