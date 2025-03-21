@@ -12,7 +12,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="text-xl font-bold mb-4">
-              <span className="text-nia-400">nia</span>.
+              <a href="https://heynia.com" target="_blank" rel="noopener noreferrer" className="hover:text-nia-400 transition-colors">
+                <span className="text-nia-400">nia</span>.
+              </a>
             </div>
             <p className="text-nia-200 mb-4 max-w-xs">
               AI-powered dental clinic management system that helps attract more patients, reduce no-shows, and automate operations.
@@ -63,12 +65,12 @@ const Footer: React.FC = () => {
         <div className="border-t border-nia-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-nia-400 text-sm mb-4 md:mb-0">
-              © {currentYear} Nia. All rights reserved.
+              © {currentYear} <a href="https://heynia.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Nia</a>. All rights reserved.
             </div>
             <div className="flex space-x-6">
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
+              <a href="https://heynia.com/terms" target="_blank" rel="noopener noreferrer" className="text-nia-400 hover:text-white transition-colors">Terms</a>
+              <a href="https://heynia.com/privacy" target="_blank" rel="noopener noreferrer" className="text-nia-400 hover:text-white transition-colors">Privacy</a>
+              <a href="https://heynia.com/cookies" target="_blank" rel="noopener noreferrer" className="text-nia-400 hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>

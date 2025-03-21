@@ -16,7 +16,15 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (isBookDemo) {
         e.preventDefault();
-        window.open('https://calendly.com/niahai', '_blank');
+        window.open('https://calendly.com/niahai', '_blank', 'noopener,noreferrer');
+      } else if (href) {
+        e.preventDefault();
+        // Check if the URL is external
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+          window.open(href, '_blank', 'noopener,noreferrer');
+        } else {
+          window.location.href = href;
+        }
       }
       
       if (onClick) {
