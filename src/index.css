@@ -90,6 +90,33 @@
   }
 }
 
+/* Blog specific styles */
+.blog-card {
+  @apply transition-all duration-300 hover:shadow-md;
+}
+
+.blog-image {
+  @apply transition-transform duration-300;
+}
+
+.blog-card:hover .blog-image {
+  @apply scale-105;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .glass-panel {
   @apply backdrop-blur-md bg-white/40 border border-white/20 shadow-lg;
 }
