@@ -6,6 +6,15 @@ import { formatDate } from '@/lib/utils';
 
 const BLOG_POSTS = [
   {
+    id: 'ai-transform-dental-practice',
+    title: '5 Surprising Ways AI Can Transform Dental Practice Management',
+    excerpt: 'In an industry as dynamic as dentistry, innovation has always been a cornerstone of progress. From the adoption of digital X-rays to the use of 3D printing, technology has consistently redefined how dental practices operate.',
+    author: 'Kevin Oduor',
+    date: '2025-03-07',
+    imageUrl: '/placeholder.svg',
+    slug: 'ai-transform-dental-practice'
+  },
+  {
     id: 'digital-marketing-dental-clinics',
     title: 'Top 10 Digital Marketing Tips for Dental Clinic Owners',
     excerpt: 'The current dental practice market demands more than top-level medical care to succeed. A skilled marketing approach will turn an underperforming practice into a successful and stable business.',
