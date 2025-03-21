@@ -70,10 +70,6 @@ const Pricing: React.FC = () => {
             />
           ))}
         </div>
-        
-        <div className="text-center mt-12 text-nia-700">
-          <p className="font-medium">Sign Up Now</p>
-        </div>
       </div>
     </section>
   );
