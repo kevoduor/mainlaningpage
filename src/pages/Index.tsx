@@ -9,11 +9,12 @@ import Pricing from '@/components/sections/Pricing';
 import Testimonials from '@/components/sections/Testimonials';
 import FAQ from '@/components/sections/FAQ';
 import CTAButton from '@/components/ui/CTAButton';
-import { CheckCircle, UserPlus } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Navbar />
       
       <main className="flex-grow">
@@ -51,7 +52,7 @@ const Index = () => {
                 icon={false}
                 href="/signup"
               >
-                Try Nia Free – Sign Up Now!
+                Sign Up Now
               </CTAButton>
             </div>
           </div>
@@ -76,17 +77,14 @@ const Index = () => {
               icon={false}
               href="/signup"
             >
-              Limited Spots Available – Sign Up Now!
+              Sign Up Now
             </CTAButton>
-            <div className="mt-8 text-nia-200">
-              <p className="mb-2">Call/WhatsApp: +254755792377</p>
-              <p>Email: hello@heynia.com</p>
-            </div>
           </div>
         </section>
       </main>
       
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

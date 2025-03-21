@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Mail, Phone, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -9,7 +8,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-nia-950 text-white pt-16 pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="text-xl font-bold mb-4">
               <Link to="/" className="hover:text-nia-400 transition-colors">
@@ -19,18 +18,6 @@ const Footer: React.FC = () => {
             <p className="text-nia-200 mb-4 max-w-xs">
               AI-powered dental clinic management system that helps attract more patients, reduce no-shows, and automate operations.
             </p>
-            <div className="flex items-center space-x-1 text-nia-300 mb-2">
-              <Phone className="h-4 w-4" />
-              <a href="tel:+254755792377" className="ml-2 hover:text-white transition-colors">+254 755 792 377</a>
-            </div>
-            <div className="flex items-center space-x-1 text-nia-300 mb-2">
-              <Mail className="h-4 w-4" />
-              <a href="mailto:hello@heynia.com" className="ml-2 hover:text-white transition-colors">hello@heynia.com</a>
-            </div>
-            <div className="flex items-center space-x-1 text-nia-300">
-              <Twitter className="h-4 w-4" />
-              <a href="https://x.com/heyniadotcom" target="_blank" rel="noopener noreferrer" className="ml-2 hover:text-white transition-colors">@heyniadotcom</a>
-            </div>
           </div>
           
           <div>
