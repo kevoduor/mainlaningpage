@@ -1,7 +1,6 @@
 
 import React from 'react';
 import CTAButton from '../ui/CTAButton';
-import { Calendar } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Hero: React.FC = () => {
@@ -29,9 +28,9 @@ const Hero: React.FC = () => {
               className="flex items-center" 
               isBookDemo={true}
               fullWidthOnMobile={true}
+              icon={false}
             >
-              <Calendar className="mr-2 h-5 w-5" />
-              Book a Free Demo
+              Book a demo
             </CTAButton>
             <CTAButton 
               size={isXs ? "md" : "lg"} 
