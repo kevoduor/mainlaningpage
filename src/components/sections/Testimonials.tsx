@@ -6,19 +6,19 @@ import TestimonialCard from '../ui/TestimonialCard';
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      quote: "Since switching to Nia, we've reduced no-shows by 40% and increased patient bookings!",
+      quote: "Nia gave our practice a game-changing boost—40% fewer no-shows and more booked appointments!",
       author: "Dr. Lisa Kim",
       role: "Dental Practice Owner",
       avatarSrc: "/lovable-uploads/066b07a5-25d9-41ee-8f21-da0d858f116b.png"
     },
     {
-      quote: "I used to spend hours on admin tasks—Nia's automation freed up my time so I can focus on patient care.",
+      quote: "I used to be stuck in admin work. Nia's automation leveled me up, so now I focus on what matters—patient care.",
       author: "Dr. Carlos James",
       role: "Cosmetic Dentist",
       avatarSrc: "/lovable-uploads/7fd73343-9e01-4f35-8ae9-128460379179.png"
     },
     {
-      quote: "The AI-powered scheduling has transformed our practice. We're seeing more patients with less administrative overhead.",
+      quote: "With AI-powered scheduling, we're seeing more patients and spending less time on admin. It's like having an extra teammate!",
       author: "Sarah Johnson",
       role: "Practice Manager",
       avatarSrc: "/lovable-uploads/72f81991-0071-4f10-8171-6d09e0b32a43.png"
