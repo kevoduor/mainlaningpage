@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
@@ -61,16 +60,14 @@ const Footer: React.FC = () => {
             <div className="text-nia-400 text-sm mb-4 md:mb-0">
               © {currentYear} <Link to="/" className="hover:text-white transition-colors">Nia</Link>. All rights reserved.
             </div>
-            <div className="flex space-x-6 items-center">
+            <div className="flex flex-wrap gap-4 sm:space-x-6 items-center justify-center sm:justify-end">
               <Link to="/terms" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
               <Link to="/privacy" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
               <Link to="/cookies" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
-              <Button variant="ghost" size="sm" className="ml-2 text-nia-400 hover:text-white hover:bg-nia-800" asChild>
-                <Link to="/">
-                  <Home className="mr-1 h-4 w-4" />
-                  Back to Home
-                </Link>
-              </Button>
+              <Link to="/" className="inline-flex items-center text-nia-400 hover:text-white">
+                <Home className="mr-1 h-4 w-4" />
+                Back to Home
+              </Link>
             </div>
           </div>
         </div>
