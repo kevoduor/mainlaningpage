@@ -91,9 +91,9 @@ const Index = () => {
         {/* Final CTA */}
         <section className="py-16 md:py-20 bg-gradient-to-r from-nia-600 to-nia-700 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 md:mb-6">Ready to Grow Your Dental Practice?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 md:mb-6">Ready to Transform Your Dental Practice?</h2>
             <p className="text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto text-nia-100">
-              Join hundreds of successful dental clinics using Nia to attract more patients and automate their operations.
+              Join dentists using Nia to attract more patients, reduce no-shows, and streamline operations.
             </p>
             <CTAButton 
               size="lg" 
@@ -103,6 +103,7 @@ const Index = () => {
             >
               Sign Up Now
             </CTAButton>
+            <p className="mt-6 text-nia-100">🔗 nia. – AI-powered dental management made simple.</p>
           </div>
         </section>
       </main>
