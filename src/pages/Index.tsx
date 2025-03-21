@@ -9,7 +9,7 @@ import Pricing from '@/components/sections/Pricing';
 import Testimonials from '@/components/sections/Testimonials';
 import FAQ from '@/components/sections/FAQ';
 import CTAButton from '@/components/ui/CTAButton';
-import { CheckCircle } from 'lucide-react';
+import { Clock, BrainCircuit, SmilePlus, TrendingUp, HeartHandshake, Coins } from 'lucide-react';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 const Index = () => {
@@ -34,27 +34,33 @@ const Index = () => {
               {[
                 {
                   title: "More Patient Time",
-                  description: "Spend less time on admin and more on care."
+                  description: "Spend less time on admin and more on care.",
+                  icon: Clock
                 },
                 {
                   title: "Peace of Mind",
-                  description: "Automate tasks and reduce no-shows effortlessly."
+                  description: "Automate tasks and reduce no-shows effortlessly.",
+                  icon: BrainCircuit
                 },
                 {
                   title: "Less Stress",
-                  description: "A smooth-running clinic means happier days."
+                  description: "A smooth-running clinic means happier days.",
+                  icon: SmilePlus
                 },
                 {
                   title: "Steady Growth",
-                  description: "Attract and retain more patients with ease."
+                  description: "Attract and retain more patients with ease.",
+                  icon: TrendingUp
                 },
                 {
                   title: "Work-Life Balance",
-                  description: "Run your practice efficiently without burnout."
+                  description: "Run your practice efficiently without burnout.",
+                  icon: HeartHandshake
                 },
                 {
                   title: "Increased Revenue",
-                  description: "More patients, fewer gaps, and predictable income."
+                  description: "More patients, fewer gaps, and predictable income.",
+                  icon: Coins
                 }
               ].map((benefit, index) => (
                 <div 
@@ -62,7 +68,7 @@ const Index = () => {
                   className={`flex flex-col animate-fade-in delay-${(index % 5 + 1) * 100}`}
                 >
                   <div className="flex items-start mb-2">
-                    <CheckCircle className="h-6 w-6 mr-3 text-nia-200 shrink-0" />
+                    <benefit.icon className="h-6 w-6 mr-3 text-nia-200 shrink-0 float-animation" strokeWidth={1.5} />
                     <p className="font-semibold">{benefit.title}</p>
                   </div>
                   <p className="text-nia-100 ml-9">{benefit.description}</p>
