@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -23,9 +23,13 @@ const Footer: React.FC = () => {
               <Phone className="h-4 w-4" />
               <a href="tel:+254755792377" className="ml-2 hover:text-white transition-colors">+254 755 792 377</a>
             </div>
-            <div className="flex items-center space-x-1 text-nia-300">
+            <div className="flex items-center space-x-1 text-nia-300 mb-2">
               <Mail className="h-4 w-4" />
               <a href="mailto:hello@heynia.com" className="ml-2 hover:text-white transition-colors">hello@heynia.com</a>
+            </div>
+            <div className="flex items-center space-x-1 text-nia-300">
+              <Twitter className="h-4 w-4" />
+              <a href="https://x.com/heyniadotcom" target="_blank" rel="noopener noreferrer" className="ml-2 hover:text-white transition-colors">@heyniadotcom</a>
             </div>
           </div>
           
@@ -43,7 +47,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/blog" className="text-nia-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/blog/marketing-tips-attract-patients" className="text-nia-300 hover:text-white transition-colors">Marketing Tips</Link></li>
+              <li><Link to="/blog/ai-transform-dental-practice" className="text-nia-300 hover:text-white transition-colors">AI in Dentistry</Link></li>
+              <li><Link to="/blog/technology-dental-practice" className="text-nia-300 hover:text-white transition-colors">Technology Guide</Link></li>
               <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">E-Books</Link></li>
               <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Free Tools</Link></li>
               <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Testimonials</Link></li>
