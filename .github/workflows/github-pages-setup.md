@@ -27,7 +27,9 @@
 2. Go to the Domain List and find heynia.com
 3. Click "Manage"
 4. Click "Advanced DNS"
-5. Add the following records:
+5. **IMPORTANT**: First, remove any existing URL Redirect Records for the apex domain to avoid conflicts
+
+6. Add the following records (make sure they exactly match these settings):
 
    ### A Records (for GitHub Pages):
    - Type: A | Host: @ | Value: 185.199.108.153 | TTL: Automatic
@@ -38,11 +40,15 @@
    ### CNAME Record (for www subdomain):
    - Type: CNAME | Host: www | Value: kevoduor.github.io | TTL: Automatic
 
-   ### URL Redirect Record (for apex to www redirect):
-   - Type: URL Redirect Record | Host: @ | Value: https://www.heynia.com/ | TTL: Automatic
-     - Unmasked Redirect (also called a "301 redirect")
+7. To properly redirect the apex domain (heynia.com) to www.heynia.com:
+   - Go to the "Redirect Domain" tab in Namecheap (not in Advanced DNS)
+   - Select "Permanent (301)" redirect type
+   - Enter destination: https://www.heynia.com
+   - Check "Enable HTTPS" if possible
+   - Leave "with or without www" as is
+   - Save your changes
 
-6. Wait for DNS changes to propagate (can take up to 48 hours)
+8. Wait for DNS changes to propagate (can take up to 48 hours)
 
 ## Step 4: Verify the Connection
 
@@ -68,7 +74,13 @@ If your site isn't appearing correctly after following these steps:
    - In your repository settings, under Pages, make sure it shows "Your site is published at https://www.heynia.com"
 
 4. Test the redirect:
+   - Clear your browser cache or use an incognito/private window
    - Open a browser and visit heynia.com
    - You should be automatically redirected to www.heynia.com
 
 5. Remember that DNS changes can take 24-48 hours to fully propagate globally
+
+6. If you're still having issues:
+   - Make sure that you're setting up the redirect in Namecheap's "Redirect Domain" section, not as a URL Redirect Record in Advanced DNS
+   - Check if your domain registrar has a specific guide for setting up 301 redirects from apex to www
+   - Try using a different browser to test the redirect
