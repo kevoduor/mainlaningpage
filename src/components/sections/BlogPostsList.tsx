@@ -6,6 +6,15 @@ import { formatDate } from '@/lib/utils';
 
 const BLOG_POSTS = [
   {
+    id: 'digital-marketing-dental-clinics',
+    title: 'Top 10 Digital Marketing Tips for Dental Clinic Owners',
+    excerpt: 'The current dental practice market demands more than top-level medical care to succeed. A skilled marketing approach will turn an underperforming practice into a successful and stable business.',
+    author: 'Kevin Oduor',
+    date: '2025-03-14',
+    imageUrl: '/placeholder.svg',
+    slug: 'digital-marketing-dental-clinics'
+  },
+  {
     id: 'technology-dental-practice',
     title: 'The Role of Technology in Growing a Modern Dental Practice',
     excerpt: 'This discussion shows how modern digital technologies transform dental practices by improving patient care services and business expansion in an unstable market environment.',

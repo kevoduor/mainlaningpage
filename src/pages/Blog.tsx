@@ -6,10 +6,16 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BlogPostsList from '@/components/sections/BlogPostsList';
+import { Helmet } from 'react-helmet';
 
 const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Dental Practice Marketing Blog | Nia</title>
+        <meta name="description" content="Expert insights on dental practice management, technology implementation, and marketing strategies to grow your dental clinic." />
+      </Helmet>
+      
       <Navbar />
       
       <main className="flex-grow pt-20">

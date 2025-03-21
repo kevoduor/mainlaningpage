@@ -8,9 +8,78 @@ import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 import CTAButton from '@/components/ui/CTAButton';
+import { Helmet } from 'react-helmet';
 
 // Blog post data (in a real app, this would come from an API)
 const BLOG_POSTS = {
+  'digital-marketing-dental-clinics': {
+    title: 'Top 10 Digital Marketing Tips for Dental Clinic Owners',
+    author: 'Kevin Oduor',
+    date: '2025-03-14',
+    heroImage: '/placeholder.svg',
+    content: `
+      <p>The current dental practice market demands more than top-level medical care to succeed. A skilled marketing approach will turn an underperforming practice into a successful and stable business that continuously adds new patients to its patient base through exceptional relationship management. This thorough guide illustrates how dental practices should use tested marketing methods that unite classic advertising with modern internet techniques for expanding their operations.</p>
+
+      <h2>1. Understanding Your Dental Practice's Unique Value Proposition</h2>
+      <p>A dental practice needs to establish its unique selling points before starting any marketing initiative. You distinctively provide modern technological resources and superior pediatric treatments along with cosmetic surgery offerings. All your marketing activities should begin with your unique value proposition which demonstrates to potential patients why they should select your practice instead of others.</p>
+      
+      <p>The majority of dental practices commit the error of creating marketing strategies without distinct features. Dedicate time to recognize the key strengths in your practice through evaluation of convenient location combined with extended hours and painless techniques and financing alternatives. Your focused marketing will achieve better results when it targets the exact patient groups you want to reach.</p>
+
+      <h2>2. Creating a Professional, Patient-Focused Website</h2>
+      <p>The dental practice website functions as an online entrance that leads patients to your clinic. Online patient research now dictates that your website needs to create an exceptional initial impact because patients search for healthcare providers before booking appointments. Your website should present a professional look through mobile responsiveness combined with quick loading times and a depiction of office facilities along with team members.</p>
+      
+      <p>Present detailed information about your practice services along with precise location routes and easy contact methods. Before-and-after images combined with patients' opinions help current and potential clients develop confidence in you. Online appointment scheduling systems that provide easy access will convert interested visitors into actual booking patients. Your dental website needs to work flawlessly on mobile devices since users conduct most dental searches through their smartphones and tablets.</p>
+
+      <h2>3. Mastering Local SEO for Dental Practices</h2>
+      <p>Traditional search engine optimization plays a fundamental role in helping your practice surface during dental service searches conducted by prospective patients in your region. Local SEO functions exclusively to enhance your online footprint to attract patients from nearby areas.</p>
+      
+      <p>Your first step must be to claim your Google Business Profile and optimize it with precise details about your operating hours and services as well as your practice location. Please encourage happy patients to submit positive evaluations because search position and patient pick depend heavily on reviews. Use specific keywords related to your location in all website content including "emergency dentist in [your city]" and "[your neighborhood] family dentist."</p>
+      
+      <p>Local content creation for your blog will enhance your SEO results. Your expertise becomes clear through dental content publishing but your search engine ranking also improves when you optimize such articles with appropriate keywords.</p>
+      
+      <h2>4. Leveraging Content Marketing to Establish Dental Authority</h2>
+      <p>Through content marketing practices can demonstrate their dental expertise while offering helpful patient information to their current and future customers. The establishment of your practice as an authoritative source occurs through the regular posting of content that answers patient concerns and educates readers about procedures and oral health practices.</p>
+      
+      <p>The presence of video content has risen in significance as dental practitioners market their services. Your practice should develop brief educational videos that explain both procedures office facilities and patient care information. Multiple platforms receive your video content because it allows potential patients to connect with your practice through your website and social media sites before their initial office visit.</p>
+      
+      <h2>5. Building a Strategic Social Media Presence</h2>
+      <p>The social media landscape provides dental facilities with essential communication tools that let them build more intimate patient relationships. Anti-social behavior means a commitment to a select few platforms that engage your audience best. Dental practices find success on Facebook and Instagram because they enable the sharing of visual content patient testimonials and educational material.</p>
+      
+      <p>Displaying regular content posting establishes stronger results than the number of posted items. Staff profiles alongside patient transformation photos together with images of office activities and information about dental health receive wide sharing with patient consent. The practice should reply immediately to patient comments and messages to promote interaction. Social media enables precise advertising that enables dentists to deliver promotional deals together with educational content to defined demographics in their designated service regions.</p>
+
+      <h2>6. Implementing Email Marketing Campaigns</h2>
+      <p>Email functions as a standout marketing platform that delivers excellent results for dental practices. Create an email list of patients then segment it to distribute customized messages. The practice should distribute monthly email newsletters that contain oral health advice and practice updates along with exclusive promotions.</p>
+      
+      <p>Automated email sequences decrease no-shows while encouraging patients to maintain their regular check-ups. Your practice should use automated systems to send appointment alerts and birthday greetings with special promotions and six-month cleaning appointment notifications to patients. The use of personalized content boosts engagement metrics thus always incorporate patient-specific information and their names whenever feasible.</p>
+      
+      <h2>7. Maximizing Patient Reviews and Testimonials</h2>
+      <p>The digital era uses online reviews to transmit information that serves as contemporary referral methods. Create a structured method to obtain feedback from patients. Positive appointment patients should be prompted to post their satisfaction stories on Google and Facebook as well as healthcare review platforms.</p>
+      
+      <p>Your website along with social media platforms should display patient testimonials in easily-viewable locations. The response to reviews must follow HIPAA guidelines by avoiding patient verification and keeping treatment information private. Use a professional approach to respond to negative reviews by offering offline solutions that show your dedication to patient satisfaction.</p>
+
+      <h2>8. Creating Targeted Paid Advertising Campaigns</h2>
+      <p>Absolute marketing methods bring sustained profits yet paid promotion provides swift outcomes for dental practices. Your Google Ads campaign lets you reach people who specifically search for dental services within your geographic area. Develop advertising campaigns specifically for high-value treatments including implants and Invisalign and cosmetic procedures.</p>
+      
+      <p>Facebook and Instagram provide social media advertising features that let advertisers create targeted campaigns through data points of demographics as well as user interests and behavior patterns. Online platforms serve businesses well by allowing them to showcase both unique promotional deals and educational materials that educate patients about certain dental procedures.</p>
+      
+      <h2>9. Nurturing Community Connections</h2>
+      <p>Community relationship building stands as an essential marketing strategy that dental practices should maintain. Dental practices should support local sports organizations to participate in health expo activities and provide free dental examinations at community events. The activities help you become more visible to potential patients and show your dedication to community health.</p>
+      
+      <p>Your practice should develop partnerships with healthcare providers who do not directly compete with you such as physicians, chiropractors, and nutritionists to exchange patient referrals. Your practice gets better recognition through educational presentations that run at schools or community centers as well as increased awareness of your practice.</p>
+      
+      <h2>10. Measuring Marketing Performance and Adjusting Strategies</h2>
+      <p>A dental marketing plan achieves its best success through ongoing evaluation and modification. Businesses should use key performance indicators (KPIs) to measure new patient acquisitions together with website traffic and conversion rates and return on investment for different marketing platforms.</p>
+      
+      <p>Analytics tools should help you identify the marketing approaches that will work best for the patients in your practice setting. Data analytics provides better budget allocation since it enables practice owners to direct their marketing funds toward strategies that generate results and remove resources from underperforming initiatives.</p>
+
+      <h2>Conclusion: Integrating Digital and Traditional Marketing for Dental Success</h2>
+      <p>A successful dental marketing plan will use new digital methods with proven traditional methods. Defining your core value proposition should begin your efforts before you construct a marketing plan based on your website alongside SEO and content marketing together with social media and email campaigns and community outreach.</p>
+      
+      <p>Maintain consistency as the essential element in marketing operations. Execute several marketing approaches that match your practice goals by implementing them with high-quality performance. Your practice can extend marketing activities by using performance data and patient feedback to determine new expansion opportunities.</p>
+      
+      <p>Your dental practice will achieve success by implementing strategic marketing approaches that will bring more patients while building strong ties with current patients in the competitive healthcare market today.</p>
+    `
+  },
   'technology-dental-practice': {
     title: 'The Role of Technology in Growing a Modern Dental Practice',
     author: 'Kevin Oduor',
@@ -206,6 +275,9 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col">
+        <Helmet>
+          <title>Blog Post Not Found | Nia</title>
+        </Helmet>
         <Navbar />
         <main className="flex-grow pt-20">
           <div className="container mx-auto px-4 py-16 text-center">
@@ -221,8 +293,23 @@ const BlogPost = () => {
     );
   }
 
+  // Extract a short excerpt for the meta description
+  const stripTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "");
+  const contentText = stripTags(post.content);
+  const metaDescription = contentText.substring(0, 160) + "...";
+
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{post.title} | Nia Blog</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="article:published_time" content={post.date} />
+        <meta property="article:author" content={post.author} />
+      </Helmet>
+      
       <Navbar />
       
       <main className="flex-grow pt-20">
