@@ -51,10 +51,8 @@ const Footer: React.FC = () => {
               <li><Link to="/blog/marketing-tips-attract-patients" className="text-nia-300 hover:text-white transition-colors">Marketing Tips</Link></li>
               <li><Link to="/blog/ai-transform-dental-practice" className="text-nia-300 hover:text-white transition-colors">AI in Dentistry</Link></li>
               <li><Link to="/blog/technology-dental-practice" className="text-nia-300 hover:text-white transition-colors">Technology Guide</Link></li>
-              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">E-Books</Link></li>
-              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Free Tools</Link></li>
-              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Testimonials</Link></li>
-              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Case Studies</Link></li>
+              <li><Link to="/blog/creative-dental-marketing-ideas" className="text-nia-300 hover:text-white transition-colors">Creative Marketing</Link></li>
+              <li><Link to="/blog/digital-marketing-dental-clinics" className="text-nia-300 hover:text-white transition-colors">Digital Marketing</Link></li>
             </ul>
           </div>
           
@@ -75,9 +73,9 @@ const Footer: React.FC = () => {
               © {currentYear} <Link to="/" className="hover:text-white transition-colors">Nia</Link>. All rights reserved.
             </div>
             <div className="flex space-x-6">
-              <Link to="/terms" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
-              <Link to="/privacy" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
-              <Link to="/cookies" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
+              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
             </div>
           </div>
         </div>
