@@ -36,7 +36,7 @@
    - Type: A | Host: @ | Value: 185.199.111.153 | TTL: Automatic
 
    ### CNAME Record (for www subdomain):
-   - Type: CNAME | Host: www | Value: yourusername.github.io | TTL: Automatic
+   - Type: CNAME | Host: www | Value: kevoduor.github.io | TTL: Automatic
 
 6. Wait for DNS changes to propagate (can take up to 48 hours)
 
