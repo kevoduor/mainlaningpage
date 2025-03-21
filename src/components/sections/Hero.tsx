@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-12 animate-fade-in">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 sm:mb-4 md:mb-6 text-balance">
-            Attract 5X More Patients
+            Attract 5X More Patients To Your Dental Office
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 text-balance max-w-3xl mx-auto px-2">
             Nia helps you attract more patients, reduce no-shows and automate your clinic's operations - all in one easy to use system.
