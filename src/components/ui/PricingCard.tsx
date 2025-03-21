@@ -48,13 +48,15 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </div>
       
       <div className="mb-6">
-        <div className="text-3xl font-bold">{price}</div>
+        <div className="text-3xl font-bold flex items-center gap-2">
+          <span className="text-2xl">💰</span> {price}
+        </div>
       </div>
       
       <ul className="space-y-2 mb-6">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start">
-            <Check className="h-5 w-5 text-nia-600 mr-2 mt-0.5 shrink-0" />
+            <span className="text-nia-600 mr-2 shrink-0">✅</span>
             <span className="text-sm">{feature.text}</span>
           </li>
         ))}

@@ -6,11 +6,11 @@ import PricingCard from '../ui/PricingCard';
 const Pricing: React.FC = () => {
   const pricingPlans = [
     {
-      title: 'Basic Plan',
+      title: 'Basic Plan – Get Started Easily',
       price: '$99/month',
-      description: 'Perfect for small dental practices just getting started.',
+      description: 'Perfect for small dental practices taking their first step toward automation.',
       features: [
-        { text: 'Core management features' },
+        { text: 'Core management tools' },
         { text: 'Basic email support' },
         { text: 'Cloud hosting & storage' },
         { text: 'Google Reviews Monitoring' },
@@ -19,27 +19,27 @@ const Pricing: React.FC = () => {
       popular: false
     },
     {
-      title: 'Professional Plan',
+      title: 'Professional Plan – Grow with Ease',
       price: '$249/month',
-      description: 'Our most popular plan for growing dental clinics.',
+      description: 'For growing clinics ready to streamline operations and attract more patients.',
       features: [
         { text: 'Everything in Basic, plus:' },
         { text: 'Advanced analytics & reporting' },
         { text: 'Priority support' },
-        { text: 'WhatsApp & SMS communication' },
+        { text: 'WhatsApp & SMS patient communication' },
         { text: 'Mobile App for clinic management' },
-        { text: 'Automated AI calls for appointments' }
+        { text: 'AI-powered appointment calls' }
       ],
       popular: true
     },
     {
-      title: 'Premium Plan',
+      title: 'Premium Plan – Run a High-Performing Clinic',
       price: '$349/month',
-      description: 'Comprehensive solution for established practices.',
+      description: 'For established practices looking to simplify and scale.',
       features: [
         { text: 'Everything in Professional, plus:' },
         { text: 'Customizable features' },
-        { text: '24/7 support & dedicated manager' },
+        { text: '24/7 support & dedicated account manager' },
         { text: 'Automated Google & Facebook Ads' },
         { text: 'Referral & Loyalty Program' },
         { text: 'Advanced AI-driven calls' }
@@ -52,8 +52,8 @@ const Pricing: React.FC = () => {
     <section id="pricing" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="Affordable AI-Powered Dental Software for Every Practice"
-          subtitle="Flexible pricing plans for small dental clinics and enterprise practices with all the tools you need to grow and attract more patients."
+          title="Intelligent Software to Grow Your Practice"
+          subtitle="Flexible plans designed to help your clinic run smoother—whether you're just starting or expanding."
           center={true}
         />
         
