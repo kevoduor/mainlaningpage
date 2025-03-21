@@ -25,28 +25,52 @@ const Index = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 md:mb-6">Why Dentists Love Nia</h2>
+              <p className="text-lg md:text-xl max-w-3xl mx-auto text-nia-100 mb-8 md:mb-12">
+                Nia isn't just software—it's the power-up your practice needs.
+              </p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {[
-                "More Patient Time",
-                "Peace of Mind",
-                "Less Stress",
-                "Steady Growth",
-                "Work-Life Balance",
-                "Increased Revenue"
+                {
+                  title: "More Patient Time",
+                  description: "Spend less time on admin and more on care."
+                },
+                {
+                  title: "Peace of Mind",
+                  description: "Automate tasks and reduce no-shows effortlessly."
+                },
+                {
+                  title: "Less Stress",
+                  description: "A smooth-running clinic means happier days."
+                },
+                {
+                  title: "Steady Growth",
+                  description: "Attract and retain more patients with ease."
+                },
+                {
+                  title: "Work-Life Balance",
+                  description: "Run your practice efficiently without burnout."
+                },
+                {
+                  title: "Increased Revenue",
+                  description: "More patients, fewer gaps, and predictable income."
+                }
               ].map((benefit, index) => (
                 <div 
                   key={index} 
-                  className={`flex items-start animate-fade-in delay-${(index % 5 + 1) * 100}`}
+                  className={`flex flex-col animate-fade-in delay-${(index % 5 + 1) * 100}`}
                 >
-                  <CheckCircle className="h-6 w-6 mr-3 text-nia-200 shrink-0" />
-                  <p className="font-medium">{benefit}</p>
+                  <div className="flex items-start mb-2">
+                    <CheckCircle className="h-6 w-6 mr-3 text-nia-200 shrink-0" />
+                    <p className="font-semibold">{benefit.title}</p>
+                  </div>
+                  <p className="text-nia-100 ml-9">{benefit.description}</p>
                 </div>
               ))}
             </div>
             
-            <div className="text-center mt-8 md:mt-12">
+            <div className="text-center mt-10 md:mt-14">
               <CTAButton 
                 className="bg-white text-nia-700 hover:bg-nia-100" 
                 icon={false}
