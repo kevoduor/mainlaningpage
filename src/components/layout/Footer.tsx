@@ -73,9 +73,9 @@ const Footer: React.FC = () => {
               © {currentYear} <Link to="/" className="hover:text-white transition-colors">Nia</Link>. All rights reserved.
             </div>
             <div className="flex space-x-6">
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
-              <Link to="/" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
+              <Link to="/terms" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
+              <Link to="/privacy" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
+              <Link to="/cookies" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
             </div>
           </div>
         </div>
