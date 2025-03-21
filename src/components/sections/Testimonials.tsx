@@ -29,8 +29,8 @@ const Testimonials: React.FC = () => {
     <section className="py-16 md:py-20 bg-nia-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="What Dentists Are Saying"
-          subtitle="Real stories from dental professionals who've transformed their practices with Nia"
+          title="How Dentists Are Winning with Nia"
+          subtitle="Real dentists, real results—see how Nia helps them streamline operations, fill chairs, and focus on patient care."
           center={true}
         />
         
