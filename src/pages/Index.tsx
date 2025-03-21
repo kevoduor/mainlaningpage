@@ -9,7 +9,7 @@ import Pricing from '@/components/sections/Pricing';
 import Testimonials from '@/components/sections/Testimonials';
 import FAQ from '@/components/sections/FAQ';
 import CTAButton from '@/components/ui/CTAButton';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, UserPlus } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -49,9 +49,9 @@ const Index = () => {
               <CTAButton 
                 className="bg-white text-nia-700 hover:bg-nia-100" 
                 icon={false}
-                isBookDemo={true}
+                href="/signup"
               >
-                Try Nia Free – Book a Demo Now!
+                Try Nia Free – Sign Up Now!
               </CTAButton>
             </div>
           </div>
@@ -74,9 +74,9 @@ const Index = () => {
               size="lg" 
               className="bg-white text-nia-700 hover:bg-nia-100 w-full sm:w-auto"
               icon={false}
-              isBookDemo={true}
+              href="/signup"
             >
-              Limited Spots Available – Book a Free Demo Now!
+              Limited Spots Available – Sign Up Now!
             </CTAButton>
             <div className="mt-8 text-nia-200">
               <p className="mb-2">Call/WhatsApp: +254755792377</p>

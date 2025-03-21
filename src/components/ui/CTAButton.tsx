@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, UserPlus } from 'lucide-react';
 
 interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
@@ -36,8 +36,16 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         const hasProtocol = href.startsWith('http://') || href.startsWith('https://') || 
                           href.startsWith('mailto:') || href.startsWith('tel:');
         
+        // If anchor link (starts with #)
+        if (href.startsWith('#')) {
+          const id = href.substring(1);
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
         // If internal link (starts with /)
-        if (href.startsWith('/')) {
+        else if (href.startsWith('/')) {
           window.location.href = href;
         } 
         // If external link but missing protocol, add https://
@@ -54,6 +62,8 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         onClick(e);
       }
     };
+
+    const IconComponent = isBookDemo ? ChevronRight : (children === "Sign Up" ? UserPlus : ChevronRight);
 
     return (
       <button
@@ -76,7 +86,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         {...props}
       >
         <span className="truncate">{children}</span>
-        {icon && <ChevronRight className="ml-1 h-4 w-4 flex-shrink-0" />}
+        {icon && <IconComponent className="ml-1 h-4 w-4 flex-shrink-0" />}
       </button>
     );
   }

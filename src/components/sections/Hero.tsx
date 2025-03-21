@@ -28,16 +28,17 @@ const Hero: React.FC = () => {
             <CTAButton 
               size={isXs ? "md" : "lg"}
               className="flex items-center" 
-              isBookDemo={true}
+              href="/signup"
               fullWidthOnMobile={true}
               icon={false}
             >
-              Book a demo
+              Sign Up
             </CTAButton>
             <CTAButton 
               size={isXs ? "md" : "lg"} 
               variant="outline" 
               fullWidthOnMobile={true}
+              href="/#features"
             >
               View Features
             </CTAButton>

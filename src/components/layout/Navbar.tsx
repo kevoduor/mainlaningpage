@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, UserPlus } from 'lucide-react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 
@@ -33,12 +33,20 @@ const Navbar = () => {
     isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-3'
   }`;
   
+  const handleScrollToSection = (sectionId: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Features', path: '/#features' },
-    { name: 'Pricing', path: '/#pricing' },
-    { name: 'FAQ', path: '/#faq' },
+    { name: 'Features', path: '/#features', scrollTo: 'features' },
+    { name: 'Pricing', path: '/#pricing', scrollTo: 'pricing' },
+    { name: 'FAQ', path: '/#faq', scrollTo: 'faq' },
   ];
   
   return (
@@ -52,20 +60,39 @@ const Navbar = () => {
           
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm hover:text-nia-600 transition-colors ${
-                  (location.pathname === link.path || 
-                   (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                    ? 'text-nia-600 font-medium' 
-                    : 'text-nia-800'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (link.scrollTo && location.pathname === '/') {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    onClick={handleScrollToSection(link.scrollTo)}
+                    className={`text-sm hover:text-nia-600 transition-colors ${
+                      (location.pathname === link.path || 
+                       (link.path !== '/' && location.pathname.startsWith(link.path))) 
+                        ? 'text-nia-600 font-medium' 
+                        : 'text-nia-800'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`text-sm hover:text-nia-600 transition-colors ${
+                    (location.pathname === link.path || 
+                     (link.path !== '/' && location.pathname.startsWith(link.path))) 
+                      ? 'text-nia-600 font-medium' 
+                      : 'text-nia-800'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
           
           {/* CTA button */}
@@ -73,9 +100,10 @@ const Navbar = () => {
             <CTAButton 
               size="sm" 
               className="bg-nia-600 text-white"
-              isBookDemo={true}
+              href="/signup"
+              icon={true}
             >
-              Book a Demo
+              Sign Up
             </CTAButton>
           </div>
           
@@ -94,26 +122,45 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white shadow-md absolute top-full left-0 right-0 py-4 px-4 animate-fade-in">
           <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-base hover:text-nia-600 transition-colors py-2 ${
-                  (location.pathname === link.path || 
-                   (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                    ? 'text-nia-600 font-medium' 
-                    : 'text-gray-700'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (link.scrollTo && location.pathname === '/') {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    onClick={handleScrollToSection(link.scrollTo)}
+                    className={`text-base hover:text-nia-600 transition-colors py-2 ${
+                      (location.pathname === link.path || 
+                       (link.path !== '/' && location.pathname.startsWith(link.path))) 
+                        ? 'text-nia-600 font-medium' 
+                        : 'text-gray-700'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`text-base hover:text-nia-600 transition-colors py-2 ${
+                    (location.pathname === link.path || 
+                     (link.path !== '/' && location.pathname.startsWith(link.path))) 
+                      ? 'text-nia-600 font-medium' 
+                      : 'text-gray-700'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <CTAButton 
               className="mt-2" 
-              isBookDemo={true}
+              href="/signup"
               icon={false}
             >
-              Book a Demo
+              Sign Up
             </CTAButton>
           </div>
         </div>
