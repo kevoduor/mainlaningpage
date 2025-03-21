@@ -55,17 +55,6 @@ const Hero: React.FC = () => {
             />
           </div>
           
-          {/* Appointment booked notification badge - changed from Live clinics */}
-          <div className="absolute -bottom-5 sm:-bottom-6 right-4 sm:right-8 backdrop-blur-md bg-white/60 rounded-lg px-3 py-2 shadow-md border border-white/40 transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-xs font-medium text-green-600">New</span>
-              </div>
-              <span className="text-xs sm:text-sm font-medium text-nia-800">Appointment Booked</span>
-            </div>
-          </div>
-          
           {/* New Google Review notification badge - repositioned to bottom left */}
           <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
             <div className="flex items-center gap-2">
