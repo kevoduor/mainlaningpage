@@ -1,8 +1,16 @@
 
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const WhatsAppButton: React.FC = () => {
+  const { isMobile } = useBreakpoint();
+  
+  // Don't render the button on mobile devices
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <a 
       href="https://wa.link/k77ynn" 
