@@ -6,6 +6,15 @@ import { formatDate } from '@/lib/utils';
 
 const BLOG_POSTS = [
   {
+    id: 'marketing-tips-attract-patients',
+    title: 'Top Marketing Tips to Attract New Patients to Your Dentist Office',
+    excerpt: 'If your dentist office is looking to grow, strategic marketing is key. Here are some effective tactics to help you bring in new patients and keep your schedule full.',
+    author: 'Kevin Oduor',
+    date: '2025-02-20',
+    imageUrl: '/placeholder.svg',
+    slug: 'marketing-tips-attract-patients'
+  },
+  {
     id: 'creative-dental-marketing-ideas',
     title: 'Creative Dental Marketing Ideas to Grow Your Practice',
     excerpt: 'In a competitive dental market, standing out and connecting with your patients is key. Here are some innovative dental marketing ideas to help your practice grow.',

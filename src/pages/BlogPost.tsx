@@ -12,6 +12,54 @@ import { Helmet } from 'react-helmet';
 
 // Blog post data (in a real app, this would come from an API)
 const BLOG_POSTS = {
+  'marketing-tips-attract-patients': {
+    title: 'Top Marketing Tips to Attract New Patients to Your Dentist Office',
+    author: 'Kevin Oduor',
+    date: '2025-02-20',
+    heroImage: '/placeholder.svg',
+    content: `
+      <p>If your dentist office is looking to grow, strategic marketing is key. Here are some effective tactics to help you bring in new patients and keep your schedule full:</p>
+
+      <h2>1. Improve Your Online Presence with SEO</h2>
+      <p>When patients search for a dentist, you want to show up at the top. To improve your local SEO:</p>
+      <ul>
+        <li>Ensure your website is optimized with location-based keywords</li>
+        <li>Create blog posts or FAQs addressing common dental concerns</li>
+        <li>Claim and update your Google My Business listing regularly</li>
+      </ul>
+
+      <h2>2. Make Booking Easy and Accessible</h2>
+      <p>Patients are more likely to book when it's quick and easy. Make sure to:</p>
+      <ul>
+        <li>Offer online scheduling through your website or social media</li>
+        <li>Provide click-to-call functionality for mobile users</li>
+      </ul>
+
+      <h2>3. Use Social Media for Community Engagement</h2>
+      <p>Social media platforms are a great way to build relationships with current and potential patients. You can:</p>
+      <ul>
+        <li>Share dental tips and facts</li>
+        <li>Post videos of your staff, office, and patient testimonials</li>
+        <li>Run promotions like "First Visit Special" or discounts for referrals</li>
+      </ul>
+
+      <h2>4. Create Local Partnerships</h2>
+      <p>Partner with local businesses to cross-promote your services:</p>
+      <ul>
+        <li>Work with nearby gyms, salons, or family stores to offer exclusive discounts to their customers</li>
+        <li>Run joint events or giveaways to increase exposure in your community</li>
+      </ul>
+
+      <h2>5. Invest in Paid Advertising</h2>
+      <p>Targeted ads can drive new patients directly to your website. Consider:</p>
+      <ul>
+        <li>Running Google Ads for high-intent search terms like "dentist in [your area]"</li>
+        <li>Using Facebook or Instagram ads to target specific demographics, like families or young professionals</li>
+      </ul>
+
+      <p>Consistency is key in marketing—small efforts every day can bring long-term success.</p>
+    `
+  },
   'creative-dental-marketing-ideas': {
     title: 'Creative Dental Marketing Ideas to Grow Your Practice',
     author: 'Kevin Oduor',
