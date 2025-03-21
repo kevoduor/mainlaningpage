@@ -13,9 +13,9 @@ const Testimonials: React.FC = () => {
     },
     {
       quote: "I used to spend hours on admin tasks—Nia's automation freed up my time so I can focus on patient care.",
-      author: "Dr. James Mwangi",
+      author: "Dr. Carlos James",
       role: "Cosmetic Dentist",
-      avatarSrc: ""
+      avatarSrc: "/lovable-uploads/7fd73343-9e01-4f35-8ae9-128460379179.png"
     },
     {
       quote: "The AI-powered scheduling has transformed our practice. We're seeing more patients with less administrative overhead.",
