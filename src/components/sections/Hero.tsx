@@ -66,8 +66,8 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          {/* New Google Review notification badge */}
-          <div className="absolute top-4 left-4 backdrop-blur-lg bg-white/80 rounded-lg px-3 py-2 shadow-md border border-white/60">
+          {/* New Google Review notification badge - repositioned to bottom left */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/80 rounded-lg px-3 py-2 shadow-md border border-white/60">
             <div className="flex items-center gap-2">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <div className="flex flex-col">
@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          {/* Appointment rescheduled notification badge */}
+          {/* Appointment rescheduled notification badge - repositioned to top right */}
           <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/80 rounded-lg px-3 py-2 shadow-md border border-white/60">
             <div className="flex items-center gap-2">
               <Calendar className="w-3.5 h-3.5 text-nia-600" />
