@@ -6,6 +6,15 @@ import { formatDate } from '@/lib/utils';
 
 const BLOG_POSTS = [
   {
+    id: 'creative-dental-marketing-ideas',
+    title: 'Creative Dental Marketing Ideas to Grow Your Practice',
+    excerpt: 'In a competitive dental market, standing out and connecting with your patients is key. Here are some innovative dental marketing ideas to help your practice grow.',
+    author: 'Kevin Oduor',
+    date: '2025-02-27',
+    imageUrl: '/placeholder.svg',
+    slug: 'creative-dental-marketing-ideas'
+  },
+  {
     id: 'ai-transform-dental-practice',
     title: '5 Surprising Ways AI Can Transform Dental Practice Management',
     excerpt: 'In an industry as dynamic as dentistry, innovation has always been a cornerstone of progress. From the adoption of digital X-rays to the use of 3D printing, technology has consistently redefined how dental practices operate.',

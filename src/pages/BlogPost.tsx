@@ -12,6 +12,48 @@ import { Helmet } from 'react-helmet';
 
 // Blog post data (in a real app, this would come from an API)
 const BLOG_POSTS = {
+  'creative-dental-marketing-ideas': {
+    title: 'Creative Dental Marketing Ideas to Grow Your Practice',
+    author: 'Kevin Oduor',
+    date: '2025-02-27',
+    heroImage: '/placeholder.svg',
+    content: `
+      <p>In a competitive dental market, standing out and connecting with your patients is key. Here are some innovative dental marketing ideas to help your practice grow:</p>
+
+      <h2>Create Shareable Dental Content</h2>
+      <p>Share engaging and informative content like "Did You Know?" dental facts, tips for maintaining oral health, and fun dental challenges. Encouraging your followers to share these posts can help you reach a wider audience organically.</p>
+
+      <h2>Leverage Video Marketing</h2>
+      <p>People love video content! Create short, informative videos explaining common procedures, showcasing patient success stories, or introducing your team. Post them on your website, YouTube, and social media platforms to educate and connect with patients in a more personal way.</p>
+
+      <h2>Host a Dental Giveaway or Contest</h2>
+      <p>Everyone loves a giveaway! Run a contest where followers can win a free teeth whitening session, dental care products, or a discounted cleaning. Make it easy to enter and share on social media to increase visibility and engagement.</p>
+
+      <h2>Collaborate with Local Businesses</h2>
+      <p>Partner with local gyms, spas, or wellness centers to cross-promote your services. For example, offer gym members a discount on their first visit or run joint promotions to attract new patients while supporting local businesses.</p>
+
+      <h2>Offer Family Packages or Discounts</h2>
+      <p>Many patients prefer to bring their families to one dental practice. Consider offering family packages or discounts for multiple visits to attract group bookings. Make it clear that your practice is family-friendly!</p>
+
+      <h2>Create a Dental Blog</h2>
+      <p>Start a blog on your website where you can share tips, news about your practice, and answers to common dental questions. Not only does this help with SEO, but it also establishes your practice as a go-to resource for dental information.</p>
+
+      <h2>Send Personalized Reminders and Promotions</h2>
+      <p>Send personalized appointment reminders and promotions through email or SMS. Include birthday wishes or seasonal greetings along with special offers to show your patients you care and keep your practice top of mind.</p>
+
+      <h2>Offer Virtual Consultations</h2>
+      <p>Virtual consultations make it easier for potential patients to ask questions and learn about your services without the pressure of an in-person visit. Promote this convenience as part of your practice's unique value proposition.</p>
+
+      <h2>Celebrate Milestones and Patient Success Stories</h2>
+      <p>Celebrate your practice's milestones, such as anniversaries or awards, and share patient success stories (with permission). Recognizing these moments can strengthen your community and foster loyalty.</p>
+
+      <h2>Sponsor Local Events or Sports Teams</h2>
+      <p>Sponsoring local events or sports teams provides great exposure for your practice and helps build connections within the community. You can provide dental care supplies, offer discounts, or have a presence at events.</p>
+
+      <h2>Conclusion</h2>
+      <p>Implementing even a few of these creative marketing ideas can help your dental practice stand out in a competitive market. Remember, the key is to be consistent, authentic, and patient-focused in all your marketing efforts. Start small, measure your results, and adjust your strategy based on what works best for your practice.</p>
+    `
+  },
   'ai-transform-dental-practice': {
     title: '5 Surprising Ways AI Can Transform Dental Practice Management',
     author: 'Kevin Oduor',
