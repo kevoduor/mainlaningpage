@@ -56,10 +56,10 @@ const Hero: React.FC = () => {
           </div>
           
           {/* Live clinics notification badge */}
-          <div className="absolute -bottom-5 sm:-bottom-6 right-4 sm:right-8 backdrop-blur-md bg-white/70 rounded-lg px-3 py-2 shadow-lg border border-white/50 animate-float transition-all duration-300 hover:bg-white/80">
+          <div className="absolute -bottom-5 sm:-bottom-6 right-4 sm:right-8 backdrop-blur-md bg-white/70 rounded-lg px-3 py-2 shadow-lg border border-white/50">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
                 <span className="text-xs font-medium text-green-600">Live</span>
               </div>
               <span className="text-xs sm:text-sm font-medium text-nia-800">250+ Clinics Using Nia</span>
@@ -67,9 +67,9 @@ const Hero: React.FC = () => {
           </div>
           
           {/* New Google Review notification badge */}
-          <div className="absolute top-4 left-4 backdrop-blur-lg bg-white/60 rounded-lg px-3 py-2 shadow-md border border-white/50 animate-float transition-all duration-300 hover:bg-white/80">
+          <div className="absolute top-4 left-4 backdrop-blur-lg bg-white/80 rounded-lg px-3 py-2 shadow-md border border-white/60">
             <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <div className="flex flex-col">
                 <span className="text-xs font-medium text-nia-800">Hellen Chen</span>
                 <span className="text-[10px] text-nia-600">Left a 5-star review on Google</span>
@@ -78,9 +78,9 @@ const Hero: React.FC = () => {
           </div>
           
           {/* Appointment rescheduled notification badge */}
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/60 rounded-lg px-3 py-2 shadow-md border border-white/50 animate-float transition-all duration-300 hover:bg-white/80">
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/80 rounded-lg px-3 py-2 shadow-md border border-white/60">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-nia-600" />
+              <Calendar className="w-3.5 h-3.5 text-nia-600" />
               <div className="flex flex-col">
                 <span className="text-xs font-medium text-nia-800">William Alex</span>
                 <span className="text-[10px] text-nia-600">Rescheduled appointment</span>
