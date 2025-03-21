@@ -54,14 +54,14 @@ const Hero: React.FC = () => {
             />
           </div>
           
-          {/* Floating badge - hidden on very small screens */}
-          <div className="hidden sm:block absolute -bottom-6 right-8 bg-white rounded-lg px-4 py-3 shadow-lg border border-nia-100 animate-float">
-            <div className="flex items-center">
-              <div className="flex items-center space-x-1 text-green-500 mr-2">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-xs font-semibold">Live</span>
+          {/* Updated glassmorphism floating badge - visible on all screen sizes */}
+          <div className="absolute -bottom-5 sm:-bottom-6 right-4 sm:right-8 backdrop-blur-md bg-white/70 rounded-lg px-3 py-2 shadow-lg border border-white/50 animate-float transition-all duration-300 hover:bg-white/80">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-xs font-medium text-green-600">Live</span>
               </div>
-              <span className="text-sm font-medium">250+ Clinics Using Nia</span>
+              <span className="text-xs sm:text-sm font-medium text-nia-800">250+ Clinics Using Nia</span>
             </div>
           </div>
         </div>
