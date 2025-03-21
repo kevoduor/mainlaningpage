@@ -7,12 +7,12 @@
 2. Open your project
 3. Click on the GitHub icon in the top-right corner
 4. Follow the prompts to authorize Lovable to access your GitHub account
-5. Create a new repository or select an existing one
-6. Lovable will push your code to the selected GitHub repository
+5. Connect to your repository: https://github.com/kevoduor/mainlaningpage
+6. Lovable will push your code to this GitHub repository
 
 ## Step 2: Configure GitHub Pages
 
-1. Go to your GitHub repository
+1. Go to your GitHub repository: https://github.com/kevoduor/mainlaningpage
 2. Click on "Settings"
 3. Scroll down to "Pages" in the left sidebar
 4. Under "Build and deployment":
@@ -47,4 +47,19 @@
 3. Check "Enforce HTTPS" for secure connections
 4. Visit heynia.com to see your deployed site
 
-If you encounter any issues, check GitHub's documentation on custom domains: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+## Troubleshooting
+
+If your site isn't appearing at heynia.com after following these steps:
+
+1. Check if the GitHub Actions workflow ran successfully:
+   - Go to the "Actions" tab in your repository
+   - Look for the most recent workflow run and check if it completed without errors
+
+2. Verify your DNS settings:
+   - You can use a tool like https://dnschecker.org to verify your DNS configuration
+   - Enter heynia.com and check if the A records are pointing to GitHub's IP addresses
+
+3. Check GitHub Pages settings:
+   - In your repository settings, under Pages, make sure it shows "Your site is published at https://heynia.com"
+
+4. Remember that DNS changes can take 24-48 hours to fully propagate globally
