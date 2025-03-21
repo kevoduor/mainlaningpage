@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -16,7 +15,7 @@ const BLOG_POSTS = {
     title: 'Top Marketing Tips to Attract New Patients to Your Dentist Office',
     author: 'Kevin Oduor',
     date: '2025-02-20',
-    heroImage: '/placeholder.svg',
+    heroImage: '/lovable-uploads/94bc9c7c-11d3-4afa-b589-edf97741e042.png',
     content: `
       <p>If your dentist office is looking to grow, strategic marketing is key. Here are some effective tactics to help you bring in new patients and keep your schedule full:</p>
 
@@ -58,18 +57,22 @@ const BLOG_POSTS = {
       </ul>
 
       <p>Consistency is key in marketing—small efforts every day can bring long-term success.</p>
+
+      <img src="/lovable-uploads/e9dbc504-705b-4d4b-b94f-4ae28467a2b1.png" alt="Social media marketing for dental practices" class="my-8 w-full h-auto rounded-lg shadow-md" />
     `
   },
   'creative-dental-marketing-ideas': {
     title: 'Creative Dental Marketing Ideas to Grow Your Practice',
     author: 'Kevin Oduor',
     date: '2025-02-27',
-    heroImage: '/placeholder.svg',
+    heroImage: '/lovable-uploads/8c03c084-888c-473b-9f88-33f0a89b8930.png',
     content: `
       <p>In a competitive dental market, standing out and connecting with your patients is key. Here are some innovative dental marketing ideas to help your practice grow:</p>
 
       <h2>Create Shareable Dental Content</h2>
       <p>Share engaging and informative content like "Did You Know?" dental facts, tips for maintaining oral health, and fun dental challenges. Encouraging your followers to share these posts can help you reach a wider audience organically.</p>
+
+      <img src="/lovable-uploads/8c03c084-888c-473b-9f88-33f0a89b8930.png" alt="Dental shade guide matching with patient" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h2>Leverage Video Marketing</h2>
       <p>People love video content! Create short, informative videos explaining common procedures, showcasing patient success stories, or introducing your team. Post them on your website, YouTube, and social media platforms to educate and connect with patients in a more personal way.</p>
@@ -85,6 +88,8 @@ const BLOG_POSTS = {
 
       <h2>Create a Dental Blog</h2>
       <p>Start a blog on your website where you can share tips, news about your practice, and answers to common dental questions. Not only does this help with SEO, but it also establishes your practice as a go-to resource for dental information.</p>
+
+      <img src="/lovable-uploads/308645d0-800f-4037-99d2-89d895e8e9a5.png" alt="Dentist with patient" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h2>Send Personalized Reminders and Promotions</h2>
       <p>Send personalized appointment reminders and promotions through email or SMS. Include birthday wishes or seasonal greetings along with special offers to show your patients you care and keep your practice top of mind.</p>
@@ -106,9 +111,11 @@ const BLOG_POSTS = {
     title: '5 Surprising Ways AI Can Transform Dental Practice Management',
     author: 'Kevin Oduor',
     date: '2025-03-07',
-    heroImage: '/placeholder.svg',
+    heroImage: '/lovable-uploads/611ce3aa-c93e-42c4-9b72-3b60a6292c91.png',
     content: `
       <p>In an industry as dynamic as dentistry, innovation has always been a cornerstone of progress. From the adoption of digital X-rays to the use of 3D printing, technology has consistently redefined how dental practices operate. Now, artificial intelligence (AI) is stepping into the spotlight, offering transformative solutions that streamline workflows and improve patient care. Here are five surprising ways AI can revolutionize dental practice management that you might not have considered.</p>
+
+      <img src="/lovable-uploads/611ce3aa-c93e-42c4-9b72-3b60a6292c91.png" alt="Dental X-ray analysis" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h2>1. Optimizing Appointment Scheduling and Reducing No-Shows</h2>
       <p>AI-powered scheduling tools are game changers for dental practices. These systems analyze historical data, patient preferences, and staff availability to create optimized schedules that maximize efficiency. Unlike traditional scheduling software, AI tools can:</p>
@@ -157,7 +164,7 @@ const BLOG_POSTS = {
     title: 'Top 10 Digital Marketing Tips for Dental Clinic Owners',
     author: 'Kevin Oduor',
     date: '2025-03-14',
-    heroImage: '/placeholder.svg',
+    heroImage: '/lovable-uploads/e9dbc504-705b-4d4b-b94f-4ae28467a2b1.png',
     content: `
       <p>The current dental practice market demands more than top-level medical care to succeed. A skilled marketing approach will turn an underperforming practice into a successful and stable business that continuously adds new patients to its patient base through exceptional relationship management. This thorough guide illustrates how dental practices should use tested marketing methods that unite classic advertising with modern internet techniques for expanding their operations.</p>
 
@@ -165,6 +172,8 @@ const BLOG_POSTS = {
       <p>A dental practice needs to establish its unique selling points before starting any marketing initiative. You distinctively provide modern technological resources and superior pediatric treatments along with cosmetic surgery offerings. All your marketing activities should begin with your unique value proposition which demonstrates to potential patients why they should select your practice instead of others.</p>
       
       <p>The majority of dental practices commit the error of creating marketing strategies without distinct features. Dedicate time to recognize the key strengths in your practice through evaluation of convenient location combined with extended hours and painless techniques and financing alternatives. Your focused marketing will achieve better results when it targets the exact patient groups you want to reach.</p>
+
+      <img src="/lovable-uploads/308645d0-800f-4037-99d2-89d895e8e9a5.png" alt="Dental professional with patient" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h2>2. Creating a Professional, Patient-Focused Website</h2>
       <p>The dental practice website functions as an online entrance that leads patients to your clinic. Online patient research now dictates that your website needs to create an exceptional initial impact because patients search for healthcare providers before booking appointments. Your website should present a professional look through mobile responsiveness combined with quick loading times and a depiction of office facilities along with team members.</p>
@@ -177,6 +186,8 @@ const BLOG_POSTS = {
       <p>Your first step must be to claim your Google Business Profile and optimize it with precise details about your operating hours and services as well as your practice location. Please encourage happy patients to submit positive evaluations because search position and patient pick depend heavily on reviews. Use specific keywords related to your location in all website content including "emergency dentist in [your city]" and "[your neighborhood] family dentist."</p>
       
       <p>Local content creation for your blog will enhance your SEO results. Your expertise becomes clear through dental content publishing but your search engine ranking also improves when you optimize such articles with appropriate keywords.</p>
+      
+      <img src="/lovable-uploads/e9dbc504-705b-4d4b-b94f-4ae28467a2b1.png" alt="Social media marketing for dental practices" class="my-8 w-full h-auto rounded-lg shadow-md" />
       
       <h2>4. Leveraging Content Marketing to Establish Dental Authority</h2>
       <p>Through content marketing practices can demonstrate their dental expertise while offering helpful patient information to their current and future customers. The establishment of your practice as an authoritative source occurs through the regular posting of content that answers patient concerns and educates readers about procedures and oral health practices.</p>
@@ -225,7 +236,7 @@ const BLOG_POSTS = {
     title: 'The Role of Technology in Growing a Modern Dental Practice',
     author: 'Kevin Oduor',
     date: '2025-03-21',
-    heroImage: '/placeholder.svg',
+    heroImage: '/lovable-uploads/308645d0-800f-4037-99d2-89d895e8e9a5.png',
     content: `
       <h2>Key Takeaways</h2>
       <ul>
@@ -233,6 +244,8 @@ const BLOG_POSTS = {
         <li>This analysis covers fundamental digital instruments that enhance both patient support systems and medical records documentation while permitting offices to grow without compromising their service standards.</li>
         <li>Powerful technology platforms adapt to dental practice sizes because they have solutions for practices ranging from single-provider dental offices to multi-site dental organizations.</li>
       </ul>
+
+      <img src="/lovable-uploads/94bc9c7c-11d3-4afa-b589-edf97741e042.png" alt="Dentist explaining dental x-rays" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h2>The Digital Transformation of Dentistry</h2>
       <p>The dental industry currently faces a major technological transformation which reaches well past clinical advancements. Modern dental practices deploy technology beyond clinical applications because they recognize its value in making operative enhancements and creating better patient engagements which supports enduring expansion.</p>
@@ -278,6 +291,8 @@ const BLOG_POSTS = {
       </ul>
       
       <p>The Patient Preference Survey demonstrates that 72% dental patients will switch providers if they provide online scheduling systems along with digital communication services.</p>
+
+      <img src="/lovable-uploads/8c03c084-888c-473b-9f88-33f0a89b8930.png" alt="Dentist checking tooth shade" class="my-8 w-full h-auto rounded-lg shadow-md" />
 
       <h3>Data-Driven Decision Making: Business Intelligence for Dentistry</h3>
       <p>Business intelligence tools have become crucial for leading dental practices whose operators utilize these resources to find growth opportunities and improve scheduling and resource use.</p>
@@ -443,74 +458,4 @@ const BlogPost = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{post.title} | Nia Blog</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="article" />
-        <meta property="article:published_time" content={post.date} />
-        <meta property="article:author" content={post.author} />
-      </Helmet>
-      
-      <Navbar />
-      
-      <main className="flex-grow pt-20">
-        {/* Hero */}
-        <div className="w-full h-64 md:h-80 lg:h-96 bg-gradient-to-r from-nia-600 to-nia-700 relative">
-          <div className="absolute inset-0 bg-black/30"></div>
-          <div className="absolute inset-0 flex items-end">
-            <div className="container mx-auto px-4 pb-8 md:pb-12">
-              <div className="max-w-3xl">
-                <Link to="/blog" className="inline-flex items-center text-white/90 hover:text-white mb-4">
-                  <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
-                </Link>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">{post.title}</h1>
-                <div className="flex items-center text-white/80 text-sm">
-                  <div className="flex items-center mr-6">
-                    <User className="h-4 w-4 mr-1" /> {post.author}
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" /> {formatDate(new Date(post.date))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Content */}
-        <article className="py-8 md:py-12">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <div 
-                className="prose prose-nia lg:prose-lg mx-auto"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </div>
-          </div>
-        </article>
-        
-        {/* CTA */}
-        <section className="py-12 bg-nia-50">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Transform Your Dental Practice?</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              See how Nia can help you implement the right technology to grow your dental practice.
-            </p>
-            <CTAButton 
-              isBookDemo={true} 
-              size="lg"
-              className="mx-auto"
-              icon={false}
-            >
-              Book a Free Demo
-            </CTAButton>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default BlogPost;
+        <

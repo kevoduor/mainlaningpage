@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -11,7 +10,7 @@ const BLOG_POSTS = [
     excerpt: 'If your dentist office is looking to grow, strategic marketing is key. Here are some effective tactics to help you bring in new patients and keep your schedule full.',
     author: 'Kevin Oduor',
     date: '2025-02-20',
-    imageUrl: '/placeholder.svg',
+    imageUrl: '/lovable-uploads/94bc9c7c-11d3-4afa-b589-edf97741e042.png',
     slug: 'marketing-tips-attract-patients'
   },
   {
@@ -20,7 +19,7 @@ const BLOG_POSTS = [
     excerpt: 'In a competitive dental market, standing out and connecting with your patients is key. Here are some innovative dental marketing ideas to help your practice grow.',
     author: 'Kevin Oduor',
     date: '2025-02-27',
-    imageUrl: '/placeholder.svg',
+    imageUrl: '/lovable-uploads/8c03c084-888c-473b-9f88-33f0a89b8930.png',
     slug: 'creative-dental-marketing-ideas'
   },
   {
@@ -29,7 +28,7 @@ const BLOG_POSTS = [
     excerpt: 'In an industry as dynamic as dentistry, innovation has always been a cornerstone of progress. From the adoption of digital X-rays to the use of 3D printing, technology has consistently redefined how dental practices operate.',
     author: 'Kevin Oduor',
     date: '2025-03-07',
-    imageUrl: '/placeholder.svg',
+    imageUrl: '/lovable-uploads/611ce3aa-c93e-42c4-9b72-3b60a6292c91.png',
     slug: 'ai-transform-dental-practice'
   },
   {
@@ -38,7 +37,7 @@ const BLOG_POSTS = [
     excerpt: 'The current dental practice market demands more than top-level medical care to succeed. A skilled marketing approach will turn an underperforming practice into a successful and stable business.',
     author: 'Kevin Oduor',
     date: '2025-03-14',
-    imageUrl: '/placeholder.svg',
+    imageUrl: '/lovable-uploads/e9dbc504-705b-4d4b-b94f-4ae28467a2b1.png',
     slug: 'digital-marketing-dental-clinics'
   },
   {
@@ -47,7 +46,7 @@ const BLOG_POSTS = [
     excerpt: 'This discussion shows how modern digital technologies transform dental practices by improving patient care services and business expansion in an unstable market environment.',
     author: 'Kevin Oduor',
     date: '2025-03-21',
-    imageUrl: '/placeholder.svg',
+    imageUrl: '/lovable-uploads/308645d0-800f-4037-99d2-89d895e8e9a5.png',
     slug: 'technology-dental-practice'
   }
 ];
