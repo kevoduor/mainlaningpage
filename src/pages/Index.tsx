@@ -103,7 +103,6 @@ const Index = () => {
             >
               Sign Up Now
             </CTAButton>
-            <p className="mt-6 text-nia-100">🔗 nia. – AI-powered dental management made simple.</p>
           </div>
         </section>
       </main>
