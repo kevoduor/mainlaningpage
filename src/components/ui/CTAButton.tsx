@@ -9,10 +9,22 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: boolean;
   isBookDemo?: boolean;
   href?: string;
+  fullWidthOnMobile?: boolean;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
-  ({ className, variant = 'primary', size = 'md', icon = true, isBookDemo = false, href, children, onClick, ...props }, ref) => {
+  ({ 
+    className, 
+    variant = 'primary', 
+    size = 'md', 
+    icon = true, 
+    isBookDemo = false, 
+    href, 
+    children, 
+    onClick, 
+    fullWidthOnMobile = true,
+    ...props 
+  }, ref) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (isBookDemo) {
         e.preventDefault();
@@ -22,7 +34,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         
         // Check if the URL already has a protocol
         const hasProtocol = href.startsWith('http://') || href.startsWith('https://') || 
-                           href.startsWith('mailto:') || href.startsWith('tel:');
+                          href.startsWith('mailto:') || href.startsWith('tel:');
         
         // If internal link (starts with /)
         if (href.startsWith('/')) {
@@ -53,17 +65,18 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
             'bg-nia-100 text-nia-700 hover:bg-nia-200': variant === 'secondary',
             'border border-nia-300 bg-transparent hover:bg-nia-50 text-nia-800': variant === 'outline',
             'bg-transparent text-nia-800 hover:bg-nia-50': variant === 'ghost',
-            'h-9 px-4 text-sm': size === 'sm',
-            'h-11 px-6 text-base': size === 'md',
-            'h-12 px-8 text-lg': size === 'lg',
+            'h-9 px-3 text-sm': size === 'sm',
+            'h-11 px-4 sm:px-6 text-base': size === 'md',
+            'h-12 px-5 sm:px-8 text-lg': size === 'lg',
+            'w-full sm:w-auto': fullWidthOnMobile,
           },
           className
         )}
         onClick={handleClick}
         {...props}
       >
-        {children}
-        {icon && <ChevronRight className="ml-1 h-4 w-4" />}
+        <span className="truncate">{children}</span>
+        {icon && <ChevronRight className="ml-1 h-4 w-4 flex-shrink-0" />}
       </button>
     );
   }

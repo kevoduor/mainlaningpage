@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,14 +12,25 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				sm: '1.5rem',
+				lg: '2rem'
+			},
 			screens: {
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
 				'2xl': '1400px'
 			}
 		},
 		extend: {
+			screens: {
+				'xs': '480px',
+			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,17 +76,16 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Slack-inspired colors
 				nia: {
 					50: '#F5F0FF',
 					100: '#EAE3FF',
 					200: '#D5C6FF',
 					300: '#B79BFF',
 					400: '#9A70FF',
-					500: '#611F69', // Slack primary purple
-					600: '#4A154B', // Darker purple
-					700: '#350D36', // Even darker purple
-					800: '#1E1D1E', // Slack dark gray
+					500: '#611F69',
+					600: '#4A154B',
+					700: '#350D36',
+					800: '#1E1D1E',
 					900: '#121016',
 					950: '#0C0A0D',
 				},
@@ -119,8 +128,30 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'fade-left': 'fade-left 0.6s ease-out',
 				'fade-right': 'fade-right 0.6s ease-out'
-			}
+			},
+			spacing: {
+				'safe-top': 'env(safe-area-inset-top)',
+				'safe-bottom': 'env(safe-area-inset-bottom)',
+				'safe-left': 'env(safe-area-inset-left)',
+				'safe-right': 'env(safe-area-inset-right)',
+			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }) {
+			const newUtilities = {
+				'.touch-manipulation': {
+					'touch-action': 'manipulation',
+				},
+				'.overscroll-none': {
+					'overscroll-behavior': 'none',
+				},
+				'.tap-highlight-transparent': {
+					'-webkit-tap-highlight-color': 'transparent',
+				}
+			}
+			addUtilities(newUtilities)
+		}
+	],
 } satisfies Config;
