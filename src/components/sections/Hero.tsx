@@ -56,24 +56,24 @@ const Hero: React.FC = () => {
             />
           </div>
           
-          {/* New Google Review notification badge - repositioned to bottom left */}
+          {/* New Google Review notification badge - updated with black text */}
           <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
             <div className="flex items-center gap-2">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-nia-800">Hellen Chen</span>
-                <span className="text-[10px] text-nia-600">Left a 5-star review on Google</span>
+                <span className="text-xs font-medium text-black">Hellen Chen</span>
+                <span className="text-[10px] text-black">Left a 5-star review on Google</span>
               </div>
             </div>
           </div>
           
-          {/* Appointment rescheduled notification badge - repositioned to top right */}
+          {/* Appointment rescheduled notification badge - updated with black text */}
           <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
             <div className="flex items-center gap-2">
               <Calendar className="w-3.5 h-3.5 text-nia-600" />
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-nia-800">William Alex</span>
-                <span className="text-[10px] text-nia-600">Rescheduled appointment</span>
+                <span className="text-xs font-medium text-black">William Alex</span>
+                <span className="text-[10px] text-black">Rescheduled appointment</span>
               </div>
             </div>
           </div>
