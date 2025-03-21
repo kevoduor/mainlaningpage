@@ -2,39 +2,39 @@
 import React from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import FeatureCard from '../ui/FeatureCard';
-import { Calendar, FileClock, CreditCard, BrainCircuit, Users, Settings } from 'lucide-react';
+import { Calendar, FileClock, CreditCard, BrainCircuit, Users, Link } from 'lucide-react';
 
 const Features: React.FC = () => {
   const features = [
     {
       icon: Calendar,
       title: 'Smart Scheduling',
-      description: 'AI-powered appointment scheduling with online booking, automated reminders, and intelligent slot allocation.'
+      description: 'AI-powered booking, automated reminders, and optimized slots.'
     },
     {
       icon: FileClock,
       title: 'Electronic Health Records',
-      description: 'HIPAA-compliant EHR with AI-powered charting, voice search, and secure cloud storage.'
+      description: 'HIPAA-compliant EHR with AI charting and voice search.'
     },
     {
       icon: CreditCard,
       title: 'Automated Billing',
-      description: 'Streamline dental insurance billing, online payments, and revenue cycle management.'
+      description: 'Simplify payments, insurance claims, and revenue tracking.'
     },
     {
       icon: BrainCircuit,
       title: 'AI & Automation',
-      description: 'Leverage AI dental diagnosis tools, automated workflows, and voice search to improve efficiency.'
+      description: 'Intelligent workflows and voice-powered commands to save time.'
     },
     {
       icon: Users,
       title: 'Patient Engagement',
-      description: 'Enhance relationships with SMS reminders, online booking, and email marketing strategies.'
+      description: 'SMS reminders, online booking, and email marketing.'
     },
     {
-      icon: Settings,
+      icon: Link,
       title: 'Seamless Integrations',
-      description: 'Connect with X-ray imaging, EHR, PMS, and cloud storage for a complete management system.'
+      description: 'Sync with imaging, EHR, PMS, and cloud storage.'
     }
   ];
 
@@ -42,8 +42,8 @@ const Features: React.FC = () => {
     <section id="features" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="Essential Features for Smarter Dental Practice Management"
-          subtitle="From AI-powered appointment scheduling to automated invoicing and patient engagement, Nia's dental clinic management system includes all the tools needed to grow your practice."
+          title="Essential Tools for Smarter Dental Practice Management"
+          subtitle="From AI-driven scheduling to automated billing and patient engagement, Nia equips your clinic with everything needed to grow—without the hassle."
           center={true}
         />
         

@@ -11,24 +11,24 @@ const Challenges: React.FC = () => {
       solution: 'Automate billing, insurance, and scheduling.'
     },
     {
-      problem: 'Missed Calls = Lost Patients',
-      solution: 'Offer 24/7 booking via Mobile App, WhatsApp, SMS, or email.'
+      problem: 'Missed Calls = Lost Patients?',
+      solution: 'Offer 24/7 booking via mobile, WhatsApp, SMS, or email.'
     },
     {
-      problem: 'No More No-Shows',
-      solution: 'AI-powered reminders and rescheduling options.'
+      problem: 'No More No-Shows?',
+      solution: 'AI-powered reminders and easy rescheduling.'
     },
     {
-      problem: 'Stop Losing Money to Denied Claims',
-      solution: 'AI verification prevents claim rejections.'
+      problem: 'Losing Money to Denied Claims?',
+      solution: 'AI verification prevents rejections.'
     },
     {
-      problem: 'Prevent Staff Burnout',
+      problem: 'Prevent Staff Burnout?',
       solution: 'Reduce admin overload with automation.'
     },
     {
       problem: 'Can Patients Find You Online?',
-      solution: 'Google optimization, reviews, and WhatsApp & E-mail marketing.'
+      solution: 'Boost Google rankings, get reviews, and automate outreach.'
     }
   ];
 
@@ -36,8 +36,8 @@ const Challenges: React.FC = () => {
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-nia-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          title="Common Dental Practice Challenges"
-          subtitle="And How Nia Solves Them"
+          title="Common Dental Practice Challenges—Solved with Nia"
+          subtitle=""
           center={true}
         />
         
