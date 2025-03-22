@@ -150,9 +150,9 @@
   RewriteCond %{HTTPS} off
   RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   
-  # Normalize to www version
-  RewriteCond %{HTTP_HOST} ^heynia\.com$ [NC]
-  RewriteRule (.*) https://www.heynia.com/$1 [R=301,L]
+  # Allow both apex and www domain
+  # DO NOT redirect apex to www or www to apex
+  # This allows both heynia.com and www.heynia.com to work
   
   # Standardize trailing slashes - Remove trailing slash from non-directory requests
   RewriteCond %{REQUEST_FILENAME} !-d

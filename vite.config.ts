@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -10,7 +11,7 @@ export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
   
   return {
-    base: '/', // This is important for GitHub Pages
+    base: '/', // Ensures assets load correctly for both domains
     server: {
       host: "::",
       port: 8080,

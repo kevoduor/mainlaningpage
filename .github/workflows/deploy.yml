@@ -34,10 +34,11 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Copy CNAME to build output
+      - name: Setup CNAME for both domains
         run: |
-          [ -f public/CNAME ] && cp public/CNAME dist/ || echo "CNAME file not found in public directory"
-          echo "www.heynia.com" > dist/CNAME
+          echo "heynia.com" > dist/CNAME
+          # Create a file to verify domain ownership
+          touch dist/.nojekyll
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
