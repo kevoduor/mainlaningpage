@@ -101,3 +101,22 @@ footer h3 {
   color: #ffffff !important;
   font-weight: 600;
 }
+
+/* Critical content visibility optimizations */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 5000px;
+}
+
+/* LCP (Largest Contentful Paint) optimizations */
+.lcp-target {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Hardware acceleration for smooth animations */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

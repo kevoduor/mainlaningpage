@@ -29,7 +29,7 @@ const initApp = () => {
       window.performance.mark('app-init-start');
       window.performance.measure('time-to-init', 'navigationStart', 'app-init-start');
       const timeToInit = performance.getEntriesByName('time-to-init')[0];
-      console.log('Time to init:', timeToInit.duration.toFixed(2) + 'ms');
+      console.log('Time to init:', timeToInit?.duration.toFixed(2) + 'ms');
     }
     
     const rootElement = document.getElementById('root');
@@ -60,7 +60,7 @@ const initApp = () => {
       window.performance.mark('app-init-end');
       window.performance.measure('app-initialization', 'app-init-start', 'app-init-end');
       const appInit = performance.getEntriesByName('app-initialization')[0];
-      console.log('App initialization time:', appInit.duration.toFixed(2) + 'ms');
+      console.log('App initialization time:', appInit?.duration.toFixed(2) + 'ms');
     }
     
   } catch (error) {
