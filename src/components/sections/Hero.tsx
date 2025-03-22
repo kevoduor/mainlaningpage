@@ -1,5 +1,4 @@
-
-import React, { useRef } from 'react';
+import React from 'react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { Badge } from '../ui/badge';
@@ -8,7 +7,6 @@ import { Star, Calendar, Check } from 'lucide-react';
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
   const isMobile = isXs || isSm;
-  const heroImageRef = useRef<HTMLImageElement>(null);
 
   return (
     <section className="relative pt-16 sm:pt-20 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 overflow-hidden">
@@ -52,7 +50,6 @@ const Hero: React.FC = () => {
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <img 
-              ref={heroImageRef}
               src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
               alt="Dental professional showing treatment plan to patient" 
               className="w-full h-auto"
