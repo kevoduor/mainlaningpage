@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+import React from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import { Check, X } from 'lucide-react';
 import CTAButton from '../ui/CTAButton';
@@ -7,16 +8,6 @@ import { useBreakpoint } from '@/hooks/use-mobile';
 const Challenges: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
   const isMobile = isXs || isSm;
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyCTA(window.scrollY > 300);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   const challenges = [
     {
@@ -94,18 +85,6 @@ const Challenges: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {showStickyCTA && (
-        <CTAButton 
-          size={isMobile ? "md" : "lg"}
-          href="/signup"
-          className={`${isMobile ? 'w-[calc(100%-2rem)]' : ''}`}
-          shine={true}
-          sticky={true}
-        >
-          Sign Up
-        </CTAButton>
-      )}
     </section>
   );
 };
