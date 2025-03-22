@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Optimized Hero image with modern formats, proper sizing and explicit dimensions */}
+        {/* Hero image with eager loading (removing lazy loading) */}
         <div className="relative mx-auto max-w-5xl lcp-target animate-fade-in" style={{contentVisibility: 'auto'}}>
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>

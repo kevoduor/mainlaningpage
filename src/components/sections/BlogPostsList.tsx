@@ -76,8 +76,8 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 hardware-accelerated blur-up"
       width="600"
       height="450"
-      loading={index < 2 ? "eager" : "lazy"}
-      fetchPriority={index === 0 ? "high" : "low"}
+      loading="eager" 
+      fetchPriority="high"
       decoding="async"
       style={{
         aspectRatio: '4/3',
