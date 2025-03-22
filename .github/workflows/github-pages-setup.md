@@ -21,7 +21,7 @@
    - Enter: www.heynia.com
    - Check "Enforce HTTPS" (once the domain is verified)
 
-## Step 3: Configure Namecheap DNS Settings for Apex to WWW Redirect
+## Step 3: Configure Namecheap DNS Settings for Mobile and Desktop Access
 
 1. Log in to your Namecheap account
 2. Go to the Domain List and find heynia.com
@@ -44,13 +44,26 @@
    - Go to the "Redirect Domain" tab in Namecheap (not in Advanced DNS)
    - Select "Permanent (301)" redirect type
    - Enter destination: https://www.heynia.com
+   - Make sure to uncheck any "with www" options that would create a redirect loop
    - Check "Enable HTTPS" if possible
-   - Leave "with or without www" as is
    - Save your changes
 
 8. Wait for DNS changes to propagate (can take up to 48 hours)
 
-## Step 4: Verify the Connection
+## Step 4: Testing Mobile Access
+
+1. After completing the DNS configuration:
+   - Clear your mobile browser cache
+   - Try accessing www.heynia.com from your mobile device
+   - If it still doesn't work, try using cellular data instead of WiFi (to avoid cached DNS)
+   - Use a mobile DNS checker like https://dnschecker.org (access from your phone)
+
+2. Common mobile-specific DNS issues:
+   - Some mobile carriers use their own DNS servers which may update slower
+   - Mobile devices often cache DNS information longer than desktops
+   - Try forcing your mobile browser to reload the page (pull down to refresh)
+
+## Step 5: Verify the Connection
 
 1. After DNS propagation, go back to your GitHub repository's settings
 2. Under "Pages", verify that your domain is showing as verified
@@ -84,3 +97,4 @@ If your site isn't appearing correctly after following these steps:
    - Make sure that you're setting up the redirect in Namecheap's "Redirect Domain" section, not as a URL Redirect Record in Advanced DNS
    - Check if your domain registrar has a specific guide for setting up 301 redirects from apex to www
    - Try using a different browser to test the redirect
+   - Try accessing the site from a different network (e.g., mobile data instead of WiFi)
