@@ -40,6 +40,8 @@ jobs:
           ls -la dist/
           echo "Checking JS files:"
           find dist -name "*.js" | head -n 5
+          echo "File sizes:"
+          du -h dist/assets/js/* | sort -h
         
       - name: Setup CNAME and GitHub Pages config
         run: |

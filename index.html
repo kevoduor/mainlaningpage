@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,22 +26,6 @@
       @media (min-width: 768px) {.hero-heading {font-size: 2.25rem;}}
       @media (min-width: 1024px) {.hero-heading {font-size: 3rem;}}
       
-      /* Improved a11y - loading optimization */
-      .content-placeholder {background: #f0f0f0; height: 24px; margin-bottom: 8px; border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;}
-      @keyframes pulse {0%, 100% {opacity: 1} 50% {opacity: .5}}
-      
-      /* Optimize animations */
-      .will-change-transform {will-change: transform;}
-      .animate-fade-in {animation: fadeIn 0.5s ease-out;}
-      @keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}
-      
-      /* Font fallback to prevent layout shift */
-      body {font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
-      .font-loaded body {font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
-      
-      /* Critical LCP styles */
-      .lcp-target {content-visibility: auto; contain-intrinsic-size: auto 500px;}
-
       /* High contrast text & improved a11y */
       p {color: #334155;}
       h1, h2, h3, h4, h5, h6 {color: #1e293b;}

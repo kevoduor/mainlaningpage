@@ -24,8 +24,8 @@ export default defineConfig(({ mode }) => {
         // Remove React features for production
         jsxImportSource: isProd ? undefined : '@emotion/react',
         devTarget: 'es2022',
-        // Enable tree-shaking in production
-        plugins: isProd ? [] : undefined,
+        // Disable tree-shaking in production
+        plugins: [],
       }),
       mode === 'development' && componentTagger(),
       // Gzip compression for all assets
@@ -64,68 +64,37 @@ export default defineConfig(({ mode }) => {
       minify: false,
       // Generate modern JavaScript only
       target: 'es2020',
-      // Optimize chunk size
+      // Disable manual chunk splitting for simpler outputs
       rollupOptions: {
         output: {
-          manualChunks: (id) => {
-            // Put React in a single chunk
-            if (id.includes('node_modules/react') || 
-                id.includes('node_modules/react-dom')) {
-              return 'vendor-react';
-            }
-            
-            // Group routing related modules
-            if (id.includes('node_modules/react-router') ||
-                id.includes('node_modules/history')) {
-              return 'vendor-router';
-            }
-            
-            // Group UI components
-            if (id.includes('node_modules/@radix-ui') ||
-                id.includes('node_modules/lucide-react')) {
-              return 'vendor-ui';
-            }
-            
-            // Group utility libraries
-            if (id.includes('node_modules/')) {
-              return 'vendor-other';
-            }
-          },
-          // Improved file naming for better caching
-          chunkFileNames: 'assets/js/[name]-[hash].js',
-          entryFileNames: 'assets/js/[name]-[hash].js',
+          // Simplified naming for better debugging
+          chunkFileNames: 'assets/js/[name].js',
+          entryFileNames: 'assets/js/[name].js',
           assetFileNames: ({name}) => {
             if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? '')) {
-              return 'assets/images/[name]-[hash][extname]';
+              return 'assets/images/[name][extname]';
             }
             if (/\.css$/.test(name ?? '')) {
-              return 'assets/css/[name]-[hash][extname]';
+              return 'assets/css/[name][extname]';
             }
             if (/\.(woff2?|ttf|otf|eot)$/.test(name ?? '')) {
-              return 'assets/fonts/[name]-[hash][extname]';
+              return 'assets/fonts/[name][extname]';
             }
-            return 'assets/[name]-[hash][extname]';
+            return 'assets/[name][extname]';
           },
         },
-        // Keep treeshaking for code splitting but disable aggressive optimizations
-        treeshake: {
-          moduleSideEffects: true,
-          propertyReadSideEffects: true,
-          tryCatchDeoptimization: true,
-        },
+        // Disable treeshaking completely
+        treeshake: false,
       },
     },
-    // Enable CSS code splitting but disable optimization
+    // Disable CSS code splitting and optimization
     css: {
       modules: {
         scopeBehaviour: 'local',
       },
       devSourcemap: true,
-      preprocessorOptions: {
-        // Any preprocessor options would go here
-      },
     },
-    // Optimize dependencies
+    // Simplify dependency optimization
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom'],
       exclude: [],
@@ -136,10 +105,10 @@ export default defineConfig(({ mode }) => {
         pure: [],
       },
     },
-    // Disable esbuild optimization
+    // Disable esbuild optimization completely
     esbuild: {
       pure: [],
-      treeShaking: true,
+      treeShaking: false,
       target: 'es2020',
       legalComments: 'inline',
     },
