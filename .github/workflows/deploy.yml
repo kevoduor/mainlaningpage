@@ -31,29 +31,39 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Debug Node and npm versions
+        run: |
+          node --version
+          npm --version
+        
       - name: Build with debug
         run: npm run build -- --debug
+        
+      - name: Debug HTML content
+        run: |
+          echo "Checking index.html content:"
+          cat dist/index.html | head -n 30
         
       - name: Verify build output
         run: |
           echo "Checking build output directory contents:"
           ls -la dist/
           echo "Checking JS files:"
-          find dist -name "*.js" | head -n 5
+          find dist -name "*.js" | sort
           echo "File sizes:"
           du -h dist/assets/js/* | sort -h
+          echo "First 10 lines of main JS file:"
+          head -n 10 $(find dist/assets/js -name "*main*.js" | head -n 1)
         
-      - name: Setup CNAME and GitHub Pages config
+      - name: Setup CNAME file
         run: |
-          # Create CNAME file for apex domain only
+          # Create CNAME file
           echo "heynia.com" > dist/CNAME
-          # Disable Jekyll processing
-          touch dist/.nojekyll
           # Make CNAME file visible in output for debugging
           echo "CNAME content:"
           cat dist/CNAME
-          # Copy public CNAME as backup
-          cp public/CNAME dist/CNAME || true
+          # Disable Jekyll processing
+          touch dist/.nojekyll
         
       - name: Setup Pages
         uses: actions/configure-pages@v3

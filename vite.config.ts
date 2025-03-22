@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -14,18 +15,13 @@ export default defineConfig(({ mode }) => {
     server: {
       host: "::",
       port: 8080,
-      // Reduce dev server overhead
       hmr: {
-        overlay: false, // Disable error overlay for better performance
+        overlay: true, // Enable error overlay for better debugging
       },
     },
     plugins: [
       react({
-        // Remove React features for production
-        jsxImportSource: isProd ? undefined : '@emotion/react',
-        devTarget: 'es2022',
-        // Disable tree-shaking in production
-        plugins: [],
+        devTarget: 'es2020',
       }),
       mode === 'development' && componentTagger(),
       // Gzip compression for all assets
@@ -59,58 +55,45 @@ export default defineConfig(({ mode }) => {
       assetsDir: 'assets',
       emptyOutDir: true,
       copyPublicDir: true,
-      // Disable minification for CSS and JS
+      // Disable minification for easier debugging
       cssMinify: false,
       minify: false,
-      // Generate modern JavaScript only
-      target: 'es2020',
-      // Disable manual chunk splitting for simpler outputs
+      // Generate compatible JavaScript
+      target: 'es2018',
       rollupOptions: {
         output: {
           // Simplified naming for better debugging
-          chunkFileNames: 'assets/js/[name].js',
-          entryFileNames: 'assets/js/[name].js',
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: ({name}) => {
             if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? '')) {
-              return 'assets/images/[name][extname]';
+              return 'assets/images/[name]-[hash][extname]';
             }
             if (/\.css$/.test(name ?? '')) {
-              return 'assets/css/[name][extname]';
+              return 'assets/css/[name]-[hash][extname]';
             }
             if (/\.(woff2?|ttf|otf|eot)$/.test(name ?? '')) {
-              return 'assets/fonts/[name][extname]';
+              return 'assets/fonts/[name]-[hash][extname]';
             }
-            return 'assets/[name][extname]';
+            return 'assets/[name]-[hash][extname]';
           },
         },
-        // Disable treeshaking completely
-        treeshake: false,
       },
+      // Add source maps for easier debugging
+      sourcemap: true,
     },
-    // Disable CSS code splitting and optimization
+    // Enable source maps for development
     css: {
-      modules: {
-        scopeBehaviour: 'local',
-      },
       devSourcemap: true,
     },
-    // Simplify dependency optimization
+    // Fix potential issues with dependencies
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom'],
-      exclude: [],
       esbuildOptions: {
-        target: 'es2020',
-        // Keep console logs
-        drop: [],
-        pure: [],
+        target: 'es2018',
       },
     },
-    // Disable esbuild optimization completely
-    esbuild: {
-      pure: [],
-      treeShaking: false,
-      target: 'es2020',
-      legalComments: 'inline',
-    },
+    // Basic logging of build process
+    logLevel: 'info',
   };
 });
