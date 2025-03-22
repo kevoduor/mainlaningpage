@@ -13,7 +13,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://heynia.com/" />
     
-    <!-- Inline critical CSS -->
+    <!-- Inline critical CSS to eliminate render-blocking -->
     <style>
       /* Critical CSS for First Paint */
       body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5; color: #334155;}
@@ -32,6 +32,20 @@
       a {color: #006099; text-decoration: underline;}
       a:hover {color: #00447a;}
       button:focus, a:focus {outline: 2px solid #00a6f5; outline-offset: 2px;}
+      
+      /* Footer styles for improved visibility */
+      footer h3 {color: #ffffff !important; font-weight: 600;}
+      
+      /* Core layout utilities */
+      .flex {display: flex;}
+      .flex-col {flex-direction: column;}
+      .items-center {align-items: center;}
+      .justify-between {justify-content: space-between;}
+      .text-center {text-align: center;}
+      .mx-auto {margin-left: auto; margin-right: auto;}
+      .my-4 {margin-top: 1rem; margin-bottom: 1rem;}
+      .py-4 {padding-top: 1rem; padding-bottom: 1rem;}
+      .px-4 {padding-left: 1rem; padding-right: 1rem;}
       
       /* Fallback styles in case JS fails to load */
       .js-fallback {
@@ -67,6 +81,10 @@
     
     <!-- Preload critical hero image -->
     <link rel="preload" href="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" as="image" fetchpriority="high" type="image/png">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="/src/styles/index.css" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="/src/styles/index.css"></noscript>
     
     <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">

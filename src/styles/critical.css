@@ -48,6 +48,11 @@ a {
   @apply text-nia-700 hover:text-nia-800;
 }
 
+/* Footer headings need higher contrast */
+footer h3 {
+  @apply text-white font-semibold;
+}
+
 /* Improved focus styling for accessibility */
 :focus-visible {
   @apply outline-2 outline-offset-2 outline-primary;

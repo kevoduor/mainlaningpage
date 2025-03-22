@@ -1,4 +1,8 @@
 
+/* Load Lato font with a font-display strategy to prevent render blocking */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap&display=swap');
+
+/* Core styles - minimize render blocking */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +16,10 @@ p {
   @apply text-slate-700;
 }
 
-/* Import base styles */
+/* Import critical styles first */
+@import './styles/critical.css';
+
+/* Import other styles (these will load after critical content renders) */
 @import './styles/base.css';
 
 /* Animation utilities */
@@ -25,5 +32,8 @@ p {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Import Lato font to match Slack's typography */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
+/* Footer specific styles */
+footer h3 {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}

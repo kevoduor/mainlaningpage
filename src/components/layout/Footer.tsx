@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium mb-4">Company</h3>
+            <h3 className="text-lg font-medium mb-4 text-white">Company</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Our Mission</Link></li>
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium mb-4">Resources</h3>
+            <h3 className="text-lg font-medium mb-4 text-white">Resources</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/blog" className="text-slack-300 hover:text-white transition-colors">Blog</Link></li>
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium mb-4">Comparisons</h3>
+            <h3 className="text-lg font-medium mb-4 text-white">Comparisons</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Nia vs Dentrix</Link></li>
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Nia vs Open Dental</Link></li>
