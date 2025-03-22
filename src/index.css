@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -83,10 +84,30 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-medium tracking-tight;
+  }
+
+  /* Improved responsive text sizing */
+  h1 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  h3 {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  p {
+    @apply text-sm sm:text-base;
   }
 }
 
@@ -138,14 +159,6 @@
   .container {
     @apply px-4;
   }
-  
-  h1 {
-    @apply text-2xl sm:text-3xl md:text-4xl;
-  }
-  
-  h2 {
-    @apply text-xl sm:text-2xl md:text-3xl;
-  }
 }
 
 @media (max-width: 480px) {
@@ -164,6 +177,36 @@
   .xs-mb-4 {
     margin-bottom: 1rem;
   }
+}
+
+/* Responsive container padding for different devices */
+@media (min-width: 641px) and (max-width: 768px) {
+  .container {
+    @apply px-5;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    @apply px-6;
+  }
+}
+
+/* Device-specific utilities */
+.ipad-only {
+  @apply hidden md:block lg:hidden;
+}
+
+.tablet-only {
+  @apply hidden sm:block md:hidden;
+}
+
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
 }
 
 /* Animation delay utilities */
@@ -203,6 +246,12 @@
   .clickable {
     @apply min-h-[44px] min-w-[44px];
   }
+  
+  input, 
+  select, 
+  textarea {
+    @apply text-base; /* Prevents iOS zoom on focus */
+  }
 }
 
 /* Fix for iOS Safari overscrolling */
@@ -214,6 +263,15 @@ html {
 body {
   min-height: -webkit-fill-available;
   overscroll-behavior: none;
+}
+
+/* Responsive font sizes */
+.text-responsive {
+  font-size: clamp(1rem, 4vw, 1.25rem);
+}
+
+.title-responsive {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 @keyframes float {
@@ -230,4 +288,22 @@ body {
 
 .float-animation {
   animation: float 3s ease-in-out infinite;
+}
+
+/* Media query for tablets in portrait mode */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .ipad-portrait-adjustment {
+    @apply py-4 px-4;
+  }
+}
+
+/* Media query for small height screens */
+@media (max-height: 700px) {
+  .reduce-height-small-screen {
+    @apply py-2;
+  }
+  
+  .reduce-margins-small-screen {
+    @apply my-2;
+  }
 }

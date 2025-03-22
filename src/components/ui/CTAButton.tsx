@@ -2,6 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronRight, UserPlus } from 'lucide-react';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
@@ -25,6 +26,9 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     fullWidthOnMobile = true,
     ...props 
   }, ref) => {
+    const { isXs, isSm } = useBreakpoint();
+    const isMobile = isXs || isSm;
+    
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (isBookDemo) {
         e.preventDefault();
@@ -69,16 +73,17 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'relative inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+          'relative inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',
           {
             'bg-nia-600 text-white hover:bg-nia-700 shadow-lg shadow-nia-600/20': variant === 'primary',
             'bg-nia-100 text-nia-700 hover:bg-nia-200': variant === 'secondary',
             'border border-nia-300 bg-transparent hover:bg-nia-50 text-nia-800': variant === 'outline',
             'bg-transparent text-nia-800 hover:bg-nia-50': variant === 'ghost',
-            'h-9 px-3 text-sm': size === 'sm',
-            'h-11 px-4 sm:px-6 text-base': size === 'md',
-            'h-12 px-5 sm:px-8 text-lg': size === 'lg',
-            'w-full sm:w-auto': fullWidthOnMobile,
+            'h-8 px-3 text-xs': size === 'sm',
+            'h-10 px-4 sm:px-5 text-sm': size === 'md',
+            'h-11 px-5 sm:px-6 text-base': size === 'lg',
+            'w-full sm:w-auto': fullWidthOnMobile && isMobile,
+            'touch-manipulation': isMobile, // Better touch handling on mobile
           },
           className
         )}
@@ -86,7 +91,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         {...props}
       >
         <span className="truncate">{children}</span>
-        {icon && <IconComponent className="ml-1 h-4 w-4 flex-shrink-0" />}
+        {icon && <IconComponent className={`ml-1 h-4 w-4 flex-shrink-0 ${isMobile ? 'mr-0' : ''}`} />}
       </button>
     );
   }

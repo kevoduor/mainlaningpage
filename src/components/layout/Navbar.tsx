@@ -8,7 +8,7 @@ import { useBreakpoint } from '@/hooks/use-mobile';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isXs, isSm } = useBreakpoint();
+  const { isXs, isSm, isMd } = useBreakpoint();
   const location = useLocation();
   
   // Check if the page is scrolled
@@ -29,12 +29,13 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
   
-  const navClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-3'
+  const navClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 safe-padding-top ${
+    isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm py-1.5 sm:py-2' : 'bg-transparent py-2 sm:py-3'
   }`;
   
   const handleScrollToSection = (sectionId: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    setIsOpen(false);
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -59,7 +60,7 @@ const Navbar = () => {
           </Link>
           
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-6">
             {navLinks.map((link) => {
               if (link.scrollTo && location.pathname === '/') {
                 return (
@@ -67,7 +68,7 @@ const Navbar = () => {
                     key={link.name}
                     href={link.path}
                     onClick={handleScrollToSection(link.scrollTo)}
-                    className={`text-sm hover:text-nia-600 transition-colors ${
+                    className={`text-xs lg:text-sm hover:text-nia-600 transition-colors ${
                       (location.pathname === link.path || 
                        (link.path !== '/' && location.pathname.startsWith(link.path))) 
                         ? 'text-nia-600 font-medium' 
@@ -82,7 +83,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`text-sm hover:text-nia-600 transition-colors ${
+                  className={`text-xs lg:text-sm hover:text-nia-600 transition-colors ${
                     (location.pathname === link.path || 
                      (link.path !== '/' && location.pathname.startsWith(link.path))) 
                       ? 'text-nia-600 font-medium' 
@@ -98,7 +99,7 @@ const Navbar = () => {
           {/* CTA button */}
           <div className="hidden md:block">
             <CTAButton 
-              size="sm" 
+              size={isMd ? "sm" : "md"} 
               className="bg-nia-600 text-white"
               href="/signup"
               icon={true}
@@ -110,7 +111,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden text-nia-800"
+            className="md:hidden text-nia-800 p-1"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -120,8 +121,8 @@ const Navbar = () => {
       
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-md absolute top-full left-0 right-0 py-4 px-4 animate-fade-in">
-          <div className="flex flex-col space-y-4">
+        <div className="md:hidden bg-white shadow-md absolute top-full left-0 right-0 py-4 px-4 animate-fade-in safe-padding-top">
+          <div className="flex flex-col space-y-3">
             {navLinks.map((link) => {
               if (link.scrollTo && location.pathname === '/') {
                 return (

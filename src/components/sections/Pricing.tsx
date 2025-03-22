@@ -2,8 +2,11 @@
 import React from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import PricingCard from '../ui/PricingCard';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Pricing: React.FC = () => {
+  const { isXs, isSm, isMd } = useBreakpoint();
+  
   const pricingPlans = [
     {
       title: 'Basic Plan – Get Started Easily',
@@ -49,7 +52,7 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-16 md:py-20 bg-white">
+    <section id="pricing" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Intelligent Software to Grow Your Practice"
@@ -57,7 +60,7 @@ const Pricing: React.FC = () => {
           center={true}
         />
         
-        <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 max-w-5xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               key={index}
@@ -66,7 +69,7 @@ const Pricing: React.FC = () => {
               description={plan.description}
               features={plan.features}
               popular={plan.popular}
-              className={`flex-1 animate-fade-in delay-${(index + 1) * 100}`}
+              className={`flex-1 animate-fade-in delay-${(index + 1) * 100} ${plan.popular && isMd ? 'sm:transform sm:scale-105 sm:shadow-lg sm:z-10' : ''}`}
             />
           ))}
         </div>
