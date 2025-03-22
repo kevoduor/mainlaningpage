@@ -1,3 +1,13 @@
 
-/* This file imports only the CSS we actually need */
-@import './styles/index.css';
+/* Import critical styles first */
+@import './styles/critical.css';
+
+/* Import remaining styles with code splitting */
+@import './styles/components.css' layer(components);
+@import './styles/responsive.css' layer(utilities);
+
+/* Import optimized animations - load last */
+@import './styles/optimized-animations.css' layer(animations);
+
+/* Only include base.css for its custom properties */
+@import './styles/base.css' layer(base);

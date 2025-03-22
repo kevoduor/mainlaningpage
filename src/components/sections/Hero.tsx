@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { Badge } from '../ui/badge';
@@ -8,6 +8,42 @@ import { Star, Calendar, Check } from 'lucide-react';
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
   const isMobile = isXs || isSm;
+  const heroImageRef = useRef<HTMLImageElement>(null);
+
+  // Use native lazy loading with priority hints
+  useEffect(() => {
+    // Preload the hero image
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = '/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp';
+    preloadLink.type = 'image/webp';
+    preloadLink.fetchPriority = 'high';
+    document.head.appendChild(preloadLink);
+
+    // Apply IntersectionObserver to track when image is in viewport
+    if (heroImageRef.current && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('loaded');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      observer.observe(heroImageRef.current);
+    }
+
+    return () => {
+      // Clean up preload link on unmount
+      document.head.querySelectorAll('link[rel="preload"][as="image"]').forEach(link => {
+        if (link.href.includes('2092ea49-25fc-463b-a435-69f201c7363b')) {
+          document.head.removeChild(link);
+        }
+      });
+    };
+  }, []);
 
   return (
     <section className="relative pt-16 sm:pt-20 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 overflow-hidden">
@@ -46,8 +82,8 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Hero image with eager loading (removing lazy loading) */}
-        <div className="relative mx-auto max-w-5xl lcp-target animate-fade-in" style={{contentVisibility: 'auto'}}>
+        {/* Hero image - critical LCP element with optimizations */}
+        <div className="relative mx-auto max-w-5xl lcp-target" style={{contentVisibility: 'auto', contain: 'layout style paint'}}>
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <picture>
@@ -57,9 +93,10 @@ const Hero: React.FC = () => {
                 type="image/webp"
               />
               <img 
+                ref={heroImageRef}
                 src="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" 
                 alt="Dental professional showing treatment plan to patient" 
-                className="w-full h-auto hardware-accelerated"
+                className="w-full h-auto"
                 loading="eager" 
                 fetchPriority="high"
                 decoding="async"
@@ -67,26 +104,25 @@ const Hero: React.FC = () => {
                 height="800"
                 style={{
                   aspectRatio: '1200/800',
-                  transform: 'translate3d(0,0,0)'
-                }}
-                onLoad={(e) => {
-                  e.currentTarget.classList.add('loaded');
+                  transform: 'translate3d(0,0,0)',
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
             </picture>
           </div>
           
-          {/* Use transform-based animations for better performance */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hardware-accelerated"
-               style={{transform: 'translate3d(0,0,0)'}}>
+          {/* Floating elements with hardware acceleration */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
+               style={{transform: 'translate3d(0,0,0)', willChange: 'transform'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
               <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hardware-accelerated"
-               style={{transform: 'translate3d(0,0,0)'}}>
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
+               style={{transform: 'translate3d(0,0,0)', willChange: 'transform'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
               <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>

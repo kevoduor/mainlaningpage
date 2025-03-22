@@ -9,21 +9,11 @@
     <meta property="og:title" content="Nia - AI-Powered Dental Clinic Management System" />
     <meta property="og:description" content="Grow your practice with Nia's AI-powered dental software—designed to increase patient bookings, streamline operations, and automate billing for dental clinics of all sizes." />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <meta property="og:url" content="https://heynia.com" />
+    <meta property="og:url" content="https://www.heynia.com" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://www.heynia.com/" />
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/src/main.tsx" as="script" fetchpriority="high">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-    
-    <!-- Preconnect to all required domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
-    <!-- Critical CSS inlined to prevent render-blocking -->
+    <!-- Inline critical CSS -->
     <style>
       /* Critical CSS for First Paint */
       body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5;}
@@ -42,7 +32,6 @@
       
       /* Optimize animations */
       .will-change-transform {will-change: transform;}
-      .hardware-accelerated {transform: translateZ(0); backface-visibility: hidden; perspective: 1000px;}
       .animate-fade-in {animation: fadeIn 0.5s ease-out;}
       @keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}
       
@@ -52,45 +41,47 @@
       
       /* Critical LCP styles */
       .lcp-target {content-visibility: auto; contain-intrinsic-size: auto 500px;}
-      
-      /* Optimized blur-up image loading */
-      img.blur-up {filter: blur(5px); transition: filter 0.3s ease-out;}
-      img.blur-up.loaded {filter: blur(0);}
     </style>
+    
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp" as="image" fetchpriority="high" type="image/webp">
     
     <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
     
-    <!-- Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <!-- Preload critical scripts -->
+    <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- Font loading script -->
     <script>
-      (function() {
-        // Add font loading detection
-        if ("fonts" in document) {
-          document.fonts.ready.then(function() {
-            document.documentElement.classList.add('font-loaded');
-          });
-        }
-        
-        // Preload critical paths
-        const preloadLinks = [
-          "/src/components/sections/Hero.tsx",
-          "/src/components/layout/Navbar.tsx"
-        ];
-        
-        preloadLinks.forEach(url => {
-          const link = document.createElement('link');
-          link.rel = 'modulepreload';
-          link.href = url;
-          document.head.appendChild(link);
+      // Add font loading detection
+      if ("fonts" in document) {
+        document.fonts.ready.then(function() {
+          document.documentElement.classList.add('font-loaded');
         });
-      })();
+      }
+      
+      // Preload critical paths
+      const preloadLinks = [
+        "/src/components/sections/Hero.tsx",
+        "/src/components/layout/Navbar.tsx"
+      ];
+      
+      preloadLinks.forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.href = url;
+        document.head.appendChild(link);
+      });
     </script>
     
-    <!-- Load font asynchronously with font-display:swap -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Async CSS loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
 
@@ -101,6 +92,6 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
     <!-- Main application script - with defer to non-block rendering -->
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
