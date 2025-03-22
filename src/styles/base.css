@@ -5,34 +5,34 @@
 
 @layer base {
   :root {
-    --background: 260 25% 98%;
-    --foreground: 260 10% 10%;
+    --background: 0 0% 100%;
+    --foreground: 213 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 260 10% 10%;
+    --card-foreground: 213 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 260 10% 10%;
+    --popover-foreground: 213 10% 15%;
 
-    /* Updated colors to match Motia blue palette */
-    --primary: 196 100% 45%; /* Motia blue */
+    /* Slack-inspired color palette */
+    --primary: 279 100% 40%; /* Slack purple */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 196 70% 95%;
-    --secondary-foreground: 196 100% 25%;
+    --secondary: 279 30% 95%;
+    --secondary-foreground: 279 100% 30%;
 
-    --muted: 260 10% 96%;
-    --muted-foreground: 260 10% 50%;
+    --muted: 213 10% 96%;
+    --muted-foreground: 213 10% 50%;
 
-    --accent: 196 70% 95%;
-    --accent-foreground: 196 100% 25%;
+    --accent: 279 30% 95%;
+    --accent-foreground: 279 100% 30%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 260 10% 90%;
-    --input: 260 10% 90%;
-    --ring: 196 100% 45%;
+    --border: 213 10% 90%;
+    --input: 213 10% 90%;
+    --ring: 279 100% 40%;
 
     --radius: 0.5rem;
 
@@ -47,33 +47,33 @@
   }
 
   .dark {
-    --background: 200 50% 5%;
-    --foreground: 200 10% 95%;
+    --background: 213 30% 10%;
+    --foreground: 213 10% 95%;
 
-    --card: 200 50% 10%;
-    --card-foreground: 200 10% 95%;
+    --card: 213 30% 15%;
+    --card-foreground: 213 10% 95%;
 
-    --popover: 200 50% 10%;
-    --popover-foreground: 200 10% 95%;
+    --popover: 213 30% 15%;
+    --popover-foreground: 213 10% 95%;
 
-    --primary: 196 100% 45%;
+    --primary: 279 100% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 196 30% 20%;
-    --secondary-foreground: 196 100% 90%;
+    --secondary: 279 30% 20%;
+    --secondary-foreground: 279 100% 90%;
 
-    --muted: 200 50% 20%;
-    --muted-foreground: 200 10% 70%;
+    --muted: 213 30% 20%;
+    --muted-foreground: 213 10% 70%;
 
-    --accent: 196 30% 20%;
-    --accent-foreground: 196 100% 90%;
+    --accent: 279 30% 20%;
+    --accent-foreground: 279 100% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 200 50% 20%;
-    --input: 200 50% 20%;
-    --ring: 196 100% 45%;
+    --border: 213 30% 20%;
+    --input: 213 30% 20%;
+    --ring: 279 100% 40%;
   }
 }
 
@@ -112,6 +112,5 @@
   }
 }
 
-/* Import Montserrat font to match the Motia logo */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
+/* Import Lato font to match Slack's typography */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
