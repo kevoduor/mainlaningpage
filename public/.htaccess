@@ -1,12 +1,26 @@
 
-# Enable Gzip compression
+# Enable Gzip compression for all text-based assets
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/wasm
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/wasm application/xml+rss text/javascript application/x-javascript application/x-font-ttf application/x-font-otf font/ttf font/otf image/svg+xml
+  
+  # Add correct content-type for fonts
+  AddType application/vnd.ms-fontobject .eot
+  AddType application/x-font-ttf .ttf
+  AddType application/x-font-opentype .otf
+  AddType application/x-font-woff .woff
+  AddType application/x-font-woff2 .woff2
+  AddType image/svg+xml .svg
+  
+  # Compress compressible fonts
+  AddOutputFilterByType DEFLATE font/ttf font/otf image/svg+xml
 </IfModule>
 
-# Set Expires headers for caching
+# Set Expires headers for better caching
 <IfModule mod_expires.c>
   ExpiresActive On
+  
+  # Add default Expires header
+  ExpiresDefault "access plus 1 month"
   
   # Images - longer cache time
   ExpiresByType image/jpeg "access plus 1 year"
@@ -15,12 +29,17 @@
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
   
   # Web fonts
   ExpiresByType font/ttf "access plus 1 year"
   ExpiresByType font/otf "access plus 1 year"
   ExpiresByType font/woff "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+  ExpiresByType application/x-font-otf "access plus 1 year"
+  ExpiresByType application/x-font-woff "access plus 1 year"
+  ExpiresByType application/x-font-woff2 "access plus 1 year"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
   
   # CSS, JavaScript - longer cache time
@@ -28,18 +47,22 @@
   ExpiresByType text/javascript "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   
-  # Others
-  ExpiresDefault "access plus 1 month"
+  # HTML - shorter cache time to allow for updates
+  ExpiresByType text/html "access plus 1 day"
+  
+  # Data
+  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType application/ld+json "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 0 seconds"
+  ExpiresByType text/xml "access plus 0 seconds"
 </IfModule>
 
-# Add additional headers
+# Add additional cache control headers
 <IfModule mod_headers.c>
   # Remove ETag (we're using far-future expires)
-  Header unset ETag
-  FileETag None
-  
-  # Cache control headers with immutable for long-lived assets
   <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp|woff|woff2|ttf|svg)$">
+    Header unset ETag
+    FileETag None
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
   
@@ -47,8 +70,14 @@
     Header set Cache-Control "max-age=86400, public, must-revalidate"
   </FilesMatch>
   
+  # Dynamic content should not be cached
+  <FilesMatch "\.(php|cgi|pl)$">
+    Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
+    Header set Pragma "no-cache"
+  </FilesMatch>
+  
   # Brotli compression (if available)
-  <FilesMatch "\.(js|css|html|svg)$">
+  <FilesMatch "\.(js|css|html|svg|json|xml|txt)$">
     Header append Vary Accept-Encoding
   </FilesMatch>
 </IfModule>
@@ -58,28 +87,19 @@
   ErrorDocument 404 "The requested file favicon.ico was not found."
 </FilesMatch>
 
-# Modern browser optimizations
+# Security headers
 <IfModule mod_headers.c>
-  # Enable HTTP/2 Server Push for critical resources
-  <FilesMatch "index\.html">
-    Header add Link "</hero-image.webp>; rel=preload; as=image; type=image/webp"
-    Header add Link "</assets/js/vendor-[hash].js>; rel=preload; as=script"
-  </FilesMatch>
-  
-  # Security headers
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Redirect trailing slashes
+# Handle SPA routing
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)/$ /$1 [L,R=301]
-  
-  # SPA fallback
+  # If the request is not for an existing file or directory
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
+  # Rewrite all requests to the index.html
   RewriteRule ^ index.html [L]
 </IfModule>

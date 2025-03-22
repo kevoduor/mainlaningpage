@@ -64,8 +64,8 @@ const BLOG_POSTS = [
   }
 ];
 
-// BlogPost image component to handle WebP with fallback
-const BlogPostImage = ({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
+// Memoized BlogPost image component with WebP and proper sizing
+const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
   <picture>
     <source 
       srcSet={`${post.imageUrl.replace('.webp', '-300w.webp')} 300w, ${post.imageUrl.replace('.webp', '-600w.webp')} 600w, ${post.imageUrl} 900w`}
@@ -75,19 +75,20 @@ const BlogPostImage = ({ post, index }: { post: typeof BLOG_POSTS[0], index: num
     <img 
       src={post.fallbackImageUrl} 
       alt={post.title} 
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
-      loading={index < 2 ? "eager" : "lazy"}
-      fetchPriority={index === 0 ? "high" : "low"}
-      decoding="async"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
       width="600"
       height="450"
+      loading={index < 2 ? "eager" : "lazy"}
+      fetchpriority={index === 0 ? "high" : index === 1 ? "medium" : "low"}
+      decoding="async"
       style={{
-        contentVisibility: 'auto',
         aspectRatio: '4/3',
       }}
     />
   </picture>
-);
+));
+
+BlogPostImage.displayName = 'BlogPostImage';
 
 const BlogPostsList = () => {
   const { isMobile, isTablet } = useBreakpoint();
@@ -101,7 +102,7 @@ const BlogPostsList = () => {
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
-                    <div className="h-48 md:h-full w-full relative overflow-hidden content-visibility-auto">
+                    <div className="h-48 md:h-full w-full relative overflow-hidden">
                       <BlogPostImage post={post} index={index} />
                     </div>
                   </Link>
@@ -131,10 +132,10 @@ const BlogPostsList = () => {
                   
                   <Link 
                     to={`/blog/${post.slug}`} 
-                    className="inline-flex items-center text-nia-600 hover:text-nia-700 font-medium mt-auto group"
+                    className="inline-flex items-center text-nia-600 hover:text-nia-700 font-medium mt-auto"
                   >
                     Read full article 
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1 will-change-transform" />
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" style={{transform: 'translate3d(0,0,0)'}} />
                   </Link>
                 </div>
               </div>
@@ -146,4 +147,4 @@ const BlogPostsList = () => {
   );
 };
 
-export default BlogPostsList;
+export default React.memo(BlogPostsList);

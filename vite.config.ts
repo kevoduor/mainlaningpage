@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -8,36 +7,42 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production';
+  
   return {
     base: '/', // This is important for GitHub Pages
     server: {
       host: "::",
       port: 8080,
+      // Reduce dev server overhead
+      hmr: {
+        overlay: false, // Disable error overlay for better performance
+      },
     },
     plugins: [
       react({
         // Remove React features for production
-        jsxImportSource: mode === 'production' ? undefined : '@emotion/react',
+        jsxImportSource: isProd ? undefined : '@emotion/react',
         devTarget: 'es2022',
         // Enable tree-shaking in production
-        plugins: mode === 'production' ? [] : undefined,
+        plugins: isProd ? [] : undefined,
       }),
       mode === 'development' && componentTagger(),
-      // Add gzip compression for production builds
+      // Gzip compression for all assets
       viteCompression({
         algorithm: 'gzip',
         ext: '.gz',
-        threshold: 10240, // only compress files > 10kb
+        threshold: 1024, // compress files >1kb
         deleteOriginFile: false,
       }),
-      // Add brotli compression
+      // Add brotli compression (better than gzip)
       viteCompression({
         algorithm: 'brotliCompress',
         ext: '.br',
-        threshold: 10240,
+        threshold: 1024,
       }),
       // Analyze bundle size in production
-      mode === 'production' && visualizer({
+      isProd && visualizer({
         open: false,
         gzipSize: true,
         brotliSize: true,
@@ -59,9 +64,9 @@ export default defineConfig(({ mode }) => {
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log', 'console.info', 'console.debug'],
+          drop_console: isProd,
+          drop_debugger: isProd,
+          pure_funcs: isProd ? ['console.log', 'console.info', 'console.debug'] : [],
         },
       },
       // Generate modern JavaScript only
@@ -69,16 +74,31 @@ export default defineConfig(({ mode }) => {
       // Optimize chunk size
       rollupOptions: {
         output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom'],
-            router: ['react-router-dom'],
-            ui: [
-              '@radix-ui/react-toast',
-              '@radix-ui/react-tooltip',
-              'lucide-react'
-            ],
+          manualChunks: (id) => {
+            // Put React in a single chunk
+            if (id.includes('node_modules/react') || 
+                id.includes('node_modules/react-dom')) {
+              return 'vendor-react';
+            }
+            
+            // Group routing related modules
+            if (id.includes('node_modules/react-router') ||
+                id.includes('node_modules/history')) {
+              return 'vendor-router';
+            }
+            
+            // Group UI components
+            if (id.includes('node_modules/@radix-ui') ||
+                id.includes('node_modules/lucide-react')) {
+              return 'vendor-ui';
+            }
+            
+            // Group utility libraries
+            if (id.includes('node_modules/')) {
+              return 'vendor-other';
+            }
           },
-          // Code-splitting optimization
+          // Improved file naming for better caching
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: ({name}) => {
@@ -88,10 +108,13 @@ export default defineConfig(({ mode }) => {
             if (/\.css$/.test(name ?? '')) {
               return 'assets/css/[name]-[hash][extname]';
             }
+            if (/\.(woff2?|ttf|otf|eot)$/.test(name ?? '')) {
+              return 'assets/fonts/[name]-[hash][extname]';
+            }
             return 'assets/[name]-[hash][extname]';
           },
         },
-        // Tree-shake dependencies
+        // Advanced tree-shaking
         treeshake: {
           moduleSideEffects: false,
           propertyReadSideEffects: false,
@@ -99,22 +122,33 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    // Enable CSS code splitting
+    // Enable CSS code splitting and optimization
     css: {
       modules: {
         scopeBehaviour: 'local',
       },
-      devSourcemap: true,
+      devSourcemap: !isProd,
+      preprocessorOptions: {
+        // Any preprocessor options would go here
+      },
     },
     // Optimize dependencies
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom'],
-      exclude: ['@radix-ui/react-accordion'],
+      exclude: [],
+      esbuildOptions: {
+        target: 'es2020',
+        // Keep console logs during development
+        drop: isProd ? ['console', 'debugger'] : [],
+        pure: isProd ? ['console.log', 'debugger'] : [],
+      },
     },
     // Reduce build size with tree-shaking
     esbuild: {
-      pure: ['console.log', 'debugger'],
+      pure: isProd ? ['console.log', 'debugger'] : [],
       treeShaking: true,
+      target: 'es2020',
+      legalComments: 'none',
     },
   };
 });

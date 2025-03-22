@@ -46,8 +46,8 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Optimized Hero image with proper sizing and loading */}
-        <div className="relative mx-auto max-w-5xl animate-fade-in will-change-transform">
+        {/* Optimized Hero image with WebP format, proper sizing and explicit dimensions */}
+        <div className="relative mx-auto max-w-5xl animate-fade-in" style={{contentVisibility: 'auto'}}>
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <picture>
@@ -61,27 +61,28 @@ const Hero: React.FC = () => {
                 alt="Dental professional showing treatment plan to patient" 
                 className="w-full h-auto"
                 loading="eager" 
-                fetchPriority="high"
+                fetchpriority="high"
                 decoding="async"
                 width="1200"
                 height="800"
                 style={{
-                  contentVisibility: 'auto',
                   aspectRatio: '1200/800',
                 }}
               />
             </picture>
           </div>
           
-          {/* Converted notification badges to use transform-based animations */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hover-translate will-change-transform">
+          {/* Use transform-based animations for better performance */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 will-change-transform"
+               style={{transform: 'translate3d(0,0,0)'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
               <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hover-translate will-change-transform">
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 will-change-transform"
+               style={{transform: 'translate3d(0,0,0)'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
               <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>

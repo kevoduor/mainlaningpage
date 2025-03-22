@@ -1,37 +1,38 @@
 
 /* Optimized animations for better performance */
 
-/* Use transform instead of opacity for better compositing */
+/* Use hardware-accelerated properties (transform, opacity) instead of properties that trigger layout */
 .will-change-transform {
   will-change: transform;
 }
 
+/* Avoid will-change except where absolutely necessary */
 .will-change-auto {
   will-change: auto;
 }
 
-/* Use transform-based animations that can be hardware accelerated */
+/* Use transform for all animations instead of top/left/right/bottom properties */
 .hover-translate {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-.hover-translate:hover {
-  transform: translateY(-2px);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
 }
 
-/* Optimize float animation performance */
+.hover-translate:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+/* Optimize float animation to use transform only */
 .float-animation {
   animation: optimized-float 3s ease-in-out infinite;
-  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
 }
 
 @keyframes optimized-float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translate3d(0, -5px, 0);
   }
 }
 
@@ -63,4 +64,36 @@
 
 .image-container-1-1 {
   aspect-ratio: 1/1;
+}
+
+/* Optimized fade-in animation */
+@keyframes optimized-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.optimized-fade-in {
+  animation: optimized-fade-in 0.3s ease-out forwards;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+}
+
+/* Better performance pulse animation */
+@keyframes optimized-pulse {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1);
+  }
+}
+
+.optimized-pulse {
+  animation: optimized-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
 }

@@ -1,46 +1,38 @@
 
-/* Keeping only necessary styles from App.css */
-/* This file is often not needed with Tailwind CSS but we'll keep critical styles */
+/* Minimized App.css with only essential styles */
 
+/* Base layout for the app with optimized sizing */
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
+/* Essential logo styling with minimal animations */
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Remove animation for reduced motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .logo:hover {
+    filter: none;
   }
-  to {
-    transform: rotate(360deg);
+  .logo.react:hover {
+    animation: none;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* Minimal card styling */
 .card {
-  padding: 2em;
+  padding: 1.5em;
 }
 
+/* Basic documents styling */
 .read-the-docs {
   color: #888;
 }

@@ -2,12 +2,14 @@
 /* Import base styles with Tailwind directives */
 @import './base.css';
 
-/* Import component styles */
+/* Import optimized component styles */
 @import './components.css';
 
-/* Import animations */
+/* Import optimized animations */
 @import './optimized-animations.css';
-@import './animations.css';
 
 /* Import responsive utilities */
 @import './responsive.css';
+
+/* Avoid importing unused animations */
+/* @import './animations.css'; */
