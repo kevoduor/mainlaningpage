@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home } from 'lucide-react';
-import { Button } from '../ui/button';
 import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Footer: React.FC = () => {
@@ -68,10 +66,6 @@ const Footer: React.FC = () => {
               <Link to="/terms" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
               <Link to="/privacy" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
               <Link to="/cookies" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
-              <Link to="/" className="inline-flex items-center text-nia-400 hover:text-white">
-                <Home className="mr-1 h-4 w-4" />
-                Home
-              </Link>
             </div>
           </div>
         </div>

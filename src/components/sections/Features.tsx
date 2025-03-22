@@ -3,8 +3,13 @@ import React from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import FeatureCard from '../ui/FeatureCard';
 import { Calendar, FileClock, CreditCard, BrainCircuit, Users, Link } from 'lucide-react';
+import CTAButton from '../ui/CTAButton';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Features: React.FC = () => {
+  const { isXs, isSm } = useBreakpoint();
+  const isMobile = isXs || isSm;
+  
   const features = [
     {
       icon: Calendar,
@@ -57,6 +62,16 @@ const Features: React.FC = () => {
               className={`animate-fade-in delay-${(index % 5 + 1) * 100}`}
             />
           ))}
+        </div>
+        
+        <div className="text-center mt-10 md:mt-12">
+          <CTAButton 
+            size={isMobile ? "md" : "lg"} 
+            href="/signup"
+            className="w-full sm:w-auto"
+          >
+            Sign Up Now
+          </CTAButton>
         </div>
       </div>
     </section>
