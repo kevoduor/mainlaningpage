@@ -3,142 +3,147 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>Nia - AI-Powered Dental Clinic Management System</title>
-    <meta name="description" content="Grow your dental practice with Nia - the AI-powered software that helps clinics attract more patients, reduce no-shows, and automate operations for better efficiency." />
-    <meta property="og:title" content="Nia - AI-Powered Dental Clinic Management System" />
-    <meta property="og:description" content="Grow your practice with Nia's AI-powered dental software—designed to increase patient bookings, streamline operations, and automate billing for dental clinics of all sizes." />
-    <meta property="og:image" content="https://heynia.com/assets/images/og-image.png" />
-    <meta property="og:url" content="https://heynia.com" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://heynia.com/" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HeyNIA - AI Chat App</title>
+    <meta name="description" content="HeyNIA - Chat with your AI assistant">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
-    <!-- Preload critical hero image -->
-    <link rel="preload" href="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" as="image" fetchpriority="high" type="image/png">
-    
-    <!-- Improved inline critical CSS to eliminate render-blocking -->
+    <!-- Critical CSS inlined for faster initial render -->
     <style>
-      /* Critical CSS for First Paint */
-      body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5; color: #334155;}
-      #root {height: 100%; display: block;}
-      .container {width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px;}
+      /* Minimal critical styles for initial render */
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 221.2 83.2% 53.3%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 221.2 83.2% 53.3%;
+      }
       
-      /* First Contentful Paint optimizations */
-      .hero-heading {font-size: 1.5rem; font-weight: 700; line-height: 1.2; color: #1e293b;}
-      @media (min-width: 640px) {.hero-heading {font-size: 1.875rem;}}
-      @media (min-width: 768px) {.hero-heading {font-size: 2.25rem;}}
-      @media (min-width: 1024px) {.hero-heading {font-size: 3rem;}}
+      .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 224.3 76.3% 48%;
+      }
       
-      /* High contrast text & improved a11y */
-      p {color: #334155;}
-      h1, h2, h3, h4, h5, h6 {color: #1e293b;}
-      a {color: #006099; text-decoration: underline;}
-      a:hover {color: #00447a;}
-      button:focus, a:focus {outline: 2px solid #00a6f5; outline-offset: 2px;}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       
-      /* Footer styles for improved visibility */
-      footer h3 {color: #ffffff !important; font-weight: 600;}
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
       
-      /* Core layout utilities */
-      .flex {display: flex;}
-      .flex-col {flex-direction: column;}
-      .items-center {align-items: center;}
-      .justify-between {justify-content: space-between;}
-      .text-center {text-align: center;}
-      .mx-auto {margin-left: auto; margin-right: auto;}
-      .my-4 {margin-top: 1rem; margin-bottom: 1rem;}
-      .py-4 {padding-top: 1rem; padding-bottom: 1rem;}
-      .px-4 {padding-left: 1rem; padding-right: 1rem;}
+      body {
+        font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
+        color: #0f172a;
+      }
       
-      /* Additional critical CSS elements for primary layout */
-      .bg-gray-900 {background-color: #111827;}
-      .bg-white {background-color: #ffffff;}
-      .text-white {color: #ffffff !important;}
-      .px-6 {padding-left: 1.5rem; padding-right: 1.5rem;}
-      .py-6 {padding-top: 1.5rem; padding-bottom: 1.5rem;}
+      #root {
+        height: 100%;
+      }
+      
+      .js-loading {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
 
-      /* Tailwind-like utility classes for critical first render */
-      .rounded-lg {border-radius: 0.5rem;}
-      .shadow-sm {box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);}
-      .shadow {box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);}
-      
-      /* Fallback styles in case JS fails to load */
-      .js-fallback {
-        display: none;
-        max-width: 600px;
-        margin: 100px auto;
-        padding: 20px;
-        text-align: center;
-        background: #f8f9fa;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .js-loading .js-fallback {
-        display: block;
+      /* Add loading indicator */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 9999;
       }
       
-      /* Add font-display swap for all fonts to avoid invisible text */
-      @font-face {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
+      @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
       }
     </style>
-    
-    <!-- Add a class to body to show fallback content until JS loads -->
+    <!-- Debug flags for troubleshooting -->
     <script>
-      document.body.classList.add('js-loading');
-      // Display fallback content sooner to avoid blank page
-      setTimeout(function() {
-        if (document.body.classList.contains('js-loading')) {
-          document.getElementById('loading-fallback').style.display = 'block';
-        }
-      }, 1500);
-      
-      // Add console logs for debugging
-      console.log("HTML document parsing");
-      window.addEventListener('DOMContentLoaded', function() {
-        console.log("DOMContentLoaded event fired");
-      });
-      window.addEventListener('load', function() {
-        console.log("Window load event fired");
+      window.DEBUG = {
+        RENDER_START: Date.now(),
+        MODULES_LOADED: false,
+        DOM_CONTENT_LOADED: false,
+        WINDOW_LOADED: false
+      };
+      console.log("HTML parsing started at:", window.DEBUG.RENDER_START);
+    </script>
+  </head>
+  <body class="js-loading">
+    <div id="root"></div>
+    <!-- Required for Lovable editor functionality -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Debug info -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        window.DEBUG.DOM_CONTENT_LOADED = true;
+        console.log("DOMContentLoaded fired at:", Date.now() - window.DEBUG.RENDER_START + "ms");
         document.body.classList.remove('js-loading');
       });
+      
+      window.addEventListener('load', () => {
+        window.DEBUG.WINDOW_LOADED = true;
+        console.log("Window load completed at:", Date.now() - window.DEBUG.RENDER_START + "ms");
+        
+        // Remove loading indicator
+        document.body.classList.remove('js-loading');
+        
+        // Hide loading spinner
+        const style = document.createElement('style');
+        style.textContent = 'body::before { display: none; }';
+        document.head.appendChild(style);
+      });
     </script>
-    
-    <!-- Load critical fonts immediately but non-blocking -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" media="print" onload="this.media='all'; console.log('Font loaded');">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"></noscript>
-    
-    <!-- Defer non-critical CSS -->
-    <link rel="stylesheet" href="/src/styles/index.css" media="print" onload="this.media='all'; this.onload=null; console.log('Styles loaded');">
-    <noscript><link rel="stylesheet" href="/src/styles/index.css"></noscript>
-    
-    <!-- Optimized favicon -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-  </head>
-
-  <body>
-    <div id="root"></div>
-    
-    <!-- Fallback content in case JS fails to load properly -->
-    <div id="loading-fallback" class="js-fallback">
-      <h1>Nia - AI-Powered Dental Clinic Management</h1>
-      <p>The application is taking longer than expected to load.</p>
-      <p>If you continue to see this message, try refreshing the page or check your internet connection.</p>
-      <button onclick="location.reload()" style="padding: 10px 20px; background: #4F46E5; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px;">
-        Refresh Page
-      </button>
-    </div>
-    
-    <!-- Main application script with improved loading strategy -->
-    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>
