@@ -1,0 +1,117 @@
+
+/* Enhanced responsive utilities */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .hidden-xs {
+    display: none;
+  }
+  
+  .xs-full-width {
+    width: 100%;
+  }
+  
+  .xs-text-center {
+    text-align: center;
+  }
+  
+  .xs-mb-4 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Responsive container padding for different devices */
+@media (min-width: 641px) and (max-width: 768px) {
+  .container {
+    @apply px-5;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    @apply px-6;
+  }
+}
+
+/* Device-specific utilities */
+.ipad-only {
+  @apply hidden md:block lg:hidden;
+}
+
+.tablet-only {
+  @apply hidden sm:block md:hidden;
+}
+
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
+}
+
+/* Safe area insets for mobile devices */
+.safe-padding-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-padding-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  button, 
+  a, 
+  .clickable {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  input, 
+  select, 
+  textarea {
+    @apply text-base; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Fix for iOS Safari overscrolling */
+html {
+  height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+body {
+  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+/* Responsive font sizes */
+.text-responsive {
+  font-size: clamp(1rem, 4vw, 1.25rem);
+}
+
+.title-responsive {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+/* Media query for tablets in portrait mode */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .ipad-portrait-adjustment {
+    @apply py-4 px-4;
+  }
+}
+
+/* Media query for small height screens */
+@media (max-height: 700px) {
+  .reduce-height-small-screen {
+    @apply py-2;
+  }
+  
+  .reduce-margins-small-screen {
+    @apply my-2;
+  }
+}
