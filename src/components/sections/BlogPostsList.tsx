@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { useBreakpoint } from '@/hooks/use-mobile';
-import OptimizedImage from '../ui/OptimizedImage';
 import { AspectRatio } from '../ui/aspect-ratio';
 
 const BLOG_POSTS = [
@@ -78,7 +76,7 @@ const BlogPostsList = () => {
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
                     <AspectRatio ratio={4/3} className="h-48 md:h-full w-full">
-                      <OptimizedImage 
+                      <img 
                         src={post.fallbackImageUrl} 
                         alt={post.title} 
                         width={600}

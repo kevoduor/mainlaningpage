@@ -53,13 +53,12 @@ const Hero: React.FC = () => {
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <AspectRatio ratio={3/2} className="w-full">
-              <OptimizedImage 
+              <img 
                 src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
                 alt="Dental professional showing treatment plan to patient" 
                 width={1200}
                 height={800}
                 className="w-full h-full object-cover"
-                priority={true}
               />
             </AspectRatio>
           </div>

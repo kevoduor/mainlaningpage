@@ -27,23 +27,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Check if we should use WebP version if available
+  // Use the original image source instead of trying to optimize it
+  // This ensures the image will at least load in its original format
   const getOptimizedSrc = (imageSrc: string): string => {
-    if (imageSrc.includes('lovable-uploads') && !imageSrc.endsWith('.webp')) {
-      // Try to use responsive WebP images when available
-      const basePath = imageSrc.substring(0, imageSrc.lastIndexOf('.'));
-      
-      // Use appropriate size based on viewport width
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth < 640) {
-          return `${basePath}-300w.webp`;
-        } else if (window.innerWidth < 1024) {
-          return `${basePath}-600w.webp`;
-        } else {
-          return `${basePath}.webp`;
-        }
-      }
-    }
     return imageSrc;
   };
   
@@ -52,27 +38,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     setIsLoaded(true);
   };
   
-  // Use srcSet for responsive images when possible
-  const generateSrcSet = (imageSrc: string): string | undefined => {
-    if (imageSrc.includes('lovable-uploads') && !imageSrc.endsWith('.webp')) {
-      const basePath = imageSrc.substring(0, imageSrc.lastIndexOf('.'));
-      return `
-        ${basePath}-300w.webp 300w,
-        ${basePath}-600w.webp 600w,
-        ${basePath}-900w.webp 900w,
-        ${basePath}.webp 1200w
-      `;
-    }
-    return undefined;
-  };
-  
   return (
     <img
       src={getOptimizedSrc(src)}
       alt={alt || ""}
       className={cn(
-        "blur-up",
-        isLoaded && "loaded",
+        isLoaded ? "opacity-100" : "opacity-0",
         fill ? "absolute inset-0 object-cover" : "",
         className
       )}
@@ -81,8 +52,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : 'auto'}
       decoding="async"
-      srcSet={generateSrcSet(src)}
-      sizes="(max-width: 640px) 300px, (max-width: 1024px) 600px, 1200px"
       onLoad={handleImageLoad}
       {...props}
     />
