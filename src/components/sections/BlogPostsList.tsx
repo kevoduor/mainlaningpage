@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { useBreakpoint } from '@/hooks/use-mobile';
+import OptimizedImage from '../ui/OptimizedImage';
+import { AspectRatio } from '../ui/aspect-ratio';
 
 const BLOG_POSTS = [
   {
@@ -75,13 +77,16 @@ const BlogPostsList = () => {
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
-                    <div className="h-48 md:h-full w-full relative overflow-hidden">
-                      <img 
+                    <AspectRatio ratio={4/3} className="h-48 md:h-full w-full">
+                      <OptimizedImage 
                         src={post.fallbackImageUrl} 
                         alt={post.title} 
+                        width={600}
+                        height={450}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
                       />
-                    </div>
+                    </AspectRatio>
                   </Link>
                 </div>
                 <div className="md:col-span-2 p-5 md:p-6 flex flex-col">

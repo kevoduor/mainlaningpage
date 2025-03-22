@@ -4,6 +4,8 @@ import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { Badge } from '../ui/badge';
 import { Star, Calendar, Check } from 'lucide-react';
+import OptimizedImage from '../ui/OptimizedImage';
+import { AspectRatio } from '../ui/aspect-ratio';
 
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
@@ -46,17 +48,20 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Hero image with direct src reference */}
+        {/* Hero image with AspectRatio and proper dimensions */}
         <div className="relative mx-auto max-w-5xl">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
-            <img 
-              src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
-              alt="Dental professional showing treatment plan to patient" 
-              className="w-full h-auto"
-              width="1200"
-              height="800"
-            />
+            <AspectRatio ratio={3/2} className="w-full">
+              <OptimizedImage 
+                src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
+                alt="Dental professional showing treatment plan to patient" 
+                width={1200}
+                height={800}
+                className="w-full h-full object-cover"
+                priority={true}
+              />
+            </AspectRatio>
           </div>
           
           {/* Floating elements with simplified styling */}
