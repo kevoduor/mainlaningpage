@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
@@ -65,14 +66,14 @@ const BLOG_POSTS = [
 const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
   <picture>
     <source 
-      srcSet={`${post.imageUrl.replace('.webp', '-300w.webp')} 300w, ${post.imageUrl.replace('.webp', '-600w.webp')} 600w, ${post.imageUrl} 900w`}
+      srcSet={`https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl.replace('.webp', '-300w.webp')} 300w, https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl.replace('.webp', '-600w.webp')} 600w, https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl} 900w`}
       sizes="(max-width: 768px) 100vw, 33vw"
       type="image/webp"
     />
     <img 
       src={post.fallbackImageUrl} 
       alt={post.title} 
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
       width="600"
       height="450"
       loading={index < 2 ? "eager" : "lazy"}
@@ -80,6 +81,7 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
       decoding="async"
       style={{
         aspectRatio: '4/3',
+        transform: 'translate3d(0,0,0)'
       }}
     />
   </picture>
@@ -99,7 +101,7 @@ const BlogPostsList = () => {
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
-                    <div className="h-48 md:h-full w-full relative overflow-hidden">
+                    <div className="h-48 md:h-full w-full relative overflow-hidden content-visibility-auto">
                       <BlogPostImage post={post} index={index} />
                     </div>
                   </Link>

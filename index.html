@@ -12,19 +12,6 @@
     <meta property="og:url" content="https://heynia.com" />
     <meta name="twitter:card" content="summary_large_image" />
     
-    <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload hero image - critical for LCP -->
-    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" as="image" fetchpriority="high">
-    
-    <!-- Optimized favicon -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-    
-    <!-- Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    
     <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
       /* Critical CSS for First Paint */
@@ -52,6 +39,20 @@
       .font-loaded body {font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
     </style>
     
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- Preload hero image - critical for LCP -->
+    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" as="image" fetchpriority="high">
+    
+    <!-- Optimized favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
+    
+    <!-- Sitemap reference -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
     <!-- Font loading script -->
     <script>
       (function() {
@@ -61,6 +62,20 @@
             document.documentElement.classList.add('font-loaded');
           });
         }
+        
+        // Preload critical JS modules
+        const preloadLinks = [
+          "/src/main.tsx",
+          "/src/App.tsx",
+          "/src/components/sections/Hero.tsx"
+        ];
+        
+        preloadLinks.forEach(url => {
+          const link = document.createElement('link');
+          link.rel = 'modulepreload';
+          link.href = url;
+          document.head.appendChild(link);
+        });
       })();
     </script>
     
