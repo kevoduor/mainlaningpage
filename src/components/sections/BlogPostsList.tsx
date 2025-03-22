@@ -4,7 +4,6 @@ import { ArrowRight, Calendar, User } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { useBreakpoint } from '@/hooks/use-mobile';
 
-// Move the data outside the component to reduce re-renders
 const BLOG_POSTS = [
   {
     id: 'marketing-tips-attract-patients',
@@ -63,7 +62,6 @@ const BLOG_POSTS = [
   }
 ];
 
-// Memoized BlogPost image component with WebP and proper sizing
 const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
   <picture>
     <source 
@@ -78,7 +76,7 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
       width="600"
       height="450"
       loading={index < 2 ? "eager" : "lazy"}
-      fetchPriority={index === 0 ? "high" : index === 1 ? "medium" : "low"}
+      fetchPriority={index === 0 ? "high" : "low"}
       decoding="async"
       style={{
         aspectRatio: '4/3',
