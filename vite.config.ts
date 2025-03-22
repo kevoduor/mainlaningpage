@@ -59,16 +59,9 @@ export default defineConfig(({ mode }) => {
       assetsDir: 'assets',
       emptyOutDir: true,
       copyPublicDir: true,
-      // Minify CSS and JS
-      cssMinify: true,
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: isProd,
-          drop_debugger: isProd,
-          pure_funcs: isProd ? ['console.log', 'console.info', 'console.debug'] : [],
-        },
-      },
+      // Disable minification for CSS and JS
+      cssMinify: false,
+      minify: false,
       // Generate modern JavaScript only
       target: 'es2020',
       // Optimize chunk size
@@ -114,20 +107,20 @@ export default defineConfig(({ mode }) => {
             return 'assets/[name]-[hash][extname]';
           },
         },
-        // Advanced tree-shaking
+        // Keep treeshaking for code splitting but disable aggressive optimizations
         treeshake: {
-          moduleSideEffects: false,
-          propertyReadSideEffects: false,
-          tryCatchDeoptimization: false,
+          moduleSideEffects: true,
+          propertyReadSideEffects: true,
+          tryCatchDeoptimization: true,
         },
       },
     },
-    // Enable CSS code splitting and optimization
+    // Enable CSS code splitting but disable optimization
     css: {
       modules: {
         scopeBehaviour: 'local',
       },
-      devSourcemap: !isProd,
+      devSourcemap: true,
       preprocessorOptions: {
         // Any preprocessor options would go here
       },
@@ -138,17 +131,17 @@ export default defineConfig(({ mode }) => {
       exclude: [],
       esbuildOptions: {
         target: 'es2020',
-        // Keep console logs during development
-        drop: isProd ? ['console', 'debugger'] : [],
-        pure: isProd ? ['console.log', 'debugger'] : [],
+        // Keep console logs
+        drop: [],
+        pure: [],
       },
     },
-    // Reduce build size with tree-shaking
+    // Disable esbuild optimization
     esbuild: {
-      pure: isProd ? ['console.log', 'debugger'] : [],
+      pure: [],
       treeShaking: true,
       target: 'es2020',
-      legalComments: 'none',
+      legalComments: 'inline',
     },
   };
 });
