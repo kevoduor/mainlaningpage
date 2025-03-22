@@ -69,6 +69,7 @@ const Features: React.FC = () => {
             size={isMobile ? "md" : "lg"} 
             href="/signup"
             className="w-full sm:w-auto"
+            shine={true}
           >
             Sign Up Now
           </CTAButton>

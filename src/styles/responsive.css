@@ -76,6 +76,11 @@
   textarea {
     @apply text-base; /* Prevents iOS zoom on focus */
   }
+  
+  /* Fix for iOS Safari floating bottom ui */
+  .has-safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* Fix for iOS Safari overscrolling */
@@ -113,5 +118,28 @@ body {
   
   .reduce-margins-small-screen {
     @apply my-2;
+  }
+}
+
+/* Notch and Dynamic Island handling */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .notch-aware {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Foldable devices support */
+@media (screen-spanning: single-fold-vertical) {
+  .fold-aware {
+    flex-direction: row;
+    height: 100vh;
+  }
+}
+
+/* Better responsive handling for different device orientations */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-height-limited {
+    max-height: 80vh;
+    overflow-y: auto;
   }
 }

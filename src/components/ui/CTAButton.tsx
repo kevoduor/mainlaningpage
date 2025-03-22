@@ -11,6 +11,8 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isBookDemo?: boolean;
   href?: string;
   fullWidthOnMobile?: boolean;
+  shine?: boolean;
+  sticky?: boolean;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
@@ -24,6 +26,8 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     children, 
     onClick, 
     fullWidthOnMobile = true,
+    shine = false,
+    sticky = false,
     ...props 
   }, ref) => {
     const { isXs, isSm } = useBreakpoint();
@@ -84,6 +88,8 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
             'h-11 px-5 sm:px-6 text-base': size === 'lg',
             'w-full sm:w-auto': fullWidthOnMobile && isMobile,
             'touch-manipulation': isMobile, // Better touch handling on mobile
+            'shiny-button': shine, // Add shine effect
+            'sticky-cta': sticky, // Add sticky positioning
           },
           className
         )}
@@ -92,6 +98,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
       >
         <span className="truncate">{children}</span>
         {icon && <IconComponent className={`ml-1 h-4 w-4 flex-shrink-0 ${isMobile ? 'mr-0' : ''}`} />}
+        {shine && <span className="shine-effect"></span>}
       </button>
     );
   }

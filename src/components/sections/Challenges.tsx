@@ -1,10 +1,23 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionHeading from '../ui/SectionHeading';
 import { Check, X } from 'lucide-react';
 import CTAButton from '../ui/CTAButton';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Challenges: React.FC = () => {
+  const { isXs, isSm } = useBreakpoint();
+  const isMobile = isXs || isSm;
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowStickyCTA(window.scrollY > 300);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   const challenges = [
     {
       problem: 'Too Much Admin, Not Enough Patient Care?',
@@ -70,12 +83,29 @@ const Challenges: React.FC = () => {
           ))}
           
           <div className="text-center mt-8 md:mt-12">
-            <CTAButton size="lg" href="/signup" className="w-full sm:w-auto">
+            <CTAButton 
+              size="lg" 
+              href="/signup" 
+              className="w-full sm:w-auto"
+              shine={true}
+            >
               Sign Up
             </CTAButton>
           </div>
         </div>
       </div>
+      
+      {showStickyCTA && (
+        <CTAButton 
+          size={isMobile ? "md" : "lg"}
+          href="/signup"
+          className={`${isMobile ? 'w-[calc(100%-2rem)]' : ''}`}
+          shine={true}
+          sticky={true}
+        >
+          Sign Up
+        </CTAButton>
+      )}
     </section>
   );
 };
