@@ -58,8 +58,8 @@ const Hero: React.FC = () => {
             />
           </div>
           
-          {/* Notification badges - hidden on smallest screens */}
-          <div className={`absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60 ${isXs ? 'hidden sm:block' : ''}`}>
+          {/* Notification badges - now visible on all screen sizes */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
             <div className="flex items-center gap-2">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <div className="flex flex-col">
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className={`absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60 ${isXs ? 'hidden sm:block' : ''}`}>
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
             <div className="flex items-center gap-2">
               <Calendar className="w-3.5 h-3.5 text-nia-600" />
               <div className="flex flex-col">
