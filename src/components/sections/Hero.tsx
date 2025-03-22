@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
                 alt="Dental professional showing treatment plan to patient" 
                 className="w-full h-auto"
                 loading="eager" 
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="async"
                 width="1200"
                 height="800"

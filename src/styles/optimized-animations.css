@@ -56,14 +56,17 @@
 /* Provide size hints to improve layout stability */
 .image-container-16-9 {
   aspect-ratio: 16/9;
+  contain: layout size;
 }
 
 .image-container-4-3 {
   aspect-ratio: 4/3;
+  contain: layout size;
 }
 
 .image-container-1-1 {
   aspect-ratio: 1/1;
+  contain: layout size;
 }
 
 /* Optimized fade-in animation */
@@ -81,6 +84,8 @@
 .optimized-fade-in {
   animation: optimized-fade-in 0.3s ease-out forwards;
   transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  will-change: transform, opacity;
+  contain: content;
 }
 
 /* Better performance pulse animation */
@@ -96,4 +101,6 @@
 .optimized-pulse {
   animation: optimized-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  will-change: transform;
+  contain: content;
 }

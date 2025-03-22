@@ -1,7 +1,5 @@
 
 /* Minimized App.css with only essential styles */
-
-/* Base layout for the app with optimized sizing */
 #root {
   margin: 0 auto;
   text-align: center;
@@ -12,6 +10,7 @@
   height: 6em;
   padding: 1.5em;
   transition: filter 300ms;
+  will-change: filter;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -22,17 +21,9 @@
   .logo:hover {
     filter: none;
   }
-  .logo.react:hover {
-    animation: none;
-  }
 }
 
 /* Minimal card styling */
 .card {
   padding: 1.5em;
-}
-
-/* Basic documents styling */
-.read-the-docs {
-  color: #888;
 }

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
@@ -79,7 +78,7 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
       width="600"
       height="450"
       loading={index < 2 ? "eager" : "lazy"}
-      fetchpriority={index === 0 ? "high" : index === 1 ? "medium" : "low"}
+      fetchPriority={index === 0 ? "high" : index === 1 ? "medium" : "low"}
       decoding="async"
       style={{
         aspectRatio: '4/3',

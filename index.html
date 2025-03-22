@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Nia - AI-Powered Dental Clinic Management System</title>
     <meta name="description" content="Grow your dental practice with Nia - the AI-powered software that helps clinics attract more patients, reduce no-shows, and automate operations for better efficiency." />
     <meta property="og:title" content="Nia - AI-Powered Dental Clinic Management System" />
@@ -12,23 +12,14 @@
     <meta property="og:url" content="https://heynia.com" />
     <meta name="twitter:card" content="summary_large_image" />
     
-    <!-- Preload critical fonts - Preconnect earlier in document flow -->
+    <!-- Preconnect to critical domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/hero-image-600w.webp" as="image" type="image/webp" media="(max-width: 640px)" fetchpriority="high">
-    <link rel="preload" href="/hero-image-900w.webp" as="image" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high">
-    <link rel="preload" href="/hero-image.webp" as="image" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
+    <!-- Preload hero image - critical for LCP -->
+    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" as="image" fetchpriority="high">
     
-    <!-- Preload critical JS -->
-    <link rel="modulepreload" href="/src/main.tsx">
-    
-    <!-- Load font asynchronously with font-display:swap -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Add optimized favicon -->
+    <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
     
     <!-- Sitemap reference -->
@@ -37,7 +28,7 @@
     <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
       /* Critical CSS for First Paint */
-      body {margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5;}
+      body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5;}
       #root {height: 100%;}
       .container {width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px;}
       
@@ -72,6 +63,10 @@
         }
       })();
     </script>
+    
+    <!-- Load font asynchronously with font-display:swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
 
   <body>

@@ -2,7 +2,7 @@
 /* Import base styles with Tailwind directives */
 @import './base.css';
 
-/* Import optimized component styles */
+/* Import optimized component styles with tree-shaking */
 @import './components.css';
 
 /* Import optimized animations */
@@ -11,5 +11,35 @@
 /* Import responsive utilities */
 @import './responsive.css';
 
-/* Avoid importing unused animations */
-/* @import './animations.css'; */
+/* Critical utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 5000px;
+}
+
+/* Force hardware acceleration for key animations */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize image loading strategy */
+img.blur-up {
+  filter: blur(5px);
+  transition: filter 0.3s ease-out;
+}
+
+img.blur-up.loaded {
+  filter: blur(0);
+}
+
+/* LCP optimizations */
+.lcp-target {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
