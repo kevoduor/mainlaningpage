@@ -1,3 +1,4 @@
+
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -19,9 +20,10 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
+      // Fix the React SWC plugin configuration by removing the emotion plugin that's not installed
       react({
-        // Remove the invalid swcOptions and use simpler configuration
-        plugins: [['@swc/plugin-emotion', {}]],
+        // Remove the emotion plugin since it's not installed
+        plugins: [],
       }),
       mode === 'development' && componentTagger(),
       // Add vendor chunk splitting
