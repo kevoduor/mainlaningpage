@@ -41,6 +41,7 @@ export default defineConfig(({ mode }) => {
         open: false,
         gzipSize: true,
         brotliSize: true,
+        filename: 'stats.html',
       }),
     ].filter(Boolean),
     resolve: {
@@ -60,6 +61,7 @@ export default defineConfig(({ mode }) => {
         compress: {
           drop_console: true,
           drop_debugger: true,
+          pure_funcs: ['console.log', 'console.info', 'console.debug'],
         },
       },
       // Generate modern JavaScript only
@@ -68,7 +70,8 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['react', 'react-dom', 'react-router-dom'],
+            vendor: ['react', 'react-dom'],
+            router: ['react-router-dom'],
             ui: [
               '@radix-ui/react-toast',
               '@radix-ui/react-tooltip',
@@ -91,6 +94,8 @@ export default defineConfig(({ mode }) => {
         // Tree-shake dependencies
         treeshake: {
           moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
         },
       },
     },
@@ -104,7 +109,12 @@ export default defineConfig(({ mode }) => {
     // Optimize dependencies
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom'],
-      exclude: ['@radix-ui/react-accordion'], // Prevent over-optimization
+      exclude: ['@radix-ui/react-accordion'],
+    },
+    // Reduce build size with tree-shaking
+    esbuild: {
+      pure: ['console.log', 'debugger'],
+      treeShaking: true,
     },
   };
 });

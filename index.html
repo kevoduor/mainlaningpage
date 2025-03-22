@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     
-    <!-- Apply critical CSS inline to reduce render-blocking CSS -->
+    <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
       /* Critical rendering path CSS */
       body {margin: 0; font-family: 'Inter', sans-serif;}
@@ -52,13 +52,13 @@
     <!-- Preload critical images -->
     <link rel="preload" as="image" href="/hero-image-600w.webp" media="(max-width: 640px)" type="image/webp">
     <link rel="preload" as="image" href="/hero-image-900w.webp" media="(min-width: 641px) and (max-width: 1024px)" type="image/webp">
-    <link rel="modulepreload" href="/src/components/sections/Hero.tsx">
+    <link rel="preload" as="image" href="/hero-image.webp" media="(min-width: 1025px)" type="image/webp">
   </head>
 
   <body>
     <div id="root"></div>
     
-    <!-- Scripts moved to bottom for better performance -->
-    <script type="module" src="/src/main.tsx" async></script>
+    <!-- Scripts deferred for better initial rendering -->
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>

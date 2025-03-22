@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
@@ -82,7 +81,7 @@ const BlogPostImage = ({ post, index }: { post: typeof BLOG_POSTS[0], index: num
       width="600"
       height="450"
       style={{
-        contentVisibility: index < 2 ? 'auto' : 'auto',
+        contentVisibility: 'auto',
         aspectRatio: '4/3',
       }}
     />
@@ -101,7 +100,7 @@ const BlogPostsList = () => {
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
-                    <div className="h-48 md:h-full w-full relative overflow-hidden">
+                    <div className="h-48 md:h-full w-full relative overflow-hidden content-visibility-auto">
                       <BlogPostImage post={post} index={index} />
                     </div>
                   </Link>

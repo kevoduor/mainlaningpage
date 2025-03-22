@@ -8,7 +8,7 @@
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images
+  # Images - longer cache time
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
@@ -23,7 +23,7 @@
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
   
-  # CSS, JavaScript
+  # CSS, JavaScript - longer cache time
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType text/javascript "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
@@ -38,7 +38,7 @@
   Header unset ETag
   FileETag None
   
-  # Cache control headers
+  # Cache control headers with immutable for long-lived assets
   <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp|woff|woff2|ttf|svg)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
@@ -60,9 +60,10 @@
 
 # Modern browser optimizations
 <IfModule mod_headers.c>
-  # Enable HTTP/2 Server Push
+  # Enable HTTP/2 Server Push for critical resources
   <FilesMatch "index\.html">
-    Header add Link "</hero-image-600w.webp>; rel=preload; as=image; type=image/webp"
+    Header add Link "</hero-image.webp>; rel=preload; as=image; type=image/webp"
+    Header add Link "</assets/js/vendor-[hash].js>; rel=preload; as=script"
   </FilesMatch>
   
   # Security headers
