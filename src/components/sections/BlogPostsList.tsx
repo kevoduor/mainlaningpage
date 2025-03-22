@@ -65,7 +65,7 @@ const BlogPostsList = () => {
     <section className="py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:gap-12">
-          {BLOG_POSTS.map((post) => (
+          {BLOG_POSTS.map((post, index) => (
             <article key={post.id} className="group border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
@@ -75,7 +75,9 @@ const BlogPostsList = () => {
                         src={post.imageUrl} 
                         alt={post.title} 
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy" 
+                        loading={index < 2 ? "eager" : "lazy"}
+                        fetchpriority={index === 0 ? "high" : index === 1 ? "medium" : "low"}
+                        decoding="async"
                       />
                     </div>
                   </Link>
