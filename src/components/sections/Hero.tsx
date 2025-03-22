@@ -51,8 +51,8 @@ const Hero: React.FC = () => {
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-              alt="Nia dental management dashboard" 
+              src="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" 
+              alt="Dental professional showing treatment plan to patient" 
               className="w-full h-auto"
               loading="eager"
             />
