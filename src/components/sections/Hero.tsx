@@ -16,8 +16,8 @@ const Hero: React.FC = () => {
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
-    preloadLink.href = '/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp';
-    preloadLink.type = 'image/webp';
+    preloadLink.href = '/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png';
+    preloadLink.type = 'image/png';
     preloadLink.fetchPriority = 'high';
     document.head.appendChild(preloadLink);
 
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
     return () => {
       // Clean up preload link on unmount
       document.head.querySelectorAll('link[rel="preload"][as="image"]').forEach(link => {
-        if (link.getAttribute('href')?.includes('2092ea49-25fc-463b-a435-69f201c7363b')) {
+        if (link.getAttribute('href')?.includes('886c9cf4-cf04-42fc-a969-1d12e38dcbf1')) {
           document.head.removeChild(link);
         }
       });
@@ -87,30 +87,23 @@ const Hero: React.FC = () => {
         <div className="relative mx-auto max-w-5xl lcp-target" style={{contentVisibility: 'auto', contain: 'layout style paint'}}>
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
-            <picture>
-              <source 
-                srcSet="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp 1200w, /lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b-900w.webp 900w, /lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b-600w.webp 600w" 
-                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 1200px"
-                type="image/webp"
-              />
-              <img 
-                ref={heroImageRef}
-                src="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" 
-                alt="Dental professional showing treatment plan to patient" 
-                className="w-full h-auto"
-                loading="eager" 
-                fetchPriority="high"
-                decoding="async"
-                width="1200"
-                height="800"
-                style={{
-                  aspectRatio: '1200/800',
-                  transform: 'translate3d(0,0,0)',
-                  willChange: 'transform',
-                  contentVisibility: 'auto'
-                }}
-              />
-            </picture>
+            <img 
+              ref={heroImageRef}
+              src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
+              alt="Dental professional showing treatment plan to patient" 
+              className="w-full h-auto"
+              loading="eager" 
+              fetchPriority="high"
+              decoding="async"
+              width="1200"
+              height="800"
+              style={{
+                aspectRatio: '1200/800',
+                transform: 'translate3d(0,0,0)',
+                willChange: 'transform',
+                contentVisibility: 'auto'
+              }}
+            />
           </div>
           
           {/* Floating elements with hardware acceleration */}
