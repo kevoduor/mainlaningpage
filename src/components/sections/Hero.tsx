@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <picture>
               <source 
-                srcSet="https://cdn.jsdelivr.net/gh/username/nia-dental/public/hero-image-600w.webp 600w, https://cdn.jsdelivr.net/gh/username/nia-dental/public/hero-image-900w.webp 900w, https://cdn.jsdelivr.net/gh/username/nia-dental/public/hero-image.webp 1200w" 
+                srcSet="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp 1200w, /lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b-900w.webp 900w, /lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b-600w.webp 600w" 
                 sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 1200px"
                 type="image/webp"
               />
