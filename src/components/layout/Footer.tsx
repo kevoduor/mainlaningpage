@@ -1,10 +1,13 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
 import { Button } from '../ui/button';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { isMobile } = useBreakpoint();
 
   return (
     <footer className="bg-nia-950 text-white pt-16 pb-8">
@@ -35,6 +38,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Resources</h3>
             <ul className="space-y-2">
+              <li><Link to="/" className="text-nia-300 hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/blog" className="text-nia-300 hover:text-white transition-colors">Blog</Link></li>
               <li><Link to="/blog/marketing-tips-attract-patients" className="text-nia-300 hover:text-white transition-colors">Marketing Tips</Link></li>
               <li><Link to="/blog/ai-transform-dental-practice" className="text-nia-300 hover:text-white transition-colors">AI in Dentistry</Link></li>
@@ -60,13 +64,13 @@ const Footer: React.FC = () => {
             <div className="text-nia-400 text-sm mb-4 md:mb-0">
               © {currentYear} <Link to="/" className="hover:text-white transition-colors">Nia</Link>. All rights reserved.
             </div>
-            <div className="flex flex-wrap gap-4 sm:space-x-6 items-center justify-center sm:justify-end">
+            <div className="flex flex-wrap gap-4 sm:gap-6 items-center justify-center sm:justify-end">
               <Link to="/terms" className="text-nia-400 hover:text-white transition-colors">Terms</Link>
               <Link to="/privacy" className="text-nia-400 hover:text-white transition-colors">Privacy</Link>
               <Link to="/cookies" className="text-nia-400 hover:text-white transition-colors">Cookies</Link>
               <Link to="/" className="inline-flex items-center text-nia-400 hover:text-white">
                 <Home className="mr-1 h-4 w-4" />
-                Back to Home
+                Home
               </Link>
             </div>
           </div>
