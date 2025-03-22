@@ -68,18 +68,23 @@ const BLOG_POSTS = [
 const BlogPostImage = ({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
   <picture>
     <source 
-      srcSet={post.imageUrl} 
+      srcSet={`${post.imageUrl.replace('.webp', '-300w.webp')} 300w, ${post.imageUrl.replace('.webp', '-600w.webp')} 600w, ${post.imageUrl} 900w`}
+      sizes="(max-width: 768px) 100vw, 33vw"
       type="image/webp"
     />
     <img 
       src={post.fallbackImageUrl} 
       alt={post.title} 
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
       loading={index < 2 ? "eager" : "lazy"}
       fetchPriority={index === 0 ? "high" : index === 1 ? "auto" : "low"}
       decoding="async"
-      width="400"
-      height="300"
+      width="600"
+      height="450"
+      style={{
+        contentVisibility: index < 2 ? 'auto' : 'auto',
+        aspectRatio: '4/3',
+      }}
     />
   </picture>
 );
@@ -129,7 +134,7 @@ const BlogPostsList = () => {
                     className="inline-flex items-center text-nia-600 hover:text-nia-700 font-medium mt-auto group"
                   >
                     Read full article 
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1 will-change-transform" />
                   </Link>
                 </div>
               </div>

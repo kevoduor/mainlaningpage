@@ -6,6 +6,7 @@
 @import './components.css';
 
 /* Import animations */
+@import './optimized-animations.css';
 @import './animations.css';
 
 /* Import responsive utilities */

@@ -46,13 +46,14 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Optimized Hero image with WebP format */}
-        <div className="relative mx-auto max-w-5xl animate-fade-in delay-300">
+        {/* Optimized Hero image with proper sizing and loading */}
+        <div className="relative mx-auto max-w-5xl animate-fade-in will-change-auto">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <picture>
               <source 
-                srcSet="/hero-image.webp" 
+                srcSet="/hero-image-600w.webp 600w, /hero-image-900w.webp 900w, /hero-image.webp 1200w" 
+                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 1200px"
                 type="image/webp"
               />
               <img 
@@ -64,19 +65,23 @@ const Hero: React.FC = () => {
                 decoding="async"
                 width="1200"
                 height="800"
+                style={{
+                  contentVisibility: 'auto',
+                  aspectRatio: '1200/800',
+                }}
               />
             </picture>
           </div>
           
-          {/* Simplified notification badges with fewer DOM elements */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
+          {/* Simplified notification badges with transform instead of opacity animations */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-transform duration-300 hover:translate-y-[-2px] will-change-transform">
             <div className="flex items-center gap-1 sm:gap-2">
               <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
               <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-transform duration-300 hover:translate-y-[-2px] will-change-transform">
             <div className="flex items-center gap-1 sm:gap-2">
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
               <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>

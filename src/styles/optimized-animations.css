@@ -1,0 +1,66 @@
+
+/* Optimized animations for better performance */
+
+/* Use transform instead of opacity for better compositing */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+/* Use transform-based animations that can be hardware accelerated */
+.hover-translate {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.hover-translate:hover {
+  transform: translateY(-2px);
+}
+
+/* Optimize float animation performance */
+.float-animation {
+  animation: optimized-float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes optimized-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Reduce animation work for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-scale-in,
+  .float-animation,
+  .hover-translate:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Improve content visibility for offscreen elements */
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* Provide size hints to improve layout stability */
+.image-container-16-9 {
+  aspect-ratio: 16/9;
+}
+
+.image-container-4-3 {
+  aspect-ratio: 4/3;
+}
+
+.image-container-1-1 {
+  aspect-ratio: 1/1;
+}

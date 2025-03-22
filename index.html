@@ -15,11 +15,8 @@
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Preload critical styles -->
-    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
@@ -33,7 +30,6 @@
     <!-- Prefetch CDN -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="//cdn.gpteng.co">
     
     <!-- Apply critical CSS inline to reduce render-blocking CSS -->
     <style>
@@ -41,14 +37,28 @@
       body {margin: 0; font-family: 'Inter', sans-serif;}
       #root {height: 100%;}
       .container {width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px;}
+      
+      /* First Contentful Paint optimizations */
+      .hero-heading {font-size: 1.5rem; font-weight: 700; line-height: 1.2;}
+      @media (min-width: 640px) {.hero-heading {font-size: 1.875rem;}}
+      @media (min-width: 768px) {.hero-heading {font-size: 2.25rem;}}
+      @media (min-width: 1024px) {.hero-heading {font-size: 3rem;}}
+      
+      /* Loading optimization */
+      .content-placeholder {background: #f0f0f0; height: 24px; margin-bottom: 8px; border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;}
+      @keyframes pulse {0%, 100% {opacity: 1} 50% {opacity: .5}}
     </style>
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/hero-image-600w.webp" media="(max-width: 640px)" type="image/webp">
+    <link rel="preload" as="image" href="/hero-image-900w.webp" media="(min-width: 641px) and (max-width: 1024px)" type="image/webp">
+    <link rel="modulepreload" href="/src/components/sections/Hero.tsx">
   </head>
 
   <body>
     <div id="root"></div>
     
     <!-- Scripts moved to bottom for better performance -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" async></script>
   </body>
 </html>
