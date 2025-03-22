@@ -144,14 +144,14 @@
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.gpteng.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-src 'self'; object-src 'none'"
 </IfModule>
 
-# Force HTTPS
+# Force HTTPS but don't redirect between apex and www
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} off
   RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   
   # Allow both apex and www domain
-  # Make sure there's NO redirect from apex to www or vice versa
+  # No redirects between apex and www - keep whichever one the user typed
   
   # Standardize trailing slashes - Remove trailing slash from non-directory requests
   RewriteCond %{REQUEST_FILENAME} !-d

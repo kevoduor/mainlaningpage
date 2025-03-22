@@ -36,9 +36,9 @@ jobs:
         
       - name: Setup CNAME and GitHub Pages config
         run: |
+          # Create CNAME file with both domains - apex domain first
           echo "heynia.com" > dist/CNAME
-          echo "www.heynia.com" >> dist/CNAME
-          # Create a file to verify domain ownership and disable Jekyll
+          # Disable Jekyll processing
           touch dist/.nojekyll
         
       - name: Setup Pages
