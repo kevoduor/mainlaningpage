@@ -73,7 +73,7 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
     <img 
       src={post.fallbackImageUrl} 
       alt={post.title} 
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 hardware-accelerated blur-up"
       width="600"
       height="450"
       loading={index < 2 ? "eager" : "lazy"}
@@ -82,6 +82,9 @@ const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0],
       style={{
         aspectRatio: '4/3',
         transform: 'translate3d(0,0,0)'
+      }}
+      onLoad={(e) => {
+        e.currentTarget.classList.add('loaded');
       }}
     />
   </picture>

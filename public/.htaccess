@@ -70,6 +70,9 @@
 
 # Add additional cache control headers
 <IfModule mod_headers.c>
+  # Prioritize CDN resources
+  Header set CDN-Origin "cdn.jsdelivr.net"
+  
   # Remove ETag (we're using far-future expires)
   <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|webp|woff|woff2|ttf|svg)$">
     Header unset ETag
@@ -92,6 +95,9 @@
     Header append Vary Accept-Encoding
   </FilesMatch>
   
+  # Add efficient loading indicators
+  Header set Resource-Prioritization "1=high, 2=auto, 3=low"
+  
   # Add frame options header
   Header always set X-Frame-Options "SAMEORIGIN"
 </IfModule>
@@ -106,6 +112,7 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 </IfModule>
 
 # Handle SPA routing
@@ -116,4 +123,15 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   # Rewrite all requests to the index.html
   RewriteRule ^ index.html [L]
+</IfModule>
+
+# Redirect to CDN for static assets when possible
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Check if the request is for static assets
+  RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|webp|svg|js|css|woff|woff2)$
+  # Check if specific CDN file exists
+  RewriteCond %{HTTP_HOST} ^heynia\.com$ [NC]
+  # Redirect to CDN
+  RewriteRule ^(.*)$ https://cdn.jsdelivr.net/gh/username/nia-dental/public/$1 [R=302,L]
 </IfModule>

@@ -12,6 +12,17 @@
     <meta property="og:url" content="https://heynia.com" />
     <meta name="twitter:card" content="summary_large_image" />
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" as="image" fetchpriority="high">
+    <link rel="preload" href="/src/main.tsx" as="script" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    
+    <!-- Preconnect to all required domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/gh/username/nia-dental/public" crossorigin>
+    
     <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
       /* Critical CSS for First Paint */
@@ -31,21 +42,21 @@
       
       /* Optimize animations */
       .will-change-transform {will-change: transform;}
+      .hardware-accelerated {transform: translateZ(0); backface-visibility: hidden; perspective: 1000px;}
       .animate-fade-in {animation: fadeIn 0.5s ease-out;}
       @keyframes fadeIn {from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);}}
       
       /* Font fallback to prevent layout shift */
       body {font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
       .font-loaded body {font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
+      
+      /* Critical LCP styles */
+      .lcp-target {content-visibility: auto; contain-intrinsic-size: auto 500px;}
+      
+      /* Optimized blur-up image loading */
+      img.blur-up {filter: blur(5px); transition: filter 0.3s ease-out;}
+      img.blur-up.loaded {filter: blur(0);}
     </style>
-    
-    <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
-    <!-- Preload hero image - critical for LCP -->
-    <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" as="image" fetchpriority="high">
     
     <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
@@ -63,11 +74,10 @@
           });
         }
         
-        // Preload critical JS modules
+        // Preload critical paths
         const preloadLinks = [
-          "/src/main.tsx",
-          "/src/App.tsx",
-          "/src/components/sections/Hero.tsx"
+          "/src/components/sections/Hero.tsx",
+          "/src/components/layout/Navbar.tsx"
         ];
         
         preloadLinks.forEach(url => {
@@ -76,6 +86,33 @@
           link.href = url;
           document.head.appendChild(link);
         });
+        
+        // Add intersection observer for lazy loading
+        if ('IntersectionObserver' in window) {
+          const loadImagesWhenVisible = (entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+              }
+            });
+          };
+          
+          const imgObserver = new IntersectionObserver(loadImagesWhenVisible, {
+            rootMargin: '100px 0px'
+          });
+          
+          // Will be used after DOM is loaded
+          window.lazyLoadImages = () => {
+            document.querySelectorAll('img[data-src]').forEach(img => {
+              imgObserver.observe(img);
+            });
+          };
+        }
       })();
     </script>
     
@@ -86,6 +123,15 @@
 
   <body>
     <div id="root"></div>
+    
+    <!-- Initialize lazy loading after DOM is ready -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.lazyLoadImages) {
+          window.lazyLoadImages();
+        }
+      });
+    </script>
     
     <!-- Required Lovable script for select/edit features -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>

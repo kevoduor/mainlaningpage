@@ -46,8 +46,8 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Optimized Hero image with WebP format, proper sizing and explicit dimensions */}
-        <div className="relative mx-auto max-w-5xl animate-fade-in" style={{contentVisibility: 'auto'}}>
+        {/* Optimized Hero image with modern formats, proper sizing and explicit dimensions */}
+        <div className="relative mx-auto max-w-5xl lcp-target animate-fade-in" style={{contentVisibility: 'auto'}}>
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <picture>
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
               <img 
                 src="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" 
                 alt="Dental professional showing treatment plan to patient" 
-                className="w-full h-auto will-change-transform"
+                className="w-full h-auto hardware-accelerated"
                 loading="eager" 
                 fetchPriority="high"
                 decoding="async"
@@ -69,12 +69,15 @@ const Hero: React.FC = () => {
                   aspectRatio: '1200/800',
                   transform: 'translate3d(0,0,0)'
                 }}
+                onLoad={(e) => {
+                  e.currentTarget.classList.add('loaded');
+                }}
               />
             </picture>
           </div>
           
           {/* Use transform-based animations for better performance */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 will-change-transform"
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hardware-accelerated"
                style={{transform: 'translate3d(0,0,0)'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
@@ -82,7 +85,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 will-change-transform"
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 hardware-accelerated"
                style={{transform: 'translate3d(0,0,0)'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
