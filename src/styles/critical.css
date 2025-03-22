@@ -63,14 +63,6 @@ footer h3 {
   text-wrap: balance;
 }
 
-/* Hardware acceleration for smooth animations */
-.hardware-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform;
-}
-
 /* Critical animation utilities */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
@@ -79,28 +71,6 @@ footer h3 {
 @keyframes fadeIn {
   from {opacity: 0; transform: translateY(10px);}
   to {opacity: 1; transform: translateY(0);}
-}
-
-/* Content visibility for better rendering */
-.content-visibility-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 5000px;
-}
-
-/* LCP optimizations */
-.lcp-target {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-}
-
-/* Image loading optimizations */
-img.blur-up {
-  filter: blur(5px);
-  transition: filter 0.3s ease-out;
-}
-
-img.blur-up.loaded {
-  filter: blur(0);
 }
 
 /* High contrast buttons */

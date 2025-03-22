@@ -13,6 +13,17 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://heynia.com/" />
     
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" as="image" fetchPriority="high" type="image/png">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" as="style">
+    
     <!-- Inline critical CSS to eliminate render-blocking -->
     <style>
       /* Critical CSS for First Paint */
@@ -68,19 +79,14 @@
       document.body.classList.add('js-loading');
       setTimeout(function() {
         if (document.body.classList.contains('js-loading')) {
-          console.log('Slow loading detected, showing fallback content');
           document.getElementById('loading-fallback').style.display = 'block';
         }
       }, 3000);
     </script>
     
-    <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
-    <!-- Preload critical hero image -->
-    <link rel="preload" href="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" as="image" fetchpriority="high" type="image/png">
+    <!-- Load critical fonts immediately but non-blocking -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"></noscript>
     
     <!-- Defer non-critical CSS -->
     <link rel="stylesheet" href="/src/styles/index.css" media="print" onload="this.media='all'; this.onload=null;">
@@ -110,10 +116,7 @@
       });
     </script>
     
-    <!-- Required Lovable script for select/edit features -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    
-    <!-- Main application script - with type="module" for proper ES module loading -->
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Main application script - with defer to avoid blocking rendering -->
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>

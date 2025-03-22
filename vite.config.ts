@@ -1,5 +1,4 @@
-
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
@@ -22,17 +21,31 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react({
         devTarget: 'es2020',
+        // Use faster SWC transforms
+        swcOptions: {
+          jsc: {
+            transform: {
+              react: {
+                runtime: 'automatic',
+                development: !isProd,
+                refresh: !isProd,
+              },
+            },
+          },
+        },
       }),
       mode === 'development' && componentTagger(),
+      // Add vendor chunk splitting
+      splitVendorChunkPlugin(),
       // Gzip compression for all assets
-      viteCompression({
+      isProd && viteCompression({
         algorithm: 'gzip',
         ext: '.gz',
         threshold: 1024, // compress files >1kb
         deleteOriginFile: false,
       }),
       // Add brotli compression (better than gzip)
-      viteCompression({
+      isProd && viteCompression({
         algorithm: 'brotliCompress',
         ext: '.br',
         threshold: 1024,
@@ -55,13 +68,32 @@ export default defineConfig(({ mode }) => {
       assetsDir: 'assets',
       emptyOutDir: true,
       copyPublicDir: true,
-      // Disable minification for easier debugging
-      cssMinify: false,
-      minify: false,
+      // Enable minification for production builds
+      cssMinify: isProd,
+      minify: isProd ? 'esbuild' : false,
       // Generate compatible JavaScript
       target: 'es2018',
+      // Use chunk splitting for better caching
       rollupOptions: {
         output: {
+          manualChunks: {
+            react: ['react', 'react-dom', 'react-router-dom'],
+            ui: [
+              '@radix-ui/react-accordion',
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-dropdown-menu',
+              '@radix-ui/react-select',
+              '@radix-ui/react-toast',
+            ],
+            utils: ['date-fns', 'clsx', 'tailwind-merge', 'class-variance-authority'],
+            // Keep third-party dependencies in separate chunks
+            vendor: [
+              '@tanstack/react-query',
+              'recharts',
+              'zod',
+              'lucide-react',
+            ],
+          },
           // Simplified naming for better debugging
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
@@ -79,16 +111,17 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
-      // Add source maps for easier debugging
-      sourcemap: true,
+      // Add source maps only for development
+      sourcemap: !isProd,
     },
     // Enable source maps for development
     css: {
-      devSourcemap: true,
+      devSourcemap: !isProd,
     },
-    // Fix potential issues with dependencies
+    // Split large routes for better performance
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom'],
+      exclude: ['@vercel/analytics'],
       esbuildOptions: {
         target: 'es2018',
       },

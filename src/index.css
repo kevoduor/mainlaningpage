@@ -1,7 +1,4 @@
 
-/* Load Lato font with a font-display strategy to prevent render blocking */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap&display=swap');
-
 /* Core styles - minimize render blocking */
 @tailwind base;
 @tailwind components;
@@ -36,4 +33,21 @@ p {
 footer h3 {
   color: #FFFFFF !important;
   font-weight: 600;
+}
+
+/* Hide images until loaded to prevent layout shifts */
+img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* Optimize font display */
+@layer base {
+  html {
+    font-display: swap;
+  }
 }
