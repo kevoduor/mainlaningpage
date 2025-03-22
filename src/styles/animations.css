@@ -48,17 +48,17 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(137, 94, 171, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 169, 255, 0.7);
   }
   
   70% {
     transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(137, 94, 171, 0);
+    box-shadow: 0 0 0 10px rgba(0, 169, 255, 0);
   }
   
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(137, 94, 171, 0);
+    box-shadow: 0 0 0 0 rgba(0, 169, 255, 0);
   }
 }
 
@@ -96,4 +96,53 @@
 
 .fade-in-right {
   animation: fadeInRight 0.5s forwards;
+}
+
+/* Wave effect animations inspired by the Motia logo */
+@keyframes wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.wave-bg-animation {
+  background: linear-gradient(270deg, #004466, #0087cc, #00a9ff, #33baff);
+  background-size: 300% 300%;
+  animation: wave 15s ease infinite;
+}
+
+/* Logo wave effect */
+@keyframes waveEffect {
+  0% {
+    transform: translateX(-100%) translateY(0);
+  }
+  50% {
+    transform: translateX(100%) translateY(-5px);
+  }
+  100% {
+    transform: translateX(-100%) translateY(0);
+  }
+}
+
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: waveEffect 3s linear infinite;
 }
