@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
                 src="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.png" 
                 alt="Dental professional showing treatment plan to patient" 
                 className="w-full h-auto"
-                loading="eager"
+                loading="eager" 
                 fetchPriority="high"
                 decoding="async"
                 width="1200"

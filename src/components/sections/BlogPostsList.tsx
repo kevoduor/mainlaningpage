@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
@@ -76,7 +77,7 @@ const BlogPostImage = ({ post, index }: { post: typeof BLOG_POSTS[0], index: num
       alt={post.title} 
       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
       loading={index < 2 ? "eager" : "lazy"}
-      fetchPriority={index === 0 ? "high" : index === 1 ? "auto" : "low"}
+      fetchPriority={index === 0 ? "high" : "low"}
       decoding="async"
       width="600"
       height="450"

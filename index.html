@@ -49,7 +49,7 @@
       @keyframes pulse {0%, 100% {opacity: 1} 50% {opacity: .5}}
     </style>
     
-    <!-- Preload critical images -->
+    <!-- Preload critical images - only the hero image should be eager -->
     <link rel="preload" as="image" href="/hero-image-600w.webp" media="(max-width: 640px)" type="image/webp">
     <link rel="preload" as="image" href="/hero-image-900w.webp" media="(min-width: 641px) and (max-width: 1024px)" type="image/webp">
     <link rel="preload" as="image" href="/hero-image.webp" media="(min-width: 1025px)" type="image/webp">
