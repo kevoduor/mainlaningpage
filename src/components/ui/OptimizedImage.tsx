@@ -61,9 +61,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       height={height}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
-      fetchPriority={priority ? 'high' : 'auto'}
-      onLoad={handleLoad}
+      // Fix the casing issue with fetchPriority
       {...props}
+      onLoad={handleLoad}
     />
   );
 };

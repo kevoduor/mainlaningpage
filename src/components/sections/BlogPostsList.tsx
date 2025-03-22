@@ -63,35 +63,6 @@ const BLOG_POSTS = [
   }
 ];
 
-const BlogPostImage = React.memo(({ post, index }: { post: typeof BLOG_POSTS[0], index: number }) => (
-  <picture>
-    <source 
-      srcSet={`https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl.replace('.webp', '-300w.webp')} 300w, https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl.replace('.webp', '-600w.webp')} 600w, https://cdn.jsdelivr.net/gh/username/nia-dental/public${post.imageUrl} 900w`}
-      sizes="(max-width: 768px) 100vw, 33vw"
-      type="image/webp"
-    />
-    <img 
-      src={post.fallbackImageUrl} 
-      alt={post.title} 
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 hardware-accelerated blur-up"
-      width="600"
-      height="450"
-      loading="eager" 
-      fetchPriority="high"
-      decoding="async"
-      style={{
-        aspectRatio: '4/3',
-        transform: 'translate3d(0,0,0)'
-      }}
-      onLoad={(e) => {
-        e.currentTarget.classList.add('loaded');
-      }}
-    />
-  </picture>
-));
-
-BlogPostImage.displayName = 'BlogPostImage';
-
 const BlogPostsList = () => {
   const { isMobile, isTablet } = useBreakpoint();
   
@@ -104,8 +75,12 @@ const BlogPostsList = () => {
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
-                    <div className="h-48 md:h-full w-full relative overflow-hidden content-visibility-auto">
-                      <BlogPostImage post={post} index={index} />
+                    <div className="h-48 md:h-full w-full relative overflow-hidden">
+                      <img 
+                        src={post.fallbackImageUrl} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
                     </div>
                   </Link>
                 </div>
@@ -137,7 +112,7 @@ const BlogPostsList = () => {
                     className="inline-flex items-center text-nia-600 hover:text-nia-700 font-medium mt-auto"
                   >
                     Read full article 
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" style={{transform: 'translate3d(0,0,0)'}} />
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>

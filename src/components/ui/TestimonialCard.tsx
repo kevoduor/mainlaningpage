@@ -2,8 +2,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import OptimizedImage from './OptimizedImage';
 
 interface TestimonialCardProps {
   quote: string;
