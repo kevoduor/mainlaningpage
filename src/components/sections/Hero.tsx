@@ -18,7 +18,6 @@ const Hero: React.FC = () => {
     preloadLink.as = 'image';
     preloadLink.href = '/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png';
     preloadLink.type = 'image/png';
-    preloadLink.fetchPriority = 'high';
     document.head.appendChild(preloadLink);
 
     // Apply IntersectionObserver to track when image is in viewport
