@@ -1,13 +1,29 @@
 
-/* Import critical styles first */
-@import './styles/critical.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Import remaining styles with code splitting */
-@import './styles/components.css' layer(components);
-@import './styles/responsive.css' layer(utilities);
+/* Core Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight text-slate-800;
+}
 
-/* Import optimized animations - load last */
-@import './styles/optimized-animations.css' layer(animations);
+p {
+  @apply text-slate-700;
+}
 
-/* Only include base.css for its custom properties */
-@import './styles/base.css' layer(base);
+/* Import base styles */
+@import './styles/base.css';
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Import Lato font to match Slack's typography */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');

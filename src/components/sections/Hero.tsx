@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
@@ -45,7 +46,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Hero image - with simplified attributes */}
+        {/* Hero image with direct src reference */}
         <div className="relative mx-auto max-w-5xl">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>

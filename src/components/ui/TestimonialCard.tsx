@@ -25,7 +25,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       {avatarSrc && (
         <div className="mb-4 rounded-full p-1 bg-gradient-to-r from-nia-300 to-nia-500 shadow-md">
           <Avatar className="h-20 w-20 border-4 border-white">
-            <AvatarImage src={avatarSrc} alt={author} className="object-cover" />
+            {avatarSrc && (
+              <AvatarImage src={avatarSrc} alt={author} className="object-cover" />
+            )}
             <AvatarFallback>{author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
           </Avatar>
         </div>

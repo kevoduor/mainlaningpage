@@ -23,7 +23,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   return (
     <img
       src={src}
-      alt={alt}
+      alt={alt || ""}
       className={cn(className)}
       width={width}
       height={height}
