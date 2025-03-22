@@ -34,10 +34,11 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Setup CNAME for both domains
+      - name: Setup CNAME and GitHub Pages config
         run: |
           echo "heynia.com" > dist/CNAME
-          # Create a file to verify domain ownership
+          echo "www.heynia.com" >> dist/CNAME
+          # Create a file to verify domain ownership and disable Jekyll
           touch dist/.nojekyll
         
       - name: Setup Pages

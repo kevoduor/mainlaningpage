@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
   
   return {
-    base: '/', // Ensures assets load correctly for both domains
+    base: '/', // Ensures assets load correctly for GitHub Pages
     server: {
       host: "::",
       port: 8080,
