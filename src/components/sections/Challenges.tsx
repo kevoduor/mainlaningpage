@@ -71,7 +71,7 @@ const Challenges: React.FC = () => {
           
           <div className="text-center mt-8 md:mt-12">
             <CTAButton size="lg" href="/signup" className="w-full sm:w-auto">
-              Sign Up – See How Nia Works!
+              Sign Up
             </CTAButton>
           </div>
         </div>
