@@ -6,7 +6,10 @@ import './index.css';
 
 const rootElement = document.getElementById('root');
 
-if (rootElement) {
+if (!rootElement) {
+  console.error('Failed to find the root element');
+  document.body.innerHTML = '<div>Failed to initialize application. Please refresh the page.</div>';
+} else {
   const root = createRoot(rootElement);
   root.render(
     <React.StrictMode>

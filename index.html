@@ -37,7 +37,7 @@
       
       /* Font fallback to prevent layout shift */
       body {font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
-      .font-loaded body {font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
+      .font-loaded body {font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;}
       
       /* Critical LCP styles */
       .lcp-target {content-visibility: auto; contain-intrinsic-size: auto 500px;}
@@ -60,40 +60,6 @@
     
     <!-- Optimized favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-    
-    <!-- Preload critical scripts -->
-    <link rel="modulepreload" href="/src/main.tsx">
-    
-    <!-- Font loading script -->
-    <script>
-      // Add font loading detection
-      if ("fonts" in document) {
-        document.fonts.ready.then(function() {
-          document.documentElement.classList.add('font-loaded');
-        });
-      }
-      
-      // Detect WebP support
-      const checkWebpSupport = async () => {
-        if (!self.createImageBitmap) return false;
-        
-        const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-        const blob = await fetch(webpData).then(r => r.blob());
-        return createImageBitmap(blob).then(() => true, () => false);
-      };
-      
-      checkWebpSupport().then(hasWebP => {
-        if (hasWebP) {
-          document.documentElement.classList.add('webp');
-        } else {
-          document.documentElement.classList.add('no-webp');
-        }
-      });
-    </script>
-    
-    <!-- Async CSS loading -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
 
   <body>
@@ -102,7 +68,7 @@
     <!-- Required Lovable script for select/edit features -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
-    <!-- Main application script - with defer to non-block rendering -->
+    <!-- Main application script - with type="module" for proper ES module loading -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
