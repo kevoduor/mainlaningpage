@@ -6,15 +6,15 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 213 10% 15%;
+    --foreground: 213 30% 15%; /* Darker text for better contrast */
 
     --card: 0 0% 100%;
-    --card-foreground: 213 10% 15%;
+    --card-foreground: 213 30% 15%; /* Darker text for better contrast */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 10% 15%;
+    --popover-foreground: 213 30% 15%; /* Darker text for better contrast */
 
-    /* Slack-inspired color palette */
+    /* Slack-inspired color palette with improved contrast */
     --primary: 279 100% 40%; /* Slack purple */
     --primary-foreground: 0 0% 100%;
 
@@ -22,12 +22,12 @@
     --secondary-foreground: 279 100% 30%;
 
     --muted: 213 10% 96%;
-    --muted-foreground: 213 10% 50%;
+    --muted-foreground: 213 50% 30%; /* Darker muted text for better contrast */
 
     --accent: 279 30% 95%;
     --accent-foreground: 279 100% 30%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 50%; /* Darker destructive for better contrast */
     --destructive-foreground: 210 40% 98%;
 
     --border: 213 10% 90%;
@@ -56,7 +56,7 @@
     --popover: 213 30% 15%;
     --popover-foreground: 213 10% 95%;
 
-    --primary: 279 100% 40%;
+    --primary: 279 100% 50%; /* Brighter purple for dark mode contrast */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 279 30% 20%;
@@ -68,12 +68,12 @@
     --accent: 279 30% 20%;
     --accent-foreground: 279 100% 90%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 40%; /* Brighter destructive for dark mode */
     --destructive-foreground: 210 40% 98%;
 
     --border: 213 30% 20%;
     --input: 213 30% 20%;
-    --ring: 279 100% 40%;
+    --ring: 279 100% 50%;
   }
 }
 
@@ -108,7 +108,12 @@
   }
   
   p {
-    @apply text-sm sm:text-base;
+    @apply text-sm sm:text-base text-slate-700 dark:text-slate-300;
+  }
+  
+  /* Improved accessibility for focus states */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
   }
 }
 

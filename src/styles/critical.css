@@ -34,9 +34,23 @@
   }
 }
 
-/* Critical typography */
+/* Critical typography with improved contrast */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-medium tracking-tight;
+  @apply font-medium tracking-tight text-slate-800;
+}
+
+p {
+  @apply text-slate-700;
+}
+
+/* Improve link contrast */
+a {
+  @apply text-nia-700 hover:text-nia-800;
+}
+
+/* Improved focus styling for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
 }
 
 /* Text balance for better readability */
@@ -72,4 +86,36 @@ h1, h2, h3, h4, h5, h6 {
 .lcp-target {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
+}
+
+/* Image loading optimizations */
+img.blur-up {
+  filter: blur(5px);
+  transition: filter 0.3s ease-out;
+}
+
+img.blur-up.loaded {
+  filter: blur(0);
+}
+
+/* High contrast buttons */
+.btn-primary {
+  @apply bg-nia-700 text-white hover:bg-nia-800;
+}
+
+.btn-secondary {
+  @apply bg-slate-100 text-slate-800 hover:bg-slate-200;
+}
+
+/* Enhanced contrast text colors */
+.text-primary {
+  @apply text-slate-900;
+}
+
+.text-secondary {
+  @apply text-slate-700;
+}
+
+.text-muted {
+  @apply text-slate-600;
 }

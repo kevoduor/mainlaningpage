@@ -19,9 +19,9 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
 }) => {
   return (
     <div className={cn('space-y-4 mb-12', center && 'text-center', className)}>
-      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance text-slate-800">{title}</h2>
       {subtitle && (
-        <p className={cn('text-lg text-muted-foreground max-w-3xl text-balance', center && 'mx-auto', subtitleClassName)}>
+        <p className={cn('text-lg text-slate-600 max-w-3xl text-balance', center && 'mx-auto', subtitleClassName)}>
           {subtitle}
         </p>
       )}

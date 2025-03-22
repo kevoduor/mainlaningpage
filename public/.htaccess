@@ -1,3 +1,4 @@
+
 # Enable Gzip compression for all text-based assets
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/wasm application/xml+rss text/javascript application/x-javascript application/x-font-ttf application/x-font-otf font/ttf font/otf image/svg+xml
@@ -53,7 +54,7 @@
   ExpiresByType application/x-font-woff2 "access plus 1 year"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
   
-  # CSS, JavaScript - longer cache time
+  # CSS, JavaScript - longer cache time with versioning
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType text/javascript "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
@@ -61,7 +62,7 @@
   # HTML - shorter cache time to allow for updates
   ExpiresByType text/html "access plus 1 day"
   
-  # Data
+  # Data - no caching for dynamic content
   ExpiresByType application/json "access plus 0 seconds"
   ExpiresByType application/ld+json "access plus 0 seconds"
   ExpiresByType application/xml "access plus 0 seconds"
@@ -95,16 +96,17 @@
   <FilesMatch "\.(js|css|html|svg|json|xml|txt)$">
     Header append Vary Accept-Encoding
   </FilesMatch>
+
+  # Set content-type for WebP images
+  <FilesMatch "\.webp$">
+    Header set Content-Type "image/webp"
+  </FilesMatch>
   
-  # Add efficient loading indicators
-  Header set Resource-Prioritization "1=high, 2=auto, 3=low"
-  
-  # Add frame options header
-  Header always set X-Frame-Options "SAMEORIGIN"
-  
-  # Set Link header for early hints
+  # Add resource hints for browser optimization
   <FilesMatch "index\.html$">
     Header add Link "</lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp>; rel=preload; as=image; fetchpriority=high"
+    Header add Link "</assets/css/main>; rel=preload; as=style" 
+    Header add Link "</assets/js/vendor-react>; rel=preload; as=script"
   </FilesMatch>
 </IfModule>
 
@@ -157,30 +159,6 @@
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Redirect to CDN for static assets when possible
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  # Check if the request is for static assets
-  RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|webp|svg|js|css|woff|woff2)$
-  # Check if specific CDN file exists (only for production)
-  RewriteCond %{HTTP_HOST} ^(www\.)?heynia\.com$ [NC]
-  # Redirect to CDN
-  RewriteRule ^lovable-uploads/(.*)$ https://cdn.jsdelivr.net/gh/username/nia-dental/public/lovable-uploads/$1 [R=302,L]
-</IfModule>
-
-# Add robots.txt if missing
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteCond %{REQUEST_URI} ^/robots\.txt$ [NC]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ /index.html [L]
-</IfModule>
-
-# Prevent 404 errors for non-existing favicon.ico
-<FilesMatch "favicon\.ico">
-  ErrorDocument 404 "The requested file favicon.ico was not found."
-</FilesMatch>
-
 # Add content-type for WebP images
 <IfModule mod_mime.c>
   AddType image/webp .webp
@@ -189,4 +167,13 @@
 # Enable HTTP/2 if available
 <IfModule mod_http2.c>
   Protocols h2 h2c http/1.1
+</IfModule>
+
+# Convert images to WebP on the fly if mod_pagespeed is available
+<IfModule pagespeed_module>
+  ModPagespeed on
+  ModPagespeedEnableFilters convert_jpeg_to_webp,convert_to_webp_lossless
+  ModPagespeedEnableFilters inline_preview_images
+  ModPagespeedEnableFilters resize_mobile_images
+  ModPagespeedEnableFilters prioritize_critical_css
 </IfModule>

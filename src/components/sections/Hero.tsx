@@ -26,7 +26,8 @@ const Hero: React.FC = () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('loaded');
+            const targetElement = entry.target as HTMLElement;
+            targetElement.classList.add('loaded');
             observer.disconnect();
           }
         });
@@ -38,7 +39,7 @@ const Hero: React.FC = () => {
     return () => {
       // Clean up preload link on unmount
       document.head.querySelectorAll('link[rel="preload"][as="image"]').forEach(link => {
-        if (link.href.includes('2092ea49-25fc-463b-a435-69f201c7363b')) {
+        if (link.getAttribute('href')?.includes('2092ea49-25fc-463b-a435-69f201c7363b')) {
           document.head.removeChild(link);
         }
       });
@@ -58,7 +59,7 @@ const Hero: React.FC = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 sm:mb-4 md:mb-6 text-balance">
             Grow Your Dental Practice Effortlessly
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-5 md:mb-7 text-balance max-w-3xl mx-auto px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700 mb-5 md:mb-7 text-balance max-w-3xl mx-auto px-2">
             Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations—so you can focus on delivering great care while your practice thrives.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
@@ -113,7 +114,7 @@ const Hero: React.FC = () => {
           </div>
           
           {/* Floating elements with hardware acceleration */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
                style={{transform: 'translate3d(0,0,0)', willChange: 'transform'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
@@ -121,7 +122,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30"
                style={{transform: 'translate3d(0,0,0)', willChange: 'transform'}}>
             <div className="flex items-center gap-1 sm:gap-2">
               <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />

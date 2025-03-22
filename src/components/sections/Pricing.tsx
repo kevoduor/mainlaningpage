@@ -52,7 +52,7 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="pricing" className="py-12 sm:py-16 md:py-20 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Intelligent Software to Grow Your Practice"
@@ -69,7 +69,7 @@ const Pricing: React.FC = () => {
               description={plan.description}
               features={plan.features}
               popular={plan.popular}
-              className={`flex-1 animate-fade-in delay-${(index + 1) * 100} ${plan.popular && isMd ? 'sm:transform sm:scale-105 sm:shadow-lg sm:z-10' : ''}`}
+              className={`flex-1 animate-fade-in ${plan.popular && isMd ? 'sm:transform sm:scale-105 sm:shadow-lg sm:z-10' : ''}`}
             />
           ))}
         </div>

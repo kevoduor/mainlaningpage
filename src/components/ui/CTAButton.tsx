@@ -79,10 +79,10 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         className={cn(
           'relative inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',
           {
-            'bg-slack-600 text-white hover:bg-slack-700 shadow-lg shadow-slack-600/20': variant === 'primary',
-            'bg-slack-100 text-slack-700 hover:bg-slack-200': variant === 'secondary',
-            'border border-slack-300 bg-transparent hover:bg-slack-50 text-slack-800': variant === 'outline',
-            'bg-transparent text-slack-800 hover:bg-slack-50': variant === 'ghost',
+            'bg-slack-700 text-white hover:bg-slack-800 shadow-lg shadow-slack-600/20': variant === 'primary',
+            'bg-slack-100 text-slack-800 hover:bg-slack-200': variant === 'secondary',
+            'border border-slate-400 bg-transparent hover:bg-slate-50 text-slate-800': variant === 'outline',
+            'bg-transparent text-slate-800 hover:bg-slate-50': variant === 'ghost',
             'h-8 px-3 text-xs': size === 'sm',
             'h-10 px-4 sm:px-5 text-sm': size === 'md',
             'h-11 px-5 sm:px-6 text-base': size === 'lg',

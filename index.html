@@ -16,17 +16,17 @@
     <!-- Inline critical CSS -->
     <style>
       /* Critical CSS for First Paint */
-      body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5;}
+      body {margin: 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; line-height: 1.5; color: #334155;}
       #root {height: 100%;}
       .container {width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px;}
       
       /* First Contentful Paint optimizations */
-      .hero-heading {font-size: 1.5rem; font-weight: 700; line-height: 1.2;}
+      .hero-heading {font-size: 1.5rem; font-weight: 700; line-height: 1.2; color: #1e293b;}
       @media (min-width: 640px) {.hero-heading {font-size: 1.875rem;}}
       @media (min-width: 768px) {.hero-heading {font-size: 2.25rem;}}
       @media (min-width: 1024px) {.hero-heading {font-size: 3rem;}}
       
-      /* Loading optimization */
+      /* Improved a11y - loading optimization */
       .content-placeholder {background: #f0f0f0; height: 24px; margin-bottom: 8px; border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;}
       @keyframes pulse {0%, 100% {opacity: 1} 50% {opacity: .5}}
       
@@ -41,6 +41,13 @@
       
       /* Critical LCP styles */
       .lcp-target {content-visibility: auto; contain-intrinsic-size: auto 500px;}
+
+      /* High contrast text & improved a11y */
+      p {color: #334155;}
+      h1, h2, h3, h4, h5, h6 {color: #1e293b;}
+      a {color: #006099; text-decoration: underline;}
+      a:hover {color: #00447a;}
+      button:focus, a:focus {outline: 2px solid #00a6f5; outline-offset: 2px;}
     </style>
     
     <!-- Preconnect to critical domains -->
@@ -48,7 +55,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
-    <!-- Preload critical hero image -->
+    <!-- Preload critical hero image as WebP -->
     <link rel="preload" href="/lovable-uploads/2092ea49-25fc-463b-a435-69f201c7363b.webp" as="image" fetchpriority="high" type="image/webp">
     
     <!-- Optimized favicon -->
@@ -66,23 +73,27 @@
         });
       }
       
-      // Preload critical paths
-      const preloadLinks = [
-        "/src/components/sections/Hero.tsx",
-        "/src/components/layout/Navbar.tsx"
-      ];
+      // Detect WebP support
+      const checkWebpSupport = async () => {
+        if (!self.createImageBitmap) return false;
+        
+        const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+        const blob = await fetch(webpData).then(r => r.blob());
+        return createImageBitmap(blob).then(() => true, () => false);
+      };
       
-      preloadLinks.forEach(url => {
-        const link = document.createElement('link');
-        link.rel = 'modulepreload';
-        link.href = url;
-        document.head.appendChild(link);
+      checkWebpSupport().then(hasWebP => {
+        if (hasWebP) {
+          document.documentElement.classList.add('webp');
+        } else {
+          document.documentElement.classList.add('no-webp');
+        }
       });
     </script>
     
     <!-- Async CSS loading -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   </head>
 
   <body>
