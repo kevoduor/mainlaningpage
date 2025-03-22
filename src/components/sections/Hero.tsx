@@ -55,28 +55,28 @@ const Hero: React.FC = () => {
               alt="Dental professional showing treatment plan to patient" 
               className="w-full h-auto"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
             />
           </div>
           
-          {/* Notification badges - now visible on all screen sizes */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
-            <div className="flex items-center gap-2">
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+          {/* Notification badges - reduced size on mobile */}
+          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-black">Hellen Chen</span>
-                <span className="text-[10px] text-black">Left a 5-star review on Google</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen</span>
+                <span className="text-[8px] sm:text-[10px] text-black">Left a 5-star review on Google</span>
               </div>
             </div>
           </div>
           
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-3 py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-3.5 h-3.5 text-nia-600" />
+          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30 transition-all duration-300 hover:bg-white/60">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
               <div className="flex flex-col">
-                <span className="text-xs font-medium text-black">William Alex</span>
-                <span className="text-[10px] text-black">Rescheduled appointment</span>
+                <span className="text-[10px] sm:text-xs font-medium text-black">William Alex</span>
+                <span className="text-[8px] sm:text-[10px] text-black">Rescheduled appointment</span>
               </div>
             </div>
           </div>
