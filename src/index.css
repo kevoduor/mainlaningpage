@@ -4,15 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Core Typography */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-bold tracking-tight text-slate-800;
-}
-
-p {
-  @apply text-slate-700;
-}
-
 /* Import critical styles first */
 @import './styles/critical.css';
 
@@ -35,7 +26,7 @@ footer h3 {
   font-weight: 600;
 }
 
-/* Hide images until loaded to prevent layout shifts */
+/* Optimize image loading */
 img {
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -45,9 +36,43 @@ img.loaded {
   opacity: 1;
 }
 
+/* Improve contrast for visibility */
+.text-white {
+  color: #FFFFFF !important;
+}
+
+.bg-slate-900 {
+  background-color: #0f172a;
+}
+
 /* Optimize font display */
 @layer base {
   html {
     font-display: swap;
   }
+}
+
+/* Fix font display issues */
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* High contrast elements */
+.high-contrast-text {
+  color: #000000;
+}
+
+.high-contrast-bg {
+  background-color: #ffffff;
+}
+
+/* Add core visibility debugging classes */
+.debug-visible {
+  outline: 2px solid red !important;
+}
+
+.visible-always {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
 }

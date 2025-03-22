@@ -34,12 +34,14 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       const basePath = imageSrc.substring(0, imageSrc.lastIndexOf('.'));
       
       // Use appropriate size based on viewport width
-      if (window.innerWidth < 640) {
-        return `${basePath}-300w.webp`;
-      } else if (window.innerWidth < 1024) {
-        return `${basePath}-600w.webp`;
-      } else {
-        return `${basePath}.webp`;
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 640) {
+          return `${basePath}-300w.webp`;
+        } else if (window.innerWidth < 1024) {
+          return `${basePath}-600w.webp`;
+        } else {
+          return `${basePath}.webp`;
+        }
       }
     }
     return imageSrc;

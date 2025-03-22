@@ -20,19 +20,8 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react({
-        devTarget: 'es2020',
-        // Use faster SWC transforms
-        swcOptions: {
-          jsc: {
-            transform: {
-              react: {
-                runtime: 'automatic',
-                development: !isProd,
-                refresh: !isProd,
-              },
-            },
-          },
-        },
+        // Remove the invalid swcOptions and use simpler configuration
+        plugins: [['@swc/plugin-emotion', {}]],
       }),
       mode === 'development' && componentTagger(),
       // Add vendor chunk splitting

@@ -51,6 +51,7 @@ a {
 /* Footer headings need higher contrast */
 footer h3 {
   @apply text-white font-semibold;
+  color: #ffffff !important;
 }
 
 /* Improved focus styling for accessibility */
@@ -93,4 +94,10 @@ footer h3 {
 
 .text-muted {
   @apply text-slate-600;
+}
+
+/* Ensure footer text is visible */
+.footer-heading {
+  color: #ffffff !important;
+  font-weight: 600;
 }
