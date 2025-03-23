@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
@@ -6,6 +7,17 @@ import { useBreakpoint } from '@/hooks/use-mobile';
 import { AspectRatio } from '../ui/aspect-ratio';
 
 const BLOG_POSTS = [
+  {
+    id: 'level-up-dental-marketing',
+    title: 'Level Up Your Dental Marketing – Win More Patients',
+    excerpt: 'Just like in a game, growing your dental practice means using the right strategies to step up. Here's how to boost your marketing, attract more patients, and keep your appointment schedule full.',
+    author: 'Kevin Oduor',
+    date: '2025-03-23',
+    imageUrl: '/blog-post-6.webp',
+    fallbackImageUrl: '/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png',
+    slug: 'level-up-dental-marketing',
+    readTime: '3 min read'
+  },
   {
     id: 'marketing-tips-attract-patients',
     title: 'Top Marketing Tips to Attract New Patients to Your Dentist Office',

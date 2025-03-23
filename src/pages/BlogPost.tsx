@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
@@ -11,6 +12,60 @@ import { Helmet } from 'react-helmet';
 
 // Blog post data (in a real app, this would come from an API)
 const BLOG_POSTS = {
+  'level-up-dental-marketing': {
+    title: 'Level Up Your Dental Marketing – Win More Patients',
+    author: 'Kevin Oduor',
+    date: '2025-03-23',
+    heroImage: '/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png',
+    content: `
+      <p>Just like in a game, growing your dental practice means using the right strategies to step up. Here's how to boost your marketing, attract more patients, and keep your appointment schedule full.</p>
+
+      <h2>1. Boost Your Online Visibility – Get Found Faster</h2>
+      <p>When patients search for a dentist, you need to be the first name they see.</p>
+      <ul>
+        <li>Optimize your website with local search terms so patients in your area can find you.</li>
+        <li>Create blog posts answering common dental questions to build trust.</li>
+        <li>Keep your Google Business Profile updated to stay at the top of search results.</li>
+      </ul>
+
+      <h2>2. Make Booking as Easy as a Quick Win</h2>
+      <p>If scheduling an appointment feels like a difficult level, patients will move on.</p>
+      <ul>
+        <li>Offer online booking directly on your website and social media.</li>
+        <li>Enable click-to-call for instant scheduling from mobile devices.</li>
+      </ul>
+
+      <img src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png" alt="Dental professional with patient" class="my-8 w-full h-auto rounded-lg shadow-md" />
+
+      <h2>3. Use Social Media to Keep Players Engaged</h2>
+      <p>Social media isn't just for fun—it's a way to connect with your community.</p>
+      <ul>
+        <li>Share quick dental care tips to keep followers informed.</li>
+        <li>Post behind-the-scenes videos of your team and office to build trust.</li>
+        <li>Run promotions, like referral discounts or first-visit specials, to attract new patients.</li>
+      </ul>
+
+      <h2>4. Team Up with Local Businesses</h2>
+      <p>Just like in co-op mode, partnerships make the game easier.</p>
+      <ul>
+        <li>Connect with local gyms, salons, or stores to offer exclusive discounts to their customers.</li>
+        <li>Host community events or giveaways to increase your reach.</li>
+      </ul>
+
+      <h2>5. Use Paid Ads to Speed Up Growth</h2>
+      <p>Sometimes, a well-placed boost is all you need to move ahead faster.</p>
+      <ul>
+        <li>Run Google Ads targeting searches like "best dentist near me."</li>
+        <li>Use Facebook and Instagram ads to reach families and professionals in your area.</li>
+      </ul>
+
+      <h2>Final Tip: Keep the Momentum Going</h2>
+      <p>Marketing isn't a one-time boost—it's a continuous strategy. Stay consistent, track what works, and keep improving.</p>
+      
+      <p class="text-lg font-semibold">Ready to take your dental practice to the next level?</p>
+      <p>Start implementing these strategies today!</p>
+    `
+  },
   'marketing-tips-attract-patients': {
     title: 'Top Marketing Tips to Attract New Patients to Your Dentist Office',
     author: 'Kevin Oduor',
