@@ -27,8 +27,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Use the original image source instead of trying to optimize it
-  // This ensures the image will at least load in its original format
+  // Use the original image source
   const getOptimizedSrc = (imageSrc: string): string => {
     return imageSrc;
   };
@@ -44,6 +43,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       alt={alt || ""}
       className={cn(
         isLoaded ? "opacity-100" : "opacity-0",
+        "transition-opacity duration-300",
         fill ? "absolute inset-0 object-cover" : "",
         className
       )}

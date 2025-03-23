@@ -26,10 +26,11 @@ footer h3 {
   font-weight: 600;
 }
 
-/* Fix image loading - removed opacity transition that was causing issues */
+/* Fix image loading */
 img {
   max-width: 100%;
   height: auto;
+  transition: opacity 0.3s ease;
 }
 
 /* Images marked as loaded by the component */

@@ -52,12 +52,12 @@ const Hero: React.FC = () => {
         <div className="relative mx-auto max-w-5xl">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
-            <AspectRatio ratio={3/2} className="w-full">
+            <AspectRatio ratio={16/9} className="w-full">
               <img 
-                src="/lovable-uploads/886c9cf4-cf04-42fc-a969-1d12e38dcbf1.png" 
-                alt="Dental professional showing treatment plan to patient" 
+                src="/lovable-uploads/596b5bf8-b34a-4ad3-b0fa-7b2ee6cc3184.png" 
+                alt="Dental professional showing treatment plan to patient on tablet" 
                 width={1200}
-                height={800}
+                height={675}
                 className="w-full h-full object-cover"
               />
             </AspectRatio>
