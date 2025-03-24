@@ -11,6 +11,7 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   priority?: boolean;
   fill?: boolean;
   sizes?: string;
+  previewSrc?: string;
 }
 
 /**
@@ -24,11 +25,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   height,
   priority = false,
   fill = false,
-  sizes = "100vw",
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  previewSrc,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageUrl, setImageUrl] = useState(src);
+  const [usePlaceholder, setUsePlaceholder] = useState(!!previewSrc);
   
   useEffect(() => {
     // Set the image URL to WebP version if available
@@ -53,11 +56,14 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Handle image load completion
   const handleImageLoad = () => {
     setIsLoaded(true);
+    if (usePlaceholder) {
+      setUsePlaceholder(false);
+    }
   };
 
   // Generate srcset for responsive images
   const getSrcSet = () => {
-    if (!src.includes('/lovable-uploads/')) return undefined;
+    if (!imageUrl.includes('/lovable-uploads/')) return undefined;
     
     const fileExtension = imageUrl.split('.').pop()?.toLowerCase();
     const srcWithoutExtension = imageUrl.substring(0, imageUrl.lastIndexOf('.'));
@@ -70,26 +76,50 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     `;
   };
   
+  // Choose appropriate size based on viewport and element size
+  const getImageSrc = () => {
+    // If we're showing a placeholder or it's a priority image, use the source directly
+    if (usePlaceholder || priority) {
+      return previewSrc || imageUrl;
+    }
+    
+    return imageUrl;
+  };
+  
   return (
-    <img
-      src={imageUrl}
-      alt={alt || ""}
-      className={cn(
-        isLoaded ? "opacity-100" : "opacity-0",
-        "transition-opacity duration-300",
-        fill ? "absolute inset-0 object-cover" : "",
-        className
+    <>
+      {usePlaceholder && previewSrc && (
+        <img 
+          src={previewSrc}
+          alt={alt}
+          className={cn(
+            "absolute inset-0 w-full h-full blur-up",
+            className
+          )}
+          aria-hidden="true"
+        />
       )}
-      width={width}
-      height={height}
-      loading={priority ? 'eager' : 'lazy'}
-      fetchPriority={priority ? 'high' : 'auto'}
-      decoding="async"
-      onLoad={handleImageLoad}
-      srcSet={getSrcSet()}
-      sizes={sizes}
-      {...props}
-    />
+      <img
+        src={getImageSrc()}
+        alt={alt || ""}
+        className={cn(
+          isLoaded ? "opacity-100" : "opacity-0",
+          "transition-opacity duration-300",
+          usePlaceholder ? "blur-up loaded" : "",
+          fill ? "absolute inset-0 object-cover" : "",
+          className
+        )}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding="async"
+        onLoad={handleImageLoad}
+        srcSet={getSrcSet()}
+        sizes={sizes}
+        {...props}
+      />
+    </>
   );
 };
 

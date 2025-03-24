@@ -26,10 +26,13 @@ const config = {
     { suffix: '', width: 1200 },
     { suffix: '-900w', width: 900 },
     { suffix: '-600w', width: 600 },
-    { suffix: '-300w', width: 300 }
+    { suffix: '-300w', width: 300 },
+    { suffix: '-preview', width: 30, quality: 60 } // Tiny preview for blur-up technique
   ],
-  quality: 80, // WebP quality (0-100)
-  includeOriginal: true // Keep original files
+  quality: 82, // WebP quality (0-100)
+  includeOriginal: true, // Keep original files
+  avifSupport: false, // Set to true to also generate AVIF files (better compression but slower)
+  concurrency: 4 // Number of concurrent operations
 };
 
 // Ensure output directory exists
@@ -40,9 +43,9 @@ const imageFiles = glob.sync(`${config.inputDir}/**/*.{jpg,jpeg,png,gif}`);
 
 console.log(`Found ${imageFiles.length} images to process`);
 
-// Process each image
-async function processImages() {
-  for (const filePath of imageFiles) {
+// Process each size variant of an image
+async function processImageSize(filePath, size) {
+  try {
     const filename = path.basename(filePath);
     const fileExt = path.extname(filename);
     const baseName = path.basename(filename, fileExt);
@@ -52,38 +55,72 @@ async function processImages() {
     // Ensure output subdirectory exists
     fs.ensureDirSync(outputPath);
     
-    // Process each size
-    for (const size of config.sizes) {
-      try {
-        const outputFilename = `${baseName}${size.suffix}.webp`;
-        const outputFilePath = path.join(outputPath, outputFilename);
-        
-        // Skip if file already exists
-        if (fs.existsSync(outputFilePath)) {
-          console.log(`Skipping existing file: ${outputFilename}`);
-          continue;
-        }
-        
-        console.log(`Converting: ${filename} to ${outputFilename} @ ${size.width}px`);
-        
+    const outputFilename = `${baseName}${size.suffix}.webp`;
+    const outputFilePath = path.join(outputPath, outputFilename);
+    
+    // Skip if file already exists
+    if (fs.existsSync(outputFilePath)) {
+      console.log(`Skipping existing file: ${outputFilename}`);
+      return;
+    }
+    
+    console.log(`Converting: ${filename} to ${outputFilename} @ ${size.width}px`);
+    
+    const resizeOptions = {
+      width: size.width,
+      withoutEnlargement: true,
+      fit: 'inside'
+    };
+    
+    // For the preview image, we use a different quality setting
+    const quality = size.quality || config.quality;
+    
+    await sharp(filePath)
+      .resize(resizeOptions)
+      .webp({ quality })
+      .toFile(outputFilePath);
+    
+    // Also generate AVIF if configured
+    if (config.avifSupport) {
+      const avifFilename = `${baseName}${size.suffix}.avif`;
+      const avifFilePath = path.join(outputPath, avifFilename);
+      
+      if (!fs.existsSync(avifFilePath)) {
         await sharp(filePath)
-          .resize({ 
-            width: size.width,
-            withoutEnlargement: true,
-            fit: 'inside'
-          })
-          .webp({ quality: config.quality })
-          .toFile(outputFilePath);
-          
-        console.log(`✓ Generated: ${outputFilename}`);
-      } catch (err) {
-        console.error(`Error processing ${filename} at size ${size.width}px:`, err);
+          .resize(resizeOptions)
+          .avif({ quality })
+          .toFile(avifFilePath);
+        console.log(`✓ Generated AVIF: ${avifFilename}`);
       }
     }
+    
+    console.log(`✓ Generated: ${outputFilename}`);
+  } catch (err) {
+    console.error(`Error processing size ${size.width}px:`, err);
   }
 }
 
-processImages()
+// Process each image with all its size variants
+async function processImage(filePath) {
+  const promises = config.sizes.map(size => processImageSize(filePath, size));
+  await Promise.all(promises);
+}
+
+// Process images in batches to limit concurrent operations
+async function processImagesInBatches() {
+  const batchSize = config.concurrency;
+  const batches = [];
+  
+  for (let i = 0; i < imageFiles.length; i += batchSize) {
+    batches.push(imageFiles.slice(i, i + batchSize));
+  }
+  
+  for (const batch of batches) {
+    await Promise.all(batch.map(filePath => processImage(filePath)));
+  }
+}
+
+processImagesInBatches()
   .then(() => {
     console.log('Image conversion complete!');
   })

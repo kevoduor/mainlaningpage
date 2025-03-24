@@ -1,24 +1,40 @@
 
-/* Import base styles with Tailwind directives */
-@import './base.css';
+/* Core styles - minimize render blocking */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Import optimized component styles with tree-shaking */
-@import './components.css';
+/* Import critical styles first */
+@import './critical.css';
+
+/* Import other styles (these will load after critical content renders) */
+@import './base.css';
 
 /* Import optimized animations */
 @import './optimized-animations.css';
 
-/* Import responsive utilities */
+/* Import responsive utilities - load last */
 @import './responsive.css';
 
-/* Critical utilities */
+/* Critical Utilities for LCP optimization */
+.lcp-target {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Text balance for better readability */
 .text-balance {
   text-wrap: balance;
 }
 
-.content-visibility-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 5000px;
+/* Optimize image loading */
+.blur-up {
+  filter: blur(10px);
+  transition: filter 0.3s ease-out;
+}
+
+.blur-up.loaded {
+  filter: blur(0);
 }
 
 /* Force hardware acceleration for key animations */
@@ -28,18 +44,94 @@
   perspective: 1000px;
 }
 
-/* Optimize image loading strategy */
-img.blur-up {
-  filter: blur(5px);
-  transition: filter 0.3s ease-out;
-}
-
-img.blur-up.loaded {
-  filter: blur(0);
-}
-
-/* LCP optimizations */
-.lcp-target {
+/* Content visibility optimization - apply to below-the-fold sections */
+.content-visibility-auto {
   content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain-intrinsic-size: 1px 5000px;
+}
+
+/* Aspect ratio containers to prevent layout shifts */
+.aspect-ratio-16-9 {
+  aspect-ratio: 16/9;
+}
+
+.aspect-ratio-4-3 {
+  aspect-ratio: 4/3;
+}
+
+.aspect-ratio-1-1 {
+  aspect-ratio: 1/1;
+}
+
+/* Optimized fade-in animation using transforms instead of opacity */
+@keyframes optimized-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.optimized-fade-in {
+  animation: optimized-fade-in 0.3s ease-out forwards;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  will-change: transform, opacity;
+  contain: content;
+}
+
+/* Better performing loader animation */
+@keyframes optimized-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.optimized-spin {
+  animation: optimized-spin 1s linear infinite;
+  transform-origin: center center;
+}
+
+/* Fix font display issues */
+@layer base {
+  html {
+    font-display: swap;
+  }
+}
+
+/* Fix image loading */
+img {
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* High contrast text for better accessibility */
+.high-contrast-text {
+  color: #000000;
+}
+
+.high-contrast-bg {
+  background-color: #ffffff;
+}
+
+/* View transitions API support */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

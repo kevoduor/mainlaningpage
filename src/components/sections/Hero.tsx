@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Hero image with AspectRatio and proper dimensions */}
-        <div className="relative mx-auto max-w-5xl">
+        <div className="relative mx-auto max-w-5xl lcp-target">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             <AspectRatio ratio={16/9} className="w-full">
@@ -61,6 +61,7 @@ const Hero: React.FC = () => {
                 className="w-full h-full object-cover"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, 80vw"
+                previewSrc="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp"
               />
             </AspectRatio>
           </div>

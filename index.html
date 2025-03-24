@@ -3,17 +3,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HeyNIA - AI Chat App</title>
-    <meta name="description" content="HeyNIA - Chat with your AI assistant">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>HeyNIA - Dental Practice Management Software</title>
+    <meta name="description" content="HeyNIA - AI-powered dental practice management software to attract more patients, minimize no-shows, and streamline operations">
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    
+    <!-- DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Preload critical fonts -->
     <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <!-- Preload LCP image (Hero image) -->
-    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.webp" imagesrcset="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-300w.webp 300w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-600w.webp 600w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-900w.webp 900w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.webp 1200w" imagesizes="(max-width: 768px) 100vw, 80vw">
-    <!-- Preconnect to critical domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Preload LCP image (Hero image) - both preview and full versions -->
+    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp" imagesizes="(max-width: 768px) 100vw, 80vw">
+    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-900w.webp" imagesrcset="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-300w.webp 300w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-600w.webp 600w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-900w.webp 900w" imagesizes="(max-width: 768px) 100vw, 80vw" fetchpriority="high">
+    
     <!-- Critical CSS inlined for faster initial render -->
     <style>
       /* Minimal critical styles for initial render */
@@ -96,12 +104,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 50px;
-        height: 50px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #3498db;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 0.8s linear infinite;
         z-index: 9999;
       }
       
@@ -109,42 +117,110 @@
         0% { transform: translate(-50%, -50%) rotate(0deg); }
         100% { transform: translate(-50%, -50%) rotate(360deg); }
       }
+      
+      /* Add LCP and CLS optimizations */
+      .hero-placeholder {
+        width: 100%;
+        max-width: 1200px;
+        aspect-ratio: 16/9;
+        background-color: #f0f4f8;
+        margin: 0 auto;
+        border-radius: 8px;
+      }
+
+      /* Simple fade-in animation */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
     </style>
-    <!-- Debug flags for troubleshooting -->
+    
+    <!-- Preload critical JS -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="modulepreload" href="/src/App.tsx">
+    
+    <!-- Initial script to mark timing -->
     <script>
-      window.DEBUG = {
-        RENDER_START: Date.now(),
-        MODULES_LOADED: false,
-        DOM_CONTENT_LOADED: false,
-        WINDOW_LOADED: false
+      // Performance measurement
+      window.perfMetrics = {
+        startTime: performance.now(),
+        marks: {}
       };
-      console.log("HTML parsing started at:", window.DEBUG.RENDER_START);
+      
+      // Mark the HTML parse start
+      window.perfMetrics.marks.htmlParseStart = performance.now();
+      
+      // Set up performance observer for LCP measurement
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        window.perfMetrics.lcp = lastEntry.startTime;
+        console.log('LCP:', lastEntry.startTime.toFixed(1) + 'ms');
+      });
+      
+      lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
     </script>
   </head>
   <body class="js-loading">
-    <div id="root"></div>
+    <!-- Add hero placeholder to avoid CLS -->
+    <div id="root">
+      <!-- Prerender critical HTML for faster FCP -->
+      <div style="min-height: 100vh;">
+        <header class="bg-white sticky top-0 z-50 border-b border-gray-200">
+          <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+              <span class="text-xl font-bold text-nia-700">Nia</span>
+            </div>
+          </div>
+        </header>
+        <main>
+          <section class="pt-20 pb-8">
+            <div class="container mx-auto px-4">
+              <div class="text-center max-w-4xl mx-auto mb-8 fade-in">
+                <h1 class="text-3xl font-bold mb-4">Grow Your Dental Practice Effortlessly</h1>
+                <p class="text-base text-slate-700 mb-6">Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.</p>
+              </div>
+              <div class="hero-placeholder"></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    
     <!-- Required for Lovable editor functionality -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Debug info -->
+    
+    <!-- Timing and debugging script -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        window.DEBUG.DOM_CONTENT_LOADED = true;
-        console.log("DOMContentLoaded fired at:", Date.now() - window.DEBUG.RENDER_START + "ms");
-        document.body.classList.remove('js-loading');
+        window.perfMetrics.marks.domContentLoaded = performance.now();
+        console.log("DOMContentLoaded:", (window.perfMetrics.marks.domContentLoaded - window.perfMetrics.startTime).toFixed(1) + 'ms');
+        
+        // Start transitioning away from loading state
+        setTimeout(() => {
+          document.body.classList.remove('js-loading');
+        }, 50);
       });
       
       window.addEventListener('load', () => {
-        window.DEBUG.WINDOW_LOADED = true;
-        console.log("Window load completed at:", Date.now() - window.DEBUG.RENDER_START + "ms");
+        window.perfMetrics.marks.windowLoaded = performance.now();
+        console.log("Window loaded:", (window.perfMetrics.marks.windowLoaded - window.perfMetrics.startTime).toFixed(1) + 'ms');
         
-        // Remove loading indicator
-        document.body.classList.remove('js-loading');
+        // Remove loading spinner with slight delay to ensure smooth transition
+        setTimeout(() => {
+          const style = document.createElement('style');
+          style.textContent = 'body::before { display: none; }';
+          document.head.appendChild(style);
+        }, 200);
         
-        // Hide loading spinner
-        const style = document.createElement('style');
-        style.textContent = 'body::before { display: none; }';
-        document.head.appendChild(style);
+        // Mark fully interactive
+        performance.mark('fully-interactive');
+        performance.measure('time-to-interactive', 'navigationStart', 'fully-interactive');
       });
     </script>
   </body>
