@@ -7,6 +7,7 @@ import { useBreakpoint } from '@/hooks/use-mobile';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { BLOG_POSTS_LIST } from '@/data/blogPosts';
 import OptimizedImage from '../ui/OptimizedImage';
+import MobileOptimizedImage from '../ui/MobileOptimizedImage';
 
 const BlogPostsList = () => {
   const { isMobile, isTablet } = useBreakpoint();
@@ -21,15 +22,27 @@ const BlogPostsList = () => {
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
                     <AspectRatio ratio={4/3} className="h-48 md:h-full w-full">
-                      <OptimizedImage 
-                        src={post.fallbackImageUrl} 
-                        alt={post.title} 
-                        width={600}
-                        height={450}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
+                      {isMobile ? (
+                        <MobileOptimizedImage 
+                          src={post.fallbackImageUrl} 
+                          alt={post.title} 
+                          width={450}
+                          height={338}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      ) : (
+                        <OptimizedImage 
+                          src={post.fallbackImageUrl} 
+                          alt={post.title} 
+                          width={600}
+                          height={450}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      )}
                     </AspectRatio>
                   </Link>
                 </div>

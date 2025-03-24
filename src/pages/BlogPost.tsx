@@ -10,10 +10,14 @@ import { Separator } from '@/components/ui/separator';
 import CTAButton from '@/components/ui/CTAButton';
 import { Helmet } from 'react-helmet';
 import { BLOG_POSTS_CONTENT } from '@/data/blogPosts';
+import { useBreakpoint } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/ui/OptimizedImage';
+import MobileOptimizedImage from '@/components/ui/MobileOptimizedImage';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug && BLOG_POSTS_CONTENT[slug];
+  const { isMobile } = useBreakpoint();
   
   if (!post) {
     return (
@@ -73,11 +77,26 @@ const BlogPost = () => {
                 <span>{formatDate(new Date(post.date))}</span>
               </div>
             </div>
-            <img 
-              src={post.heroImage} 
-              alt={post.title} 
-              className="w-full h-[300px] md:h-[400px] object-cover rounded-lg mb-8"
-            />
+            
+            {isMobile ? (
+              <MobileOptimizedImage 
+                src={post.heroImage} 
+                alt={post.title} 
+                className="w-full h-[250px] md:h-[400px] object-cover rounded-lg mb-8"
+                width={600}
+                height={450}
+                priority={true}
+              />
+            ) : (
+              <OptimizedImage 
+                src={post.heroImage} 
+                alt={post.title} 
+                className="w-full h-[300px] md:h-[400px] object-cover rounded-lg mb-8"
+                width={1200}
+                height={600}
+                priority={true}
+              />
+            )}
           </div>
           
           <Separator className="mb-8" />

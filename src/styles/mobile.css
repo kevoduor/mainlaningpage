@@ -110,3 +110,67 @@
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
+/* Blog post specific mobile optimizations */
+.is-mobile .prose {
+  font-size: 0.95rem;
+}
+
+.is-mobile .prose h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.is-mobile .prose h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.is-mobile .prose img {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+}
+
+.is-mobile .prose p {
+  margin-bottom: 1rem;
+}
+
+/* Optimize blog post images for mobile */
+.is-mobile .prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize connection-aware image loading */
+@media (prefers-reduced-data: reduce) {
+  .data-saver-image {
+    content-visibility: auto;
+  }
+}
+
+/* Optimize blog list on mobile */
+.is-mobile article {
+  margin-bottom: 1.5rem;
+}
+
+/* Reduced motion for images on mobile */
+@media (prefers-reduced-motion: reduce) {
+  .is-mobile img {
+    transition: none !important;
+  }
+  
+  .is-mobile .group-hover\:scale-105 {
+    transform: none !important;
+  }
+}
+
+/* Optimize layout for different screen sizes */
+@media (max-width: 480px) {
+  .is-mobile .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
