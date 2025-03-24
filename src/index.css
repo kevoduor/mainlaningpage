@@ -14,11 +14,11 @@
 
 /* Critical animations that need to be first */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
+  from {opacity: 0; transform: translateY(8px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
@@ -35,7 +35,7 @@
 /* LCP optimizations */
 .lcp-target {
   content-visibility: auto;
-  contain-intrinsic-size: auto 400px;
+  contain-intrinsic-size: auto 300px;
 }
 
 /* Text balance for better readability */
@@ -52,12 +52,8 @@ img {
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
-  .lcp-target {
-    contain-intrinsic-size: auto 300px;
-  }
-  
-  .text-balance {
-    max-width: 95vw;
+  body {
+    font-size: 14px;
   }
   
   .animate-fade-in {
@@ -70,6 +66,30 @@ img {
   .clickable {
     min-height: 44px;
     min-width: 44px;
+  }
+  
+  /* Improve performance by reducing animation complexity */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* Ensure consistent sizing to prevent layout shifts */
+  .aspect-ratio-preserved {
+    height: 0;
+    position: relative;
+  }
+  
+  .aspect-ratio-preserved img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .aspect-ratio-3-2 {
+    padding-bottom: 66.66%; /* 2:3 aspect ratio */
   }
 }
 

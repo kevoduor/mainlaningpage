@@ -10,8 +10,7 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp" fetchpriority="high">
-    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-600w.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
     <link rel="preload" as="style" href="/src/styles/critical.css">
     <link rel="modulepreload" href="/src/main.tsx">
     
@@ -45,7 +44,7 @@
       
       .js-loading {
         opacity: 0;
-        transition: opacity 0.3s ease-in;
+        transition: opacity 0.2s ease-in;
       }
 
       body::before {
@@ -54,12 +53,12 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border: 2px solid #f3f3f3;
         border-top: 2px solid #3498db;
         border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        animation: spin 0.6s linear infinite;
         z-index: 9999;
       }
       
@@ -71,30 +70,84 @@
       .hero-placeholder {
         width: 100%;
         max-width: 1200px;
-        aspect-ratio: 16/9;
+        height: 0;
+        padding-bottom: 66.66%; /* 3:2 aspect ratio for mobile */
         background-color: #f0f4f8;
         margin: 0 auto;
         border-radius: 8px;
+        position: relative;
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: translateY(0); }
       }
 
       .fade-in {
-        animation: fadeIn 0.5s ease-out forwards;
+        animation: fadeIn 0.4s ease-out forwards;
       }
       
       /* Critical mobile optimizations */
       @media (max-width: 768px) {
-        .hero-placeholder {
-          aspect-ratio: 3/2;
-        }
-        
         body {
           font-size: 14px;
         }
+        
+        .fade-in {
+          animation-duration: 0.3s;
+        }
+        
+        /* Optimize touch targets */
+        button, 
+        a {
+          min-height: 44px;
+          min-width: 44px;
+        }
+      }
+      
+      /* Fix for iOS Safari overscrolling */
+      @supports (-webkit-touch-callout: none) {
+        html, body {
+          height: -webkit-fill-available;
+          overflow: hidden;
+        }
+        
+        #root {
+          height: 100%;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+      
+      /* Fix nav on mobile */
+      header {
+        width: 100%;
+        z-index: 50;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 1rem;
+      }
+      
+      /* Mobile CTA */
+      .mobile-cta {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+      }
+      
+      .mobile-cta button {
+        width: 100%;
+        max-width: 300px;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        background-color: #3498db;
+        color: white;
+        font-weight: bold;
+        border: none;
       }
     </style>
     
@@ -103,10 +156,6 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Initial script to mark timing -->
     <script>
@@ -121,23 +170,46 @@
       
       // Register a minimal layout shift observer
       let cls = 0;
-      new PerformanceObserver((entryList) => {
-        for (const entry of entryList.getEntries()) {
-          if (!entry.hadRecentInput) {
-            cls += entry.value;
+      if ('PerformanceObserver' in window) {
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            if (!entry.hadRecentInput) {
+              cls += entry.value;
+            }
           }
-        }
-        console.log('CLS:', cls);
-      }).observe({type: 'layout-shift', buffered: true});
+        }).observe({type: 'layout-shift', buffered: true});
+        
+        // Set up performance observer for LCP measurement
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            window.perfMetrics.lcp = entry.startTime;
+            console.log('LCP:', entry.startTime.toFixed(1) + 'ms');
+          }
+        }).observe({type: 'largest-contentful-paint', buffered: true});
+        
+        // Track FID (First Input Delay)
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            const delay = entry.processingStart - entry.startTime;
+            console.log('FID:', delay.toFixed(1) + 'ms');
+          }
+        }).observe({type: 'first-input', buffered: true});
+      }
       
-      // Set up performance observer for LCP measurement
-      new PerformanceObserver((entryList) => {
-        for (const entry of entryList.getEntries()) {
-          const lastEntry = entry;
-          window.perfMetrics.lcp = lastEntry.startTime;
-          console.log('LCP:', lastEntry.startTime.toFixed(1) + 'ms');
-        }
-      }).observe({type: 'largest-contentful-paint', buffered: true});
+      // Remove loading state faster on mobile
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        document.body.classList.remove('js-loading');
+        
+        // Set up faster loading on mobile
+        setTimeout(() => {
+          const style = document.createElement('style');
+          style.textContent = 'body::before { display: none; }';
+          document.head.appendChild(style);
+        }, 300);
+        
+        // Tell system we're a mobile device
+        document.documentElement.classList.add('is-mobile');
+      }
     </script>
   </head>
   <body class="js-loading">
@@ -145,19 +217,19 @@
     <div id="root">
       <!-- Prerender critical HTML for faster FCP -->
       <div style="min-height: 100vh;">
-        <header class="bg-white sticky top-0 z-50 border-b border-gray-200">
-          <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-              <span class="text-xl font-bold text-nia-700">Nia</span>
+        <header>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+              <span style="font-size: 1.25rem; font-weight: bold; color: #2563eb;">Nia</span>
             </div>
           </div>
         </header>
-        <main>
-          <section class="pt-16 pb-8">
-            <div class="container mx-auto px-4">
-              <div class="text-center max-w-4xl mx-auto mb-6 fade-in">
-                <h1 class="text-2xl font-bold mb-3">Grow Your Dental Practice Effortlessly</h1>
-                <p class="text-sm text-slate-700 mb-4">Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.</p>
+        <main style="padding-top: 3.5rem;">
+          <section style="padding-top: 1rem; padding-bottom: 1rem;">
+            <div style="max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
+              <div style="text-align: center; max-width: 36rem; margin: 0 auto 1rem auto;" class="fade-in">
+                <h1 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">Grow Your Dental Practice Effortlessly</h1>
+                <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 1rem;">Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.</p>
               </div>
               <div class="hero-placeholder"></div>
             </div>
@@ -168,7 +240,6 @@
     
     <!-- Required for Lovable editor functionality -->
     <script type="module" src="/src/main.tsx"></script>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" async></script>
     
     <!-- Timing and debugging script -->
     <script>

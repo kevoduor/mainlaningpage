@@ -11,9 +11,10 @@ echo "Starting WebP conversion..."
 # Source directory
 SOURCE_DIR="public/lovable-uploads"
 
-# Quality setting for WebP (0-100)
+# Quality settings for WebP
 QUALITY=82
 MOBILE_QUALITY=78
+TINY_MOBILE_QUALITY=65
 
 # Check if cwebp is installed
 if ! command -v cwebp &> /dev/null; then
@@ -48,14 +49,17 @@ process_image() {
     # Create 600w version - optimized for mobile
     cwebp -quiet -q $MOBILE_QUALITY -resize 600 0 "$input_file" -o "$output_dir/$name-600w.webp"
     
+    # Create 450w version - specifically for mobile screens
+    cwebp -quiet -q $MOBILE_QUALITY -resize 450 0 "$input_file" -o "$output_dir/$name-450w.webp"
+    
     # Create 300w version - highly optimized for mobile
     cwebp -quiet -q $MOBILE_QUALITY -resize 300 0 "$input_file" -o "$output_dir/$name-300w.webp"
     
     # Create a tiny placeholder/preview version (extra compressed for faster loading)
     cwebp -quiet -q 25 -resize 20 0 "$input_file" -o "$output_dir/$name-preview.webp"
     
-    # Optimize for mobile screens specifically - 450px width
-    cwebp -quiet -q $MOBILE_QUALITY -resize 450 0 "$input_file" -o "$output_dir/$name-mobile.webp"
+    # Create an ultra-optimized mobile version with high compression
+    cwebp -quiet -q $TINY_MOBILE_QUALITY -resize 480 0 "$input_file" -m 6 -o "$output_dir/$name-mobile.webp"
     
     echo "✓ Generated WebP versions for: $filename"
 }
@@ -63,6 +67,7 @@ process_image() {
 export -f process_image
 export QUALITY
 export MOBILE_QUALITY
+export TINY_MOBILE_QUALITY
 export SOURCE_DIR
 
 # Allow specifying a single file to process

@@ -19,6 +19,19 @@ const initApp = () => {
       return;
     }
     
+    // Mobile-specific optimizations
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      // Add mobile class to root element for specific optimizations
+      document.documentElement.classList.add('is-mobile');
+      
+      // Optimize for viewport
+      const viewport = document.querySelector('meta[name="viewport"]');
+      if (viewport) {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+      }
+    }
+    
     // Create the React root
     const root = createRoot(rootElement);
     
@@ -37,17 +50,30 @@ const initApp = () => {
     if (window.performance && window.performance.mark) {
       window.performance.mark('app-init-end');
       window.performance.measure('app-initialization', 'app-init-start', 'app-init-end');
+      
+      // Log mobile performance metrics
+      if (isMobile) {
+        console.info('Mobile optimization active');
+      }
     }
     
   } catch (error) {
     console.error('Application error:', error);
     if (error instanceof Error) {
-      console.error('Error name:', error.name);
       console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
     }
   }
 };
+
+// Remove loading indicator faster on mobile
+const removeMobileLoader = () => {
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    document.body.classList.remove('js-loading');
+  }
+};
+
+// Run this immediately
+removeMobileLoader();
 
 // Initialize immediately to improve loading speed
 initApp();
