@@ -22,12 +22,16 @@ const initApp = () => {
     // Create the React root
     const root = createRoot(rootElement);
     
-    // Render the app
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
+    // Render the app - remove StrictMode in production for better performance
+    if (process.env.NODE_ENV === 'production') {
+      root.render(<App />);
+    } else {
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
+    }
     
     // Mark app initialization complete
     if (window.performance && window.performance.mark) {
@@ -48,7 +52,12 @@ const initApp = () => {
 // Initialize immediately to improve loading speed
 initApp();
 
-// Remove loading class when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+// Remove loading class when DOM is ready - do this ASAP
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.remove('js-loading');
+  });
+} else {
+  // DOM already loaded
   document.body.classList.remove('js-loading');
-});
+}

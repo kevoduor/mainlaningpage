@@ -90,6 +90,12 @@
   Header set X-XSS-Protection "1; mode=block"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Mobile-specific optimizations
+  <FilesMatch "\-mobile\.webp$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Vary "User-Agent"
+  </FilesMatch>
 </IfModule>
 
 # Handle SPA routing
@@ -100,6 +106,12 @@
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
+  
+  # Mobile detection and specific image serving
+  RewriteCond %{HTTP_USER_AGENT} Mobile|Android|iPhone|iPad|iPod
+  RewriteCond %{REQUEST_URI} \.(jpe?g|png)$
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI%.*}-mobile.webp -f
+  RewriteRule ^(.+)\.(jpe?g|png)$ $1-mobile.webp [T=image/webp,L]
   
   # If the request is for a static resource with webp available, serve the webp version
   RewriteCond %{HTTP_ACCEPT} image/webp

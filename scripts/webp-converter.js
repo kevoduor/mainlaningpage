@@ -23,16 +23,18 @@ const config = {
   inputDir: 'public/lovable-uploads',
   outputDir: 'public/lovable-uploads',
   sizes: [
-    { suffix: '', width: 1200 },
-    { suffix: '-900w', width: 900 },
-    { suffix: '-600w', width: 600 },
-    { suffix: '-300w', width: 300 },
-    { suffix: '-preview', width: 30, quality: 60 } // Tiny preview for blur-up technique
+    { suffix: '', width: 1200, quality: 82 },
+    { suffix: '-900w', width: 900, quality: 82 },
+    { suffix: '-600w', width: 600, quality: 78 }, // Mobile optimized
+    { suffix: '-450w', width: 450, quality: 78 }, // Mobile specific
+    { suffix: '-300w', width: 300, quality: 78 }, // Mobile optimized
+    { suffix: '-mobile', width: 480, quality: 72 }, // Highly optimized for mobile
+    { suffix: '-preview', width: 20, quality: 25 } // Tiny preview for blur-up technique
   ],
-  quality: 82, // WebP quality (0-100)
   includeOriginal: true, // Keep original files
   avifSupport: false, // Set to true to also generate AVIF files (better compression but slower)
-  concurrency: 4 // Number of concurrent operations
+  concurrency: 4, // Number of concurrent operations
+  mobileOptimized: true // Enable special mobile optimizations
 };
 
 // Ensure output directory exists
@@ -58,10 +60,15 @@ async function processImageSize(filePath, size) {
     const outputFilename = `${baseName}${size.suffix}.webp`;
     const outputFilePath = path.join(outputPath, outputFilename);
     
-    // Skip if file already exists
+    // Skip if file already exists and is newer than source
     if (fs.existsSync(outputFilePath)) {
-      console.log(`Skipping existing file: ${outputFilename}`);
-      return;
+      const srcStat = fs.statSync(filePath);
+      const destStat = fs.statSync(outputFilePath);
+      
+      if (destStat.mtime > srcStat.mtime) {
+        console.log(`Skipping existing file: ${outputFilename}`);
+        return;
+      }
     }
     
     console.log(`Converting: ${filename} to ${outputFilename} @ ${size.width}px`);
@@ -72,23 +79,58 @@ async function processImageSize(filePath, size) {
       fit: 'inside'
     };
     
-    // For the preview image, we use a different quality setting
-    const quality = size.quality || config.quality;
+    // For mobile-specific images, use different optimization settings
+    const sharpInstance = sharp(filePath)
+      .resize(resizeOptions);
     
-    await sharp(filePath)
-      .resize(resizeOptions)
-      .webp({ quality })
-      .toFile(outputFilePath);
+    // Mobile-specific optimizations
+    if (config.mobileOptimized && (size.suffix === '-mobile' || size.suffix === '-300w' || size.suffix === '-450w')) {
+      // Apply more aggressive compression for mobile
+      await sharpInstance
+        .webp({ 
+          quality: size.quality, 
+          reductionEffort: 6,  // Max compression effort
+          nearLossless: false, // Use lossy compression for smaller files
+          smartSubsample: true // Better chroma subsampling
+        })
+        .toFile(outputFilePath);
+    } 
+    // Preview image (tiny blur-up placeholder)
+    else if (size.suffix === '-preview') {
+      await sharpInstance
+        .webp({ 
+          quality: size.quality,
+          reductionEffort: 6,
+          nearLossless: false,
+          alphaQuality: 50, // Lower alpha quality for preview
+          smartSubsample: true
+        })
+        .toFile(outputFilePath);
+    } 
+    // Regular images
+    else {
+      await sharpInstance
+        .webp({ 
+          quality: size.quality,
+          reductionEffort: 4
+        })
+        .toFile(outputFilePath);
+    }
     
-    // Also generate AVIF if configured
+    // Also generate AVIF if configured (much better compression but slower)
     if (config.avifSupport) {
       const avifFilename = `${baseName}${size.suffix}.avif`;
       const avifFilePath = path.join(outputPath, avifFilename);
       
-      if (!fs.existsSync(avifFilePath)) {
+      // Skip if AVIF exists and is newer
+      if (!fs.existsSync(avifFilePath) || 
+          (fs.existsSync(avifFilePath) && fs.statSync(filePath).mtime > fs.statSync(avifFilePath).mtime)) {
         await sharp(filePath)
           .resize(resizeOptions)
-          .avif({ quality })
+          .avif({ 
+            quality: size.quality,
+            effort: 7 // Higher quality for AVIF (max is 9, but very slow)
+          })
           .toFile(avifFilePath);
         console.log(`✓ Generated AVIF: ${avifFilename}`);
       }

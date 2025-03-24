@@ -35,7 +35,7 @@
 /* LCP optimizations */
 .lcp-target {
   content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain-intrinsic-size: auto 400px;
 }
 
 /* Text balance for better readability */
@@ -48,6 +48,29 @@ img {
   max-width: 100%;
   height: auto;
   transition: opacity 0.3s ease;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .lcp-target {
+    contain-intrinsic-size: auto 300px;
+  }
+  
+  .text-balance {
+    max-width: 95vw;
+  }
+  
+  .animate-fade-in {
+    animation-duration: 0.3s;
+  }
+  
+  /* Optimize touch targets */
+  button, 
+  a, 
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* Disable animations for users who prefer reduced motion */

@@ -6,28 +6,29 @@ import { Badge } from '../ui/badge';
 import { Star, Calendar, Check } from 'lucide-react';
 import OptimizedImage from '../ui/OptimizedImage';
 import { AspectRatio } from '../ui/aspect-ratio';
+import { Skeleton } from '../ui/skeleton';
 
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
   const isMobile = isXs || isSm;
 
   return (
-    <section className="relative pt-16 sm:pt-20 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 overflow-hidden">
+    <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-br from-nia-100 via-white to-white -z-10"></div>
+      <div className="absolute top-0 inset-x-0 h-[400px] bg-gradient-to-br from-nia-100 via-white to-white -z-10"></div>
       
       {/* Subtle pattern overlay */}
       <div className="absolute top-0 inset-0 bg-grid-nia-100/40 bg-[length:20px_20px] -z-10 opacity-30"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto mb-5 sm:mb-6 md:mb-10 animate-fade-in">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 sm:mb-4 md:mb-6 text-balance">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-4xl mx-auto mb-4 sm:mb-6 lg:mb-8 animate-fade-in">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight mb-2 sm:mb-3 md:mb-4 text-balance">
             Grow Your Dental Practice Effortlessly
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700 mb-5 md:mb-7 text-balance max-w-3xl mx-auto px-2">
-            Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations—so you can focus on delivering great care while your practice thrives.
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-700 mb-4 md:mb-6 text-balance max-w-3xl mx-auto px-1">
+            Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
             <CTAButton 
               size={isMobile ? "sm" : "lg"}
               className="flex items-center" 
@@ -49,15 +50,15 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Hero image with AspectRatio and proper dimensions */}
-        <div className="relative mx-auto max-w-5xl lcp-target content-visibility-auto">
-          <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl shadow-nia-300/20">
+        <div className="relative mx-auto max-w-5xl lcp-target">
+          <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
-            <AspectRatio ratio={16/9} className="w-full">
+            <AspectRatio ratio={isMobile ? 3/2 : 16/9} className="w-full">
               <OptimizedImage 
                 src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png" 
                 alt="Dental professional showing treatment options to patient in dental office" 
-                width={1200}
-                height={675}
+                width={isMobile ? 600 : 1200}
+                height={isMobile ? 400 : 675}
                 className="w-full h-full object-cover"
                 priority={true}
                 sizes="(max-width: 768px) 100vw, 80vw"
@@ -66,20 +67,24 @@ const Hero: React.FC = () => {
             </AspectRatio>
           </div>
           
-          {/* Floating elements with simplified styling */}
-          <div className="absolute bottom-4 left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30">
-            <div className="flex items-center gap-1 sm:gap-2">
-              <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
-              <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
-            </div>
-          </div>
-          
-          <div className="absolute top-4 right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 sm:px-3 py-1 sm:py-2 shadow-sm border border-white/30">
-            <div className="flex items-center gap-1 sm:gap-2">
-              <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
-              <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>
-            </div>
-          </div>
+          {/* Mobile-optimized floating elements with simplified styling */}
+          {!isXs && (
+            <>
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
+                  <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
+                </div>
+              </div>
+              
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
+                  <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
