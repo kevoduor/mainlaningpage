@@ -1,5 +1,5 @@
 
-/* Critical CSS for core functionality - will be loaded first */
+/* Critical CSS for core functionality - only what's needed for first render */
 @tailwind base;
 @tailwind components;
 
@@ -43,27 +43,6 @@ p {
   @apply text-slate-700;
 }
 
-/* Improve link contrast */
-a {
-  @apply text-nia-700 hover:text-nia-800;
-}
-
-/* Footer headings need higher contrast */
-footer h3 {
-  @apply text-white font-semibold;
-  color: #ffffff !important;
-}
-
-/* Improved focus styling for accessibility */
-:focus-visible {
-  @apply outline-2 outline-offset-2 outline-primary;
-}
-
-/* Text balance for better readability */
-.text-balance {
-  text-wrap: balance;
-}
-
 /* Critical animation utilities */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
@@ -74,49 +53,8 @@ footer h3 {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* High contrast buttons */
-.btn-primary {
-  @apply bg-nia-700 text-white hover:bg-nia-800;
-}
-
-.btn-secondary {
-  @apply bg-slate-100 text-slate-800 hover:bg-slate-200;
-}
-
-/* Enhanced contrast text colors */
-.text-primary {
-  @apply text-slate-900;
-}
-
-.text-secondary {
-  @apply text-slate-700;
-}
-
-.text-muted {
-  @apply text-slate-600;
-}
-
-/* Ensure footer text is visible */
-.footer-heading {
-  color: #ffffff !important;
-  font-weight: 600;
-}
-
-/* Critical content visibility optimizations */
-.content-visibility-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 5000px;
-}
-
 /* LCP (Largest Contentful Paint) optimizations */
 .lcp-target {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
-}
-
-/* Hardware acceleration for smooth animations */
-.hardware-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }

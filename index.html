@@ -8,65 +8,13 @@
     <meta name="description" content="HeyNIA - AI-powered dental practice management software to attract more patients, minimize no-shows, and streamline operations">
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     
-    <!-- DNS Prefetch and Preconnect -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Preload LCP image (Hero image) - both preview and full versions -->
-    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp" imagesizes="(max-width: 768px) 100vw, 80vw">
-    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-900w.webp" imagesrcset="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-300w.webp 300w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-600w.webp 600w, /lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-900w.webp 900w" imagesizes="(max-width: 768px) 100vw, 80vw" fetchpriority="high">
-    
     <!-- Critical CSS inlined for faster initial render -->
     <style>
       /* Minimal critical styles for initial render */
       :root {
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
         --primary: 221.2 83.2% 53.3%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 221.2 83.2% 53.3%;
-      }
-      
-      .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 217.2 91.2% 59.8%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 224.3 76.3% 48%;
       }
       
       * {
@@ -75,13 +23,9 @@
         box-sizing: border-box;
       }
       
-      html,
-      body {
+      html, body {
         height: 100%;
         width: 100%;
-      }
-      
-      body {
         font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         background-color: #fff;
@@ -97,7 +41,6 @@
         transition: opacity 0.3s ease-in;
       }
 
-      /* Add loading indicator */
       body::before {
         content: '';
         position: fixed;
@@ -118,7 +61,6 @@
         100% { transform: translate(-50%, -50%) rotate(360deg); }
       }
       
-      /* Add LCP and CLS optimizations */
       .hero-placeholder {
         width: 100%;
         max-width: 1200px;
@@ -128,7 +70,6 @@
         border-radius: 8px;
       }
 
-      /* Simple fade-in animation */
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -139,9 +80,22 @@
       }
     </style>
     
+    <!-- DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="/fonts/Lato-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Lato-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Preload LCP image (Hero image) - both preview and full versions -->
+    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.webp" fetchpriority="high">
+    
     <!-- Preload critical JS -->
     <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="modulepreload" href="/src/App.tsx">
     
     <!-- Initial script to mark timing -->
     <script>
@@ -154,15 +108,25 @@
       // Mark the HTML parse start
       window.perfMetrics.marks.htmlParseStart = performance.now();
       
-      // Set up performance observer for LCP measurement
-      const lcpObserver = new PerformanceObserver((entryList) => {
-        const entries = entryList.getEntries();
-        const lastEntry = entries[entries.length - 1];
-        window.perfMetrics.lcp = lastEntry.startTime;
-        console.log('LCP:', lastEntry.startTime.toFixed(1) + 'ms');
-      });
+      // Register a minimal layout shift observer
+      let cls = 0;
+      new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            cls += entry.value;
+          }
+        }
+        console.log('CLS:', cls);
+      }).observe({type: 'layout-shift', buffered: true});
       
-      lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
+      // Set up performance observer for LCP measurement
+      new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          const lastEntry = entry;
+          window.perfMetrics.lcp = lastEntry.startTime;
+          console.log('LCP:', lastEntry.startTime.toFixed(1) + 'ms');
+        }
+      }).observe({type: 'largest-contentful-paint', buffered: true});
     </script>
   </head>
   <body class="js-loading">
@@ -192,8 +156,8 @@
     </div>
     
     <!-- Required for Lovable editor functionality -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" async></script>
     
     <!-- Timing and debugging script -->
     <script>

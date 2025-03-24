@@ -1,5 +1,5 @@
 
-/* Core styles - minimize render blocking */
+/* Critical styles only - for performance */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,10 +7,12 @@
 /* Import critical styles first */
 @import './styles/critical.css';
 
-/* Import other styles (these will load after critical content renders) */
-@import './styles/base.css';
+/* Defer non-critical styles */
+@import './styles/base.css' layer(non-critical);
+@import './styles/optimized-animations.css' layer(non-critical);
+@import './styles/responsive.css' layer(non-critical);
 
-/* Animation utilities */
+/* Critical animations that need to be first */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -20,66 +22,7 @@
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Footer specific styles */
-footer h3 {
-  color: #FFFFFF !important;
-  font-weight: 600;
-}
-
-/* Fix image loading */
-img {
-  max-width: 100%;
-  height: auto;
-  transition: opacity 0.3s ease;
-}
-
-/* Images marked as loaded by the component */
-img.loaded {
-  opacity: 1;
-}
-
-/* Improve contrast for visibility */
-.text-white {
-  color: #FFFFFF !important;
-}
-
-.bg-slate-900 {
-  background-color: #0f172a;
-}
-
-/* Optimize font display */
-@layer base {
-  html {
-    font-display: swap;
-  }
-}
-
-/* Fix font display issues */
-body {
-  font-family: 'Lato', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-}
-
-/* High contrast elements */
-.high-contrast-text {
-  color: #000000;
-}
-
-.high-contrast-bg {
-  background-color: #ffffff;
-}
-
-/* Add core visibility debugging classes */
-.debug-visible {
-  outline: 2px solid red !important;
-}
-
-.visible-always {
-  visibility: visible !important;
-  opacity: 1 !important;
-  display: block !important;
-}
-
-/* Modern image loading optimizations */
+/* Critical image performance optimizations */
 .blur-up {
   filter: blur(5px);
   transition: filter 0.3s ease-out;
@@ -89,27 +32,30 @@ body {
   filter: blur(0);
 }
 
-/* Content visibility optimizations */
-.content-visibility-auto {
+/* LCP optimizations */
+.lcp-target {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 5000px;
+  contain-intrinsic-size: auto 500px;
 }
 
-/* View transitions API support */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.5s;
+/* Text balance for better readability */
+.text-balance {
+  text-wrap: balance;
 }
 
-/* Core utilities for loading performance */
-.loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
+/* Fix image loading */
+img {
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes loading {
-  to {
-    background-position: -200% 0;
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
