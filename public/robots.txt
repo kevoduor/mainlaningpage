@@ -6,9 +6,9 @@ Allow: /
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://heynia.com/sitemap.xml
+Sitemap: https://www.heynia.com/sitemap.xml
 
-# Block sensitive paths
+# Block only sensitive paths
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/

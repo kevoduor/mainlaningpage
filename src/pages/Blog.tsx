@@ -16,7 +16,15 @@ const Blog = () => {
       <Helmet>
         <title>Dental Practice Marketing Blog | Nia</title>
         <meta name="description" content="Expert insights on dental practice management, technology implementation, and marketing strategies to grow your dental clinic." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link rel="canonical" href="https://www.heynia.com/blog" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dental Practice Marketing Blog | Nia" />
+        <meta property="og:description" content="Expert insights on dental practice management, technology implementation, and marketing strategies to grow your dental clinic." />
+        <meta property="og:url" content="https://www.heynia.com/blog" />
+        <meta property="og:site_name" content="Nia" />
       </Helmet>
       
       <Navbar />

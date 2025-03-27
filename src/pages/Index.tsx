@@ -24,6 +24,14 @@ const Index = () => {
         <title>Nia | Dental Practice Management Software</title>
         <meta name="description" content="Nia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link rel="canonical" href="https://www.heynia.com/" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Nia | Dental Practice Management Software" />
+        <meta property="og:description" content="Nia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
+        <meta property="og:url" content="https://www.heynia.com/" />
+        <meta property="og:site_name" content="Nia" />
       </Helmet>
       
       <Navbar />

@@ -9,7 +9,7 @@ If your website is not appearing at heynia.com, follow these steps:
 2. Click "Settings" → "Pages"
 3. Verify that:
    - Source is set to "GitHub Actions"
-   - Custom domain is set to "heynia.com"
+   - Custom domain is set to "www.heynia.com"
    - "Enforce HTTPS" is checked
 
 ## 2. Verify DNS Configuration on Namecheap
@@ -27,7 +27,7 @@ If your website is not appearing at heynia.com, follow these steps:
 ## 3. Check CNAME File
 
 1. After deployment, check if the CNAME file exists in your site root
-2. It should contain only: `heynia.com`
+2. It should contain only: `www.heynia.com`
 3. No additional content, domains, or www prefix
 
 ## 4. Check GitHub Actions

@@ -6,6 +6,7 @@ import { Compass, Home, ArrowLeft, RefreshCw } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useBreakpoint } from "@/hooks/use-mobile";
+import { Helmet } from "react-helmet";
 
 const NotFound = () => {
   const location = useLocation();
@@ -52,6 +53,14 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Page Not Found | Nia Dental Software</title>
+        <meta name="description" content="We couldn't find the page you were looking for. Please navigate back to our homepage or explore our blog." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.heynia.com/404" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      </Helmet>
+      
       <Navbar />
       
       <main className="flex-grow flex items-center justify-center py-8 sm:py-12 px-4 bg-gradient-to-b from-nia-50 to-white">

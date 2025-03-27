@@ -106,9 +106,13 @@
   </If>
 </IfModule>
 
-# Handle SPA routing
+# Handle SPA routing and 404 errors properly
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  
+  # Redirect non-www to www (canonical URL handling)
+  RewriteCond %{HTTP_HOST} ^heynia\.com [NC]
+  RewriteRule ^(.*)$ https://www.heynia.com/$1 [L,R=301]
   
   # If the requested resource exists as a file or directory, skip the following rules
   RewriteCond %{REQUEST_FILENAME} -f [OR]
