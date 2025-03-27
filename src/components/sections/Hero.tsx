@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl shadow-nia-300/20">
             <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
             {isMobile ? (
-              <div className="w-full" style={{ height: `${(window.innerWidth - 32) * (2/3)}px` }}>
+              <div className="w-full">
                 <MobileOptimizedImage 
                   src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png" 
                   alt="Dental professional showing treatment options to patient" 
