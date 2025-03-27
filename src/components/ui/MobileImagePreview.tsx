@@ -33,6 +33,7 @@ const MobileImagePreview: React.FC<MobileImagePreviewProps> = ({
       aria-hidden="true"
       width={width}
       height={height}
+      data-testid="mobile-image-preview"
     />
   );
 };

@@ -58,6 +58,7 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         className
       )}
       style={style}
+      data-testid="mobile-optimized-image"
     >
       {previewSrc && !isLoaded && (
         <MobileImagePreview
