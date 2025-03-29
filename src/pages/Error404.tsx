@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Compass, Home, ArrowLeft, RefreshCw, Search, Tooth } from "lucide-react";
+import { Compass, Home, ArrowLeft, RefreshCw, Search, Smile } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useDeviceType } from "@/hooks/use-device-type";
@@ -22,20 +21,17 @@ const Error404 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet, isLandscape, screenSize } = useDeviceType();
   
-  // Enhanced logging for better debugging
   useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
     
-    // Show toast message for better UX
     toast.error("Page not found", {
       description: "We couldn't find the page you were looking for",
       duration: 3000,
     });
     
-    // Animate the title
     const titleInterval = setInterval(() => {
       setAnimateTitle(prev => !prev);
     }, 2000);
@@ -43,7 +39,6 @@ const Error404 = () => {
     return () => clearInterval(titleInterval);
   }, [location.pathname]);
 
-  // Handle movement dynamics based on device
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent, isTouch = false) => {
     if (found) return;
     
@@ -74,7 +69,6 @@ const Error404 = () => {
         Math.pow(x - 50, 2) + Math.pow(y - 50, 2)
       );
       
-      // Make it easier to find on mobile
       const threshold = isMobile ? 15 : 10;
       if (distanceToCenter < threshold) {
         setFound(true);
@@ -126,19 +120,16 @@ const Error404 = () => {
             </p>
           </div>
           
-          {/* Interactive game area */}
           <div 
             ref={containerRef}
             className="relative bg-nia-100 rounded-xl h-48 sm:h-64 md:h-80 mb-6 sm:mb-8 overflow-hidden cursor-pointer border-2 border-nia-300 shadow-lg"
             onMouseMove={(e) => !isMobile && handleInteraction(e)}
             onTouchMove={(e) => handleInteraction(e, true)}
           >
-            {/* Target area */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-dashed border-nia-400 flex items-center justify-center">
               <div className="text-nia-500 text-xs">Guide here</div>
             </div>
             
-            {/* Moving tooth element */}
             <div 
               className={`absolute w-12 h-12 transition-all duration-100 ${found ? 'animate-bounce' : ''}`}
               style={{ 
@@ -147,10 +138,9 @@ const Error404 = () => {
                 transform: 'translate(-50%, -50%)' 
               }}
             >
-              <Tooth className="w-full h-full text-nia-600" />
+              <Smile className="w-full h-full text-nia-600" />
             </div>
             
-            {/* Success message */}
             {found && (
               <div className="absolute inset-0 bg-nia-100/80 flex flex-col items-center justify-center animate-fade-in">
                 <h3 className="text-xl font-bold text-nia-700 mb-2">You found it!</h3>
@@ -162,13 +152,11 @@ const Error404 = () => {
               </div>
             )}
             
-            {/* Instructions */}
             <div className="absolute bottom-2 left-2 text-xs text-nia-500">
-              {!found ? (isMobile ? "Tap and drag the tooth!" : "Guide the tooth to the dental chair!") : "Great job!"}
+              {!found ? (isMobile ? "Tap and drag the smile!" : "Guide the smile to the center!") : "Great job!"}
             </div>
           </div>
           
-          {/* Search box */}
           <div className="mb-8">
             <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
               <div className="relative flex-grow">
@@ -185,7 +173,6 @@ const Error404 = () => {
             </form>
           </div>
           
-          {/* 404 Image */}
           <div className="mb-8">
             <AspectRatio ratio={16/9} className="overflow-hidden rounded-lg">
               {isMobile ? (
@@ -206,7 +193,6 @@ const Error404 = () => {
             </AspectRatio>
           </div>
           
-          {/* Navigation buttons */}
           <div className={`grid ${isMobile ? 'grid-cols-1' : 'sm:grid-cols-2 md:grid-cols-3'} gap-4`}>
             <Button asChild size={isMobile ? "default" : "lg"} className="w-full">
               <Link to="/">
