@@ -1,25 +1,18 @@
+import { BlogPost } from "@/types/blog";
 
-export type BlogPost = {
-  id: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  imageUrl: string;
-  fallbackImageUrl: string;
-  slug: string;
-  readTime: string;
-};
-
-export type BlogPostContent = {
-  title: string;
-  author: string;
-  date: string;
-  heroImage: string;
-  content: string;
-};
-
-export const BLOG_POSTS_LIST: BlogPost[] = [
+// Blog post list data (for the blog listing page)
+export const BLOG_POSTS_LIST = [
+  {
+    id: "attract-more-patients-2025",
+    slug: "attract-more-patients-2025",
+    title: "How to Attract More Patients to Your Dental Clinic: Proven Strategies for 2025",
+    author: "Kevin Oduor",
+    date: "2025-03-28",
+    excerpt: "Running a successful dental clinic isn't just about providing top-quality care—it's also about consistently attracting new patients while keeping your existing ones happy. Learn proven marketing strategies for 2025.",
+    fallbackImageUrl: "/lovable-uploads/7fd73343-9e01-4f35-8ae9-128460379179.png",
+    readTime: "8 min read",
+    category: "Marketing"
+  },
   {
     id: 'level-up-dental-marketing',
     title: 'Level Up Your Dental Marketing – Win More Patients',
@@ -88,15 +81,106 @@ export const BLOG_POSTS_LIST: BlogPost[] = [
   }
 ];
 
-export const BLOG_POSTS_CONTENT: Record<string, {
-  id: string;
-  title: string;
-  date: string;
-  author: string;
-  readTime: string;
-  heroImage: string;
-  content: string;
-}> = {
+// Detailed blog post content (for individual blog post pages)
+export const BLOG_POSTS_CONTENT: Record<string, BlogPost> = {
+  "attract-more-patients-2025": {
+    id: "attract-more-patients-2025",
+    slug: "attract-more-patients-2025",
+    title: "How to Attract More Patients to Your Dental Clinic: Proven Strategies for 2025",
+    author: "Kevin Oduor",
+    date: "2025-03-28",
+    heroImage: "/lovable-uploads/7fd73343-9e01-4f35-8ae9-128460379179.png",
+    readTime: "8 min read",
+    category: "Marketing",
+    content: `
+      <p>Running a successful dental clinic isn't just about providing top-quality care—it's also about consistently attracting new patients while keeping your existing ones happy. The dental industry is highly competitive, and to thrive, you need strategic marketing approaches that set your practice apart. In this guide, we'll explore the most effective ways to bring more patients to your dental practice using digital marketing, local SEO, social media, and patient experience improvements.</p>
+      
+      <h2>1. Optimize Your Website for Local SEO</h2>
+      
+      <p>If potential patients can't find you online, they'll book with a competitor. Your website needs to be optimized for local SEO for dentists to appear in Google searches when people look for services like "best dentist near me" or "family dentist in [your city]." Here's how:</p>
+      
+      <ul>
+        <li>Claim and optimize your Google Business Profile – Ensure your clinic's name, address, phone number, and services are up to date.</li>
+        <li>Use long-tail keywords – Target searches like "affordable dental implants in [city]" or "emergency tooth extraction near me."</li>
+        <li>Encourage online reviews – Positive reviews on Google and Yelp improve your ranking and credibility.</li>
+      </ul>
+      
+      <h2>2. Use Social Media to Engage With Potential Patients</h2>
+      
+      <p>A strong social media presence can help attract new clients. Focus on platforms where your ideal patients are active, such as Facebook, Instagram, and TikTok. Strategies include:</p>
+      
+      <ul>
+        <li>Posting before-and-after photos of dental procedures (with patient consent)</li>
+        <li>Sharing oral health tips and answering common questions</li>
+        <li>Running paid ads targeting local patients with phrases like "pediatric dentist accepting new patients" or "same-day dental crowns available."</li>
+      </ul>
+      
+      <h2>3. Offer Promotions and Discounts for First-Time Patients</h2>
+      
+      <p>Many people delay dental visits due to cost concerns. Offering special promotions for new dental patients can encourage bookings. Some ideas include:</p>
+      
+      <ul>
+        <li>Free first consultation or dental exam</li>
+        <li>Discounted teeth whitening for new patients</li>
+        <li>Referral discounts where existing patients get rewards for bringing in family or friends</li>
+      </ul>
+      
+      <h2>4. Implement an Automated Appointment Scheduling System</h2>
+      
+      <p>A seamless booking process improves patient experience and increases conversions. Modern patients prefer online dental appointment scheduling, especially if they can book directly from their phone. Ensure your system allows:</p>
+      
+      <ul>
+        <li>24/7 online scheduling</li>
+        <li>Automated reminders via SMS, WhatsApp, or email</li>
+        <li>Easy rescheduling and cancellations</li>
+      </ul>
+      
+      <h2>5. Create Educational Content to Build Trust</h2>
+      
+      <p>Patients trust experts who provide valuable information. Blogging and video marketing can establish your authority and attract new clients. Topics to cover include:</p>
+      
+      <ul>
+        <li>"How to Find the Best Dentist for Your Family"</li>
+        <li>"What to Expect During a Root Canal"</li>
+        <li>"Invisalign vs. Braces: Which Is Right for You?"</li>
+        <li>"How Often Should You Visit the Dentist?"</li>
+      </ul>
+      
+      <p>Use long-tail keywords such as "affordable veneers in [city]" and "pain-free wisdom tooth removal near me" to drive targeted traffic.</p>
+      
+      <h2>6. Leverage Paid Advertising for Fast Results</h2>
+      
+      <p>If you want immediate visibility, consider Google Ads for dentists and Facebook dental marketing campaigns. Focus on high-intent keywords such as:</p>
+      
+      <ul>
+        <li>"same-day emergency dentist"</li>
+        <li>"cosmetic dentist specializing in veneers"</li>
+        <li>"best orthodontist for adults"</li>
+      </ul>
+      
+      <p>Ensure your ads link to a dedicated landing page with a clear call to action (CTA) like "Book Your Appointment Today."</p>
+      
+      <h2>7. Encourage Patient Referrals and Loyalty Programs</h2>
+      
+      <p>Happy patients are your best marketers. Implement a dental patient referral program where existing clients earn rewards for referring new patients. Consider offering:</p>
+      
+      <ul>
+        <li>Discounts on future treatments</li>
+        <li>Free dental checkups for every successful referral</li>
+        <li>VIP loyalty programs with exclusive benefits</li>
+      </ul>
+      
+      <h2>8. Stay Ahead with AI and Chatbots</h2>
+      
+      <p>AI-powered chatbots on your website and WhatsApp can help answer patient queries instantly, schedule appointments, and improve customer service. Automating these processes saves time and enhances patient experience.</p>
+      
+      <h2>Final Thoughts</h2>
+      
+      <p>Attracting more patients to your dental practice requires a mix of digital marketing, patient engagement, and seamless customer experiences. By implementing these strategies, you can build a thriving practice that continually brings in new patients while keeping current ones loyal.</p>
+      
+      <p>Start optimizing your marketing today and watch your clinic grow!</p>
+    `
+  },
   "level-up-dental-marketing": {
     id: "level-up-dental-marketing",
     title: "Level Up Your Dental Marketing – Win More Patients",

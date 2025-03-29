@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { getBestImageSource, generateMobileImageId } from '@/lib/mobile-image-utils';
+import { useDeviceType } from './use-device-type';
 
 interface UseMobileImageProps {
   src: string;
@@ -9,7 +10,7 @@ interface UseMobileImageProps {
 }
 
 /**
- * Custom hook for handling mobile-optimized image loading
+ * Enhanced hook for handling mobile-optimized image loading with better device detection
  */
 export const useMobileImage = ({ 
   src, 
@@ -18,53 +19,79 @@ export const useMobileImage = ({
 }: UseMobileImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
+  const [error, setError] = useState(false);
   const uniqueId = generateMobileImageId(src);
+  const { isMobile, isTablet, width } = useDeviceType();
   const isHighDPI = typeof window !== 'undefined' && window.devicePixelRatio > 1.5;
   
   // Set up image loading strategy
   useEffect(() => {
+    if (!src) {
+      console.error('No source provided to useMobileImage hook');
+      setError(true);
+      return;
+    }
+    
+    const handleImageError = () => {
+      console.warn(`Failed to load optimized image: ${src}`);
+      setImageUrl(src); // Fallback to original source
+      setError(true);
+    };
+    
     // For priority images, load the main image right away
     if (priority) {
-      // Check for mobile-specific image first
-      const mobileSrcBase = src.substring(0, src.lastIndexOf('.'));
-      const mobileSrc = `${mobileSrcBase}-mobile.webp`;
-      
-      // Try to load mobile version first, fallback to original
-      const img = new Image();
-      img.src = mobileSrc;
-      img.onload = () => {
-        setImageUrl(mobileSrc);
-        setIsLoaded(true);
-      };
-      img.onerror = () => {
-        // Mobile version not available, use original with WebP if possible
-        const webpSrc = `${mobileSrcBase}.webp`;
-        const webpImg = new Image();
-        webpImg.src = webpSrc;
-        webpImg.onload = () => {
-          setImageUrl(webpSrc);
+      // Try different image formats based on browser support
+      if (isMobile || isTablet) {
+        // Check for mobile-specific image first
+        const mobileSrcBase = src.substring(0, src.lastIndexOf('.'));
+        const mobileSrc = `${mobileSrcBase}-mobile.webp`;
+        
+        // Try to load mobile version first, fallback to original
+        const img = new Image();
+        img.onload = () => {
+          setImageUrl(mobileSrc);
           setIsLoaded(true);
         };
-        webpImg.onerror = () => {
-          setImageUrl(src);
-          setIsLoaded(true);
+        img.onerror = () => {
+          // Mobile version not available, use original with WebP if possible
+          const webpSrc = `${mobileSrcBase}.webp`;
+          const webpImg = new Image();
+          webpImg.onload = () => {
+            setImageUrl(webpSrc);
+            setIsLoaded(true);
+          };
+          webpImg.onerror = () => {
+            setImageUrl(src);
+            setIsLoaded(true);
+          };
         };
-      };
+        img.src = mobileSrc;
+      } else {
+        // Desktop priority image
+        setImageUrl(src);
+        const img = new Image();
+        img.onload = () => setIsLoaded(true);
+        img.onerror = handleImageError;
+        img.src = src;
+      }
     } else if (previewSrc) {
       // For non-priority images with preview, start with preview
       setImageUrl(previewSrc);
       
       // Start loading full image after a short delay to prioritize critical content
       const timer = setTimeout(() => {
-        setImageUrl(getBestImageSource(src, priority, isHighDPI));
-      }, 200); // Short delay to allow critical content to load first
+        // Get best image source based on device
+        const bestImageSrc = getBestImageSource(src, priority, isHighDPI);
+        setImageUrl(bestImageSrc);
+      }, isMobile ? 300 : 200); // Longer delay on mobile to ensure smooth loading
       
       return () => clearTimeout(timer);
     } else {
-      // For non-priority images without preview, use the best mobile image
-      setImageUrl(getBestImageSource(src, priority, isHighDPI));
+      // For non-priority images without preview, use the best source for the device
+      const bestImageSrc = getBestImageSource(src, priority, isHighDPI);
+      setImageUrl(bestImageSrc);
     }
-  }, [src, priority, previewSrc, isHighDPI]);
+  }, [src, priority, previewSrc, isHighDPI, isMobile, isTablet, width]);
   
   // Handle IntersectionObserver for lazy loading
   useEffect(() => {
@@ -80,7 +107,7 @@ export const useMobileImage = ({
     };
     
     const observer = new IntersectionObserver(handleIntersection, {
-      rootMargin: '200px', // Start loading before it's visible
+      rootMargin: isMobile ? '100px' : '200px', // Start loading before it's visible
       threshold: 0.01
     });
     
@@ -88,12 +115,13 @@ export const useMobileImage = ({
     if (imageRef) observer.observe(imageRef);
     
     return () => observer.disconnect();
-  }, [src, isLoaded, priority, uniqueId]);
+  }, [src, isLoaded, priority, uniqueId, isMobile]);
   
   return {
     isLoaded,
     imageUrl,
     uniqueId,
-    setIsLoaded
+    setIsLoaded,
+    hasError: error
   };
 };
