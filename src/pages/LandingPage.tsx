@@ -3,8 +3,11 @@ import React from 'react';
 import { BarChart, Calendar, Users, ClipboardList } from "lucide-react";
 import CTAButton from '@/components/ui/CTAButton';
 import DashboardCard from '@/components/ui/DashboardCard';
+import { useBreakpoint } from '@/hooks/use-mobile';
 
 const LandingPage = () => {
+  const { isMobile } = useBreakpoint();
+  
   const dashboardItems = [
     { 
       icon: ClipboardList, 
@@ -51,15 +54,15 @@ const LandingPage = () => {
         <p className="text-lg text-[#D6BCFA] mt-4">
           Streamline your clinic's workflow with AI-powered automation and seamless appointment scheduling.
         </p>
-        <div className="mt-6 flex justify-center space-x-4">
+        <div className="mt-6 flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-3 sm:space-y-0">
           <CTAButton 
-            className="bg-[#8B5CF6] text-white hover:bg-[#9b87f5]"
+            className="bg-[#8B5CF6] text-white hover:bg-[#9b87f5] w-full sm:w-auto"
           >
             Try for Free
           </CTAButton>
           <CTAButton 
             variant="outline" 
-            className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#E5DEFF]"
+            className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#E5DEFF] w-full sm:w-auto"
           >
             Book a Demo
           </CTAButton>
@@ -67,9 +70,9 @@ const LandingPage = () => {
       </section>
 
       {/* Clinic Dashboard Preview */}
-      <section className="w-full max-w-6xl bg-[#6E59A5]/30 rounded-2xl p-10 shadow-2xl backdrop-blur-md">
+      <section className="w-full max-w-6xl bg-[#6E59A5]/30 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
         <h3 className="text-2xl font-semibold text-center mb-6 text-white">Clinic Dashboard Overview</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {dashboardItems.map((item, index) => (
             <DashboardCard 
               key={index}
@@ -79,6 +82,15 @@ const LandingPage = () => {
             />
           ))}
         </div>
+        
+        {/* Mobile-optimized dashboard preview */}
+        {isMobile && (
+          <div className="mt-6 p-3 bg-[#1A1F2C]/70 rounded-lg border border-[#7E69AB]/30">
+            <p className="text-xs text-center text-[#D6BCFA]">
+              Try landscape mode for a better viewing experience
+            </p>
+          </div>
+        )}
       </section>
 
       {/* Footer Section */}
