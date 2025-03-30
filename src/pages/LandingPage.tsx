@@ -5,9 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BarChart, Calendar, Users, ClipboardList } from "lucide-react";
 import { useBreakpoint } from '@/hooks/use-mobile';
 
-const LandingPage = () => {
+export default function LandingPage() {
   const { isMobile } = useBreakpoint();
-  
+
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center p-6">
       {/* Header Section */}
@@ -33,9 +33,9 @@ const LandingPage = () => {
       </section>
 
       {/* Clinic Dashboard Preview */}
-      <section className="w-full max-w-6xl bg-gray-800 rounded-2xl p-6 sm:p-10 shadow-lg">
+      <section className="w-full max-w-6xl bg-gray-800 rounded-2xl p-10 shadow-lg">
         <h3 className="text-2xl font-semibold text-center mb-6">Clinic Dashboard Overview</h3>
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <Card className="bg-gray-700 text-center p-4">
             <ClipboardList className="w-10 h-10 mx-auto text-blue-400" />
             <CardContent className="mt-2">Appointments</CardContent>
@@ -53,7 +53,7 @@ const LandingPage = () => {
             <CardContent className="mt-2">Revenue Analytics</CardContent>
           </Card>
         </div>
-        
+
         {/* Mobile-optimized dashboard preview */}
         {isMobile && (
           <div className="mt-6 p-3 bg-gray-900/70 rounded-lg border border-gray-700">
@@ -70,6 +70,4 @@ const LandingPage = () => {
       </footer>
     </div>
   );
-};
-
-export default LandingPage;
+}
