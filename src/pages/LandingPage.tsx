@@ -4,60 +4,55 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BarChart, Calendar, Users, ClipboardList } from "lucide-react";
 import { useBreakpoint } from '@/hooks/use-mobile';
+import DashboardCard from '@/components/ui/DashboardCard';
 
 export default function LandingPage() {
   const { isMobile } = useBreakpoint();
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center p-6">
+    <div className="bg-gradient-to-br from-[#1A1F2C] to-[#2D2A3C] text-white min-h-screen flex flex-col items-center p-6">
       {/* Header Section */}
       <header className="w-full max-w-6xl flex justify-between items-center py-6">
-        <h1 className="text-3xl font-bold tracking-tighter" style={{ letterSpacing: "-0.06em" }}>
+        <h1 className="text-3xl font-bold tracking-tighter text-[#E5DEFF]" style={{ letterSpacing: "-0.06em" }}>
           nia
         </h1>
-        <Button variant="outline">Get Started</Button>
+        <Button variant="outline" className="bg-transparent border-[#7E69AB] text-[#E5DEFF] hover:bg-[#7E69AB]/20">
+          Get Started
+        </Button>
       </header>
 
       {/* Hero Section */}
-      <section className="text-center py-20 max-w-4xl">
-        <h2 className="text-5xl font-bold tracking-tighter" style={{ letterSpacing: "-0.06em" }}>
+      <section className="text-center py-16 sm:py-20 max-w-4xl">
+        <h2 className="text-4xl sm:text-5xl font-bold tracking-tighter text-[#E5DEFF]" style={{ letterSpacing: "-0.06em" }}>
           The Future of Dental Clinic Management
         </h2>
-        <p className="text-lg text-gray-400 mt-4">
+        <p className="text-md sm:text-lg text-[#B3A9E3] mt-4">
           Streamline your clinic's workflow with AI-powered automation and seamless appointment scheduling.
         </p>
-        <div className="mt-6 flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-3 sm:space-y-0">
-          <Button className="w-full sm:w-auto">Try for Free</Button>
-          <Button variant="outline" className="w-full sm:w-auto">Book a Demo</Button>
+        <div className="mt-8 flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-3 sm:space-y-0">
+          <Button className="w-full sm:w-auto bg-[#7E69AB] hover:bg-[#9b87f5] text-white">
+            Try for Free
+          </Button>
+          <Button variant="outline" className="w-full sm:w-auto bg-transparent border-[#7E69AB] text-[#E5DEFF] hover:bg-[#7E69AB]/20">
+            Book a Demo
+          </Button>
         </div>
       </section>
 
       {/* Clinic Dashboard Preview */}
-      <section className="w-full max-w-6xl bg-gray-800 rounded-2xl p-10 shadow-lg">
-        <h3 className="text-2xl font-semibold text-center mb-6">Clinic Dashboard Overview</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <Card className="bg-gray-700 text-center p-4">
-            <ClipboardList className="w-10 h-10 mx-auto text-blue-400" />
-            <CardContent className="mt-2">Appointments</CardContent>
-          </Card>
-          <Card className="bg-gray-700 text-center p-4">
-            <Users className="w-10 h-10 mx-auto text-green-400" />
-            <CardContent className="mt-2">Patients</CardContent>
-          </Card>
-          <Card className="bg-gray-700 text-center p-4">
-            <Calendar className="w-10 h-10 mx-auto text-yellow-400" />
-            <CardContent className="mt-2">Doctor Schedules</CardContent>
-          </Card>
-          <Card className="bg-gray-700 text-center p-4">
-            <BarChart className="w-10 h-10 mx-auto text-red-400" />
-            <CardContent className="mt-2">Revenue Analytics</CardContent>
-          </Card>
+      <section className="w-full max-w-6xl bg-[#1A1F2C]/50 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-xl border border-[#7E69AB]/30">
+        <h3 className="text-2xl font-semibold text-center mb-8 text-[#E5DEFF]">Clinic Dashboard Overview</h3>
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <DashboardCard icon={ClipboardList} title="Appointments" color="text-[#9b87f5]" />
+          <DashboardCard icon={Users} title="Patients" color="text-[#87f5eb]" />
+          <DashboardCard icon={Calendar} title="Doctor Schedules" color="text-[#f5e887]" />
+          <DashboardCard icon={BarChart} title="Revenue Analytics" color="text-[#f587a9]" />
         </div>
 
         {/* Mobile-optimized dashboard preview */}
         {isMobile && (
-          <div className="mt-6 p-3 bg-gray-900/70 rounded-lg border border-gray-700">
-            <p className="text-xs text-center text-gray-400">
+          <div className="mt-6 p-3 bg-[#1A1F2C] rounded-lg border border-[#7E69AB]/30">
+            <p className="text-xs text-center text-[#B3A9E3]">
               Try landscape mode for a better viewing experience
             </p>
           </div>
@@ -65,7 +60,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer Section */}
-      <footer className="text-center text-gray-500 text-sm py-6">
+      <footer className="text-center text-[#B3A9E3] text-sm py-6">
         © 2025 nia. All rights reserved.
       </footer>
     </div>
