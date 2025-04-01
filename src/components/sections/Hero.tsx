@@ -3,7 +3,6 @@ import React from 'react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { Badge } from '../ui/badge';
-import { Star, Calendar, Check } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
@@ -46,54 +45,58 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Animated element replacing the hero image */}
-        <div className="relative mx-auto max-w-5xl lcp-target">
-          <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl shadow-nia-300/20">
-            <div className="h-[200px] sm:h-[300px] md:h-[400px] w-full bg-gradient-to-tr from-nia-600 to-nia-300 wave-bg-animation">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <div className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 animate-pulse">Nia Dashboard</div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-4 max-w-3xl w-full">
-                  {Array.from({length: 4}).map((_, i) => (
-                    <div 
-                      key={i} 
-                      className={`h-12 md:h-16 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 
-                                 float-animation delay-${(i % 4) * 100}`}
-                      style={{ animationDelay: `${i * 0.15}s` }}
-                    />
-                  ))}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 px-4 mt-3 max-w-3xl w-full">
-                  {Array.from({length: 2}).map((_, i) => (
-                    <div 
-                      key={i} 
-                      className={`h-8 md:h-10 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 
-                                 float-animation delay-${(i % 2) * 200 + 200}`}
-                      style={{ animationDelay: `${i * 0.2 + 0.6}s` }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+        {/* Featured On section replacing the dashboard animation */}
+        <div className="relative mx-auto max-w-5xl mt-8 md:mt-12 lcp-target">
+          <div className="text-center mb-4">
+            <h3 className="text-sm sm:text-base text-slate-600 font-medium uppercase tracking-wider">As Featured On</h3>
           </div>
           
-          {/* Animated floating elements */}
-          {!isXs && (
-            <>
-              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30 animate-pulse">
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
-                  <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
+          <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 sm:p-8 shadow-sm border border-slate-100">
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
+              {/* Product Hunt Logo */}
+              <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0s' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-10 h-10 bg-[#DA552F] rounded-full flex items-center justify-center mb-1">
+                      <div className="text-white font-bold text-xl">P</div>
+                    </div>
+                    <div className="text-[#DA552F] font-bold text-xs sm:text-sm">Product Hunt</div>
+                  </div>
                 </div>
               </div>
               
-              <div className="absolute top-2 right-2 sm:top-4 sm:right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30 animate-pulse" style={{ animationDelay: '1s' }}>
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
-                  <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>
+              {/* UNESCO Logo */}
+              <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0.2s' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="font-serif text-[#1E57A5] text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
+                      UNESCO
+                    </div>
+                  </div>
                 </div>
               </div>
-            </>
-          )}
+              
+              {/* Nation TV Kenya Logo */}
+              <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0.4s' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div className="font-bold text-base sm:text-lg md:text-xl text-[#E21B23]">NATION</div>
+                    <div className="text-[#0C355A] text-xs sm:text-sm">TV KENYA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Trust badge */}
+            <div className="mt-6 text-center">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                </svg>
+                Trusted by healthcare professionals worldwide
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
