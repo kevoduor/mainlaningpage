@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BarChart, Calendar, Users, ClipboardList } from "lucide-react";
 import { useBreakpoint } from '@/hooks/use-mobile';
 import DashboardCard from '@/components/ui/DashboardCard';
-import MobileOptimizedImage from '@/components/ui/MobileOptimizedImage';
 
 export default function LandingPage() {
   const { isMobile } = useBreakpoint();
@@ -40,20 +39,86 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Clinic Dashboard Preview with IMPROVED MOBILE IMAGE HANDLING */}
+      {/* Animated Dashboard Visualization */}
       <section className="w-full max-w-6xl bg-[#1A1F2C]/50 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-xl border border-[#7E69AB]/30">
         <h3 className="text-2xl font-semibold text-center mb-8 text-[#E5DEFF]">Clinic Dashboard Overview</h3>
         
-        {/* Add a demo image using MobileOptimizedImage component for better mobile support */}
+        {/* Animated dashboard visualization */}
         <div className="relative w-full mb-8 rounded-lg overflow-hidden shadow-lg">
-          <MobileOptimizedImage 
-            src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png"
-            alt="Dental clinic dashboard"
-            className="w-full h-auto"
-            width={1200}
-            height={675}
-            priority={true}
-          />
+          <div className="w-full h-[300px] bg-gradient-to-br from-[#372B52] to-[#221A33] p-6">
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#7E69AB_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            {/* Animated elements */}
+            <div className="relative z-10 h-full flex flex-col">
+              <div className="flex justify-between items-center mb-4">
+                <div className="h-6 w-32 bg-[#7E69AB]/30 rounded-md animate-pulse"></div>
+                <div className="flex space-x-2">
+                  <div className="h-6 w-6 bg-[#7E69AB]/30 rounded-md animate-pulse"></div>
+                  <div className="h-6 w-6 bg-[#7E69AB]/30 rounded-md animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="h-6 w-6 bg-[#7E69AB]/30 rounded-md animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                </div>
+              </div>
+              
+              {/* Dashboard charts */}
+              <div className="flex-1 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
+                {/* Chart 1 */}
+                <div className="bg-[#282335]/60 backdrop-blur-sm p-3 rounded-lg border border-[#7E69AB]/20 h-40">
+                  <div className="h-4 w-20 bg-[#7E69AB]/30 rounded-md mb-2"></div>
+                  <div className="h-28 flex items-end gap-1 pt-4 px-2">
+                    {Array.from({ length: 7 }).map((_, i) => (
+                      <div 
+                        key={i}
+                        className="flex-1 bg-[#7E69AB]/30 hover:bg-[#9b87f5]/50 transition-all rounded-t-sm float-animation"
+                        style={{ 
+                          height: `${Math.max(15, Math.floor(Math.random() * 100))}%`,
+                          animationDelay: `${i * 0.1}s`
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Chart 2 */}
+                <div className="bg-[#282335]/60 backdrop-blur-sm p-3 rounded-lg border border-[#7E69AB]/20 h-40">
+                  <div className="h-4 w-24 bg-[#7E69AB]/30 rounded-md mb-2"></div>
+                  <div className="h-28 flex justify-center items-center">
+                    <div className="relative h-24 w-24 rounded-full border-4 border-[#7E69AB]/20">
+                      <div 
+                        className="absolute inset-0 border-4 border-[#9b87f5] rounded-full"
+                        style={{ 
+                          clipPath: 'polygon(0 0, 100% 0, 100% 70%, 0% 70%)'
+                        }}
+                      ></div>
+                      <div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-[#E5DEFF]">
+                        70%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Chart 3 */}
+                <div className="bg-[#282335]/60 backdrop-blur-sm p-3 rounded-lg border border-[#7E69AB]/20 h-40 col-span-2 lg:col-span-1">
+                  <div className="h-4 w-28 bg-[#7E69AB]/30 rounded-md mb-2"></div>
+                  <div className="grid grid-cols-2 gap-2 mt-4">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <div 
+                        key={i}
+                        className="flex items-center space-x-2"
+                      >
+                        <div className={`h-3 w-3 rounded-full bg-[#9b87f5]`} style={{ opacity: 1 - (i * 0.2) }}></div>
+                        <div className={`h-3 w-16 bg-[#7E69AB]/30 rounded-md`}></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bottom row */}
+              <div className="h-10 mt-4 bg-[#282335]/60 backdrop-blur-sm rounded-lg border border-[#7E69AB]/20 flex items-center px-3">
+                <div className="h-3 w-3/4 bg-[#7E69AB]/30 rounded-md"></div>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">

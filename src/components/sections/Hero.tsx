@@ -4,10 +4,6 @@ import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { Badge } from '../ui/badge';
 import { Star, Calendar, Check } from 'lucide-react';
-import OptimizedImage from '../ui/OptimizedImage';
-import MobileOptimizedImage from '../ui/MobileOptimizedImage';
-import { AspectRatio } from '../ui/aspect-ratio';
-import { Skeleton } from '../ui/skeleton';
 
 const Hero: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
@@ -50,51 +46,47 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Hero image with proper mobile optimization */}
+        {/* Animated element replacing the hero image */}
         <div className="relative mx-auto max-w-5xl lcp-target">
           <div className="relative rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl shadow-nia-300/20">
-            <div className="absolute inset-0 bg-gradient-to-tr from-nia-600/20 to-transparent z-10"></div>
-            {isMobile ? (
-              <div className="w-full">
-                <MobileOptimizedImage 
-                  src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png" 
-                  alt="Dental professional showing treatment options to patient" 
-                  width={600}
-                  height={400}
-                  className="w-full h-full object-cover"
-                  priority={true}
-                  sizes="100vw"
-                  previewSrc="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp"
-                  fill={true}
-                />
+            <div className="h-[200px] sm:h-[300px] md:h-[400px] w-full bg-gradient-to-tr from-nia-600 to-nia-300 wave-bg-animation">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <div className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 animate-pulse">Nia Dashboard</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-4 max-w-3xl w-full">
+                  {Array.from({length: 4}).map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`h-12 md:h-16 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 
+                                 float-animation delay-${(i % 4) * 100}`}
+                      style={{ animationDelay: `${i * 0.15}s` }}
+                    />
+                  ))}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 px-4 mt-3 max-w-3xl w-full">
+                  {Array.from({length: 2}).map((_, i) => (
+                    <div 
+                      key={i} 
+                      className={`h-8 md:h-10 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 
+                                 float-animation delay-${(i % 2) * 200 + 200}`}
+                      style={{ animationDelay: `${i * 0.2 + 0.6}s` }}
+                    />
+                  ))}
+                </div>
               </div>
-            ) : (
-              <AspectRatio ratio={16/9} className="w-full">
-                <OptimizedImage 
-                  src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png" 
-                  alt="Dental professional showing treatment options to patient" 
-                  width={1200}
-                  height={675}
-                  className="w-full h-full object-cover"
-                  priority={true}
-                  sizes="80vw"
-                  previewSrc="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-preview.webp"
-                />
-              </AspectRatio>
-            )}
+            </div>
           </div>
           
-          {/* Mobile-optimized floating elements */}
+          {/* Animated floating elements */}
           {!isXs && (
             <>
-              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30">
+              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30 animate-pulse">
                 <div className="flex items-center gap-1 sm:gap-2">
                   <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-500" />
                   <span className="text-[10px] sm:text-xs font-medium text-black">Hellen Chen <span className="text-[8px] sm:text-[10px]">- 5★ review</span></span>
                 </div>
               </div>
               
-              <div className="absolute top-2 right-2 sm:top-4 sm:right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30">
+              <div className="absolute top-2 right-2 sm:top-4 sm:right-4 backdrop-blur-lg bg-white/70 rounded-lg px-2 py-1 sm:px-3 sm:py-2 shadow-sm border border-white/30 animate-pulse" style={{ animationDelay: '1s' }}>
                 <div className="flex items-center gap-1 sm:gap-2">
                   <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-nia-600" />
                   <span className="text-[10px] sm:text-xs font-medium text-black">William Alex <span className="text-[8px] sm:text-[10px]">- Rescheduled</span></span>

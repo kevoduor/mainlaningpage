@@ -6,8 +6,6 @@ import { formatDate } from '@/lib/utils';
 import { useBreakpoint } from '@/hooks/use-mobile';
 import { AspectRatio } from '../ui/aspect-ratio';
 import { BLOG_POSTS_LIST } from '@/data/blogPosts';
-import OptimizedImage from '../ui/OptimizedImage';
-import MobileOptimizedImage from '../ui/MobileOptimizedImage';
 
 const BlogPostsList = () => {
   const { isMobile, isTablet } = useBreakpoint();
@@ -16,33 +14,25 @@ const BlogPostsList = () => {
     <section className="py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:gap-12">
-          {BLOG_POSTS_LIST.map((post) => (
+          {BLOG_POSTS_LIST.map((post, index) => (
             <article key={post.id} className="group border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="md:col-span-1 overflow-hidden">
                   <Link to={`/blog/${post.slug}`} className="block h-full">
                     <AspectRatio ratio={4/3} className="h-48 md:h-full w-full">
-                      {isMobile ? (
-                        <MobileOptimizedImage 
-                          src={post.fallbackImageUrl} 
-                          alt={post.title} 
-                          width={450}
-                          height={338}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          loading="lazy"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      ) : (
-                        <OptimizedImage 
-                          src={post.fallbackImageUrl} 
-                          alt={post.title} 
-                          width={600}
-                          height={450}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          loading="lazy"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      )}
+                      {/* Animated blog post thumbnail replacement */}
+                      <div 
+                        className="w-full h-full bg-gradient-to-br from-nia-600 to-nia-400 flex items-center justify-center overflow-hidden"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-nia-600 to-nia-400 wave-bg-animation" />
+                        <div className="relative z-10 text-white font-semibold text-lg flex flex-col items-center justify-center p-4 text-center">
+                          <div className={`w-12 h-12 rounded-full bg-white/20 mb-2 flex items-center justify-center float-animation delay-${index % 5}`}>
+                            <User className="w-6 h-6 text-white" />
+                          </div>
+                          <span className="opacity-90">{post.title.split(' ').slice(0, 2).join(' ')}</span>
+                        </div>
+                      </div>
                     </AspectRatio>
                   </Link>
                 </div>

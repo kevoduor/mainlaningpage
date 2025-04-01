@@ -11,8 +11,6 @@ import CTAButton from '@/components/ui/CTAButton';
 import { Helmet } from 'react-helmet';
 import { BLOG_POSTS_CONTENT } from '@/data/blogPosts';
 import { useBreakpoint } from '@/hooks/use-mobile';
-import OptimizedImage from '@/components/ui/OptimizedImage';
-import MobileOptimizedImage from '@/components/ui/MobileOptimizedImage';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -78,25 +76,19 @@ const BlogPost = () => {
               </div>
             </div>
             
-            {isMobile ? (
-              <MobileOptimizedImage 
-                src={post.heroImage} 
-                alt={post.title} 
-                className="w-full h-[250px] md:h-[400px] object-cover rounded-lg mb-8"
-                width={600}
-                height={450}
-                priority={true}
-              />
-            ) : (
-              <OptimizedImage 
-                src={post.heroImage} 
-                alt={post.title} 
-                className="w-full h-[300px] md:h-[400px] object-cover rounded-lg mb-8"
-                width={1200}
-                height={600}
-                priority={true}
-              />
-            )}
+            {/* Animated header visual instead of image */}
+            <div className="w-full h-[250px] md:h-[400px] rounded-lg mb-8 overflow-hidden">
+              <div className="w-full h-full bg-gradient-to-tr from-nia-700 to-nia-400 wave-bg-animation flex items-center justify-center">
+                <div className="text-white text-center px-6">
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4 opacity-90">{post.title}</h2>
+                  <div className="max-w-md mx-auto">
+                    <div className="h-2 bg-white/20 rounded-full mb-2 w-3/4 mx-auto animate-pulse"></div>
+                    <div className="h-2 bg-white/20 rounded-full mb-2 w-1/2 mx-auto animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="h-2 bg-white/20 rounded-full w-2/3 mx-auto animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
           <Separator className="mb-8" />
