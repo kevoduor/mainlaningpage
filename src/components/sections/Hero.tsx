@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
         
-        {/* Featured On section replacing the dashboard animation */}
+        {/* Featured On section with updated logos */}
         <div className="relative mx-auto max-w-5xl mt-8 md:mt-12 lcp-target">
           <div className="text-center mb-4">
             <h3 className="text-sm sm:text-base text-slate-600 font-medium uppercase tracking-wider">As Featured On</h3>
@@ -65,36 +65,43 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               
-              {/* UNESCO Logo */}
+              {/* NTV Kenya Logo */}
               <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0.2s' }}>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-full h-full flex items-center justify-center">
-                    <div className="font-serif text-[#1E57A5] text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
-                      UNESCO
-                    </div>
+                    <svg viewBox="0 0 200 60" className="w-full h-full">
+                      <path d="M0,0 L60,0 L60,60 L0,60 Z" fill="none" />
+                      <path d="M10,10 L50,10 L50,50 L10,50 Z" fill="none" stroke="#E11D30" strokeWidth="4" />
+                      <text x="30" y="36" textAnchor="middle" fill="#E11D30" fontSize="26" fontWeight="bold">NTV</text>
+                    </svg>
                   </div>
                 </div>
               </div>
               
-              {/* Nation TV Kenya Logo */}
+              {/* Nation Africa Logo */}
               <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0.4s' }}>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <div className="font-bold text-base sm:text-lg md:text-xl text-[#E21B23]">NATION</div>
-                    <div className="text-[#0C355A] text-xs sm:text-sm">TV KENYA</div>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <svg viewBox="0 0 200 60" className="w-full h-full">
+                      <text x="100" y="30" textAnchor="middle" fill="#0F274D" fontSize="22" fontWeight="bold">NATION</text>
+                      <text x="100" y="50" textAnchor="middle" fill="#E11D30" fontSize="18" fontWeight="bold">AFRICA</text>
+                    </svg>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Trust badge */}
-            <div className="mt-6 text-center">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                </svg>
-                Trusted by healthcare professionals worldwide
-              </span>
+              
+              {/* Stripe Climate Logo */}
+              <div className="w-24 sm:w-28 md:w-32 h-12 sm:h-14 md:h-16 relative float-animation" style={{ animationDelay: '0.6s' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <svg viewBox="0 0 200 60" className="w-full h-full">
+                      <path d="M30,20 L45,35 L30,50" fill="none" stroke="#635BFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M170,20 L155,35 L170,50" fill="none" stroke="#635BFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                      <text x="100" y="38" textAnchor="middle" fill="#635BFF" fontSize="18" fontWeight="bold">CLIMATE</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

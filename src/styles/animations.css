@@ -216,3 +216,34 @@
 .dot-2 {
   animation-delay: -0.16s;
 }
+
+/* Logo-specific animations optimized for performance */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.logo-float {
+  animation: logoFloat 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+}
+
+/* Responsive logo animations */
+@media (prefers-reduced-motion: reduce) {
+  .logo-float,
+  .float-animation {
+    animation: none;
+  }
+}
+
+/* Optimized float animation specifically for logos */
+@media (max-width: 640px) {
+  .float-animation {
+    animation-duration: 4s; /* Slower on mobile for better performance */
+  }
+}
