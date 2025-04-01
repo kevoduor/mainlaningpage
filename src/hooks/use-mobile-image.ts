@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { getBestImageSource, generateMobileImageId } from '@/lib/mobile-image-utils';
+import { getMobileImageSource, supportsWebP } from '@/lib/mobile-image-utils';
 import { useDeviceType } from './use-device-type';
 
 interface UseMobileImageProps {
@@ -20,7 +20,8 @@ export const useMobileImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
   const [error, setError] = useState(false);
-  const uniqueId = generateMobileImageId(src);
+  // Generate a unique ID for the image
+  const uniqueId = `img-${src?.replace(/[^a-zA-Z0-9]/g, '-')}`;
   const { isMobile, isTablet, width } = useDeviceType();
   const isHighDPI = typeof window !== 'undefined' && window.devicePixelRatio > 1.5;
   
@@ -54,7 +55,7 @@ export const useMobileImage = ({
         };
         img.onerror = () => {
           // Mobile version not available, use original with WebP if possible
-          const webpSrc = `${mobileSrcBase}.webp`;
+          const webpSrc = supportsWebP() ? `${mobileSrcBase}.webp` : src;
           const webpImg = new Image();
           webpImg.onload = () => {
             setImageUrl(webpSrc);
@@ -81,14 +82,14 @@ export const useMobileImage = ({
       // Start loading full image after a short delay to prioritize critical content
       const timer = setTimeout(() => {
         // Get best image source based on device
-        const bestImageSrc = getBestImageSource(src, priority, isHighDPI);
+        const bestImageSrc = getMobileImageSource(src);
         setImageUrl(bestImageSrc);
       }, isMobile ? 300 : 200); // Longer delay on mobile to ensure smooth loading
       
       return () => clearTimeout(timer);
     } else {
       // For non-priority images without preview, use the best source for the device
-      const bestImageSrc = getBestImageSource(src, priority, isHighDPI);
+      const bestImageSrc = getMobileImageSource(src);
       setImageUrl(bestImageSrc);
     }
   }, [src, priority, previewSrc, isHighDPI, isMobile, isTablet, width]);

@@ -39,7 +39,8 @@ export const getMobileImageSource = (src: string): string => {
         `${srcWithoutExtension}.webp`
       ];
       
-      return mobileVariants[0]; // Return first mobile variant
+      // We'll just return the first variant since we can't easily check if files exist in the browser
+      return mobileVariants[0];
     } else {
       // Fallback to original format for browsers without WebP support
       const extension = src.substring(src.lastIndexOf('.'));
@@ -81,3 +82,17 @@ export const getSimpleSrcSet = (src: string): string | undefined => {
     ${src} 1200w
   `;
 };
+
+/**
+ * Generate a unique ID for an image from its source
+ */
+export const generateMobileImageId = (src: string): string => {
+  if (!src) return 'img-unknown';
+  return `img-${src.replace(/[^a-zA-Z0-9]/g, '-')}`;
+};
+
+/**
+ * Get the best image source for the current device
+ * This is a synonym for getMobileImageSource to fix the import error
+ */
+export const getBestImageSource = getMobileImageSource;
