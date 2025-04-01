@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BarChart, Calendar, Users, ClipboardList } from "lucide-react";
 import { useBreakpoint } from '@/hooks/use-mobile';
 import DashboardCard from '@/components/ui/DashboardCard';
+import MobileOptimizedImage from '@/components/ui/MobileOptimizedImage';
 
 export default function LandingPage() {
   const { isMobile } = useBreakpoint();
@@ -39,9 +40,22 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Clinic Dashboard Preview */}
+      {/* Clinic Dashboard Preview with IMPROVED MOBILE IMAGE HANDLING */}
       <section className="w-full max-w-6xl bg-[#1A1F2C]/50 backdrop-blur-sm rounded-2xl p-8 sm:p-10 shadow-xl border border-[#7E69AB]/30">
         <h3 className="text-2xl font-semibold text-center mb-8 text-[#E5DEFF]">Clinic Dashboard Overview</h3>
+        
+        {/* Add a demo image using MobileOptimizedImage component for better mobile support */}
+        <div className="relative w-full mb-8 rounded-lg overflow-hidden shadow-lg">
+          <MobileOptimizedImage 
+            src="/lovable-uploads/1143940d-5191-49f3-851b-44b67257b857.png"
+            alt="Dental clinic dashboard"
+            className="w-full h-auto"
+            width={1200}
+            height={675}
+            priority={true}
+          />
+        </div>
+        
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           <DashboardCard icon={ClipboardList} title="Appointments" color="text-[#9b87f5]" />
           <DashboardCard icon={Users} title="Patients" color="text-[#87f5eb]" />

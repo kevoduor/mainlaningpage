@@ -1,9 +1,6 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { useMobileImage } from '@/hooks/use-mobile-image';
-import { getMobileSrcSet, getFixedHeight } from '@/lib/mobile-image-utils';
-import MobileImagePreview from './MobileImagePreview';
 import { Loader2 } from 'lucide-react';
 
 interface MobileOptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -21,8 +18,7 @@ interface MobileOptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEle
 }
 
 /**
- * Enhanced MobileOptimizedImage component with improved mobile display
- * Includes better error handling, loading state, and placeholders for mobile devices
+ * Simplified and reliable MobileOptimizedImage component for better mobile display
  */
 const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   src,
@@ -38,45 +34,69 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   onLoad,
   ...props
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const {
-    isLoaded,
-    imageUrl,
-    uniqueId,
-    setIsLoaded,
-    hasError
-  } = useMobileImage({
-    src,
-    previewSrc,
-    priority
-  });
   
-  // Handle loading error with retry logic
-  const handleError = () => {
+  // Generate a unique ID for this image
+  const uniqueId = `img-${src.replace(/[^a-zA-Z0-9]/g, '-')}`;
+  
+  // Determine if we should use a mobile-optimized version
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  // Get the appropriate image source
+  const getImageSource = () => {
+    if (!src) return '';
+    
+    // Basic mobile image handling - check for mobile version
+    if (isMobile && src.includes('/lovable-uploads/')) {
+      const srcWithoutExtension = src.substring(0, src.lastIndexOf('.'));
+      const extension = src.substring(src.lastIndexOf('.'));
+      
+      // Try to use webp on mobile if available
+      if (window.navigator.userAgent.includes('Mobile')) {
+        // Check for different mobile variants
+        const possibleSources = [
+          `${srcWithoutExtension}-mobile.webp`,
+          `${srcWithoutExtension}-450w.webp`,
+          `${srcWithoutExtension}-300w.webp`,
+          `${srcWithoutExtension}.webp`,
+          src // Fallback to original
+        ];
+        
+        // Return the first source that's available
+        return possibleSources[0];
+      }
+    }
+    
+    return src;
+  };
+  
+  const imageSource = getImageSource();
+  
+  // Handle image loading
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+    if (onLoad) onLoad();
+  };
+  
+  // Handle image error
+  const handleImageError = () => {
     if (retryCount < 2) {
       setRetryCount(prev => prev + 1);
       console.warn(`Retrying image load (${retryCount + 1}/2): ${src}`);
+      
       // Force reload after a short delay
       setTimeout(() => {
         const imgElement = document.getElementById(uniqueId) as HTMLImageElement;
         if (imgElement) {
-          imgElement.src = src + '?retry=' + Date.now();
+          imgElement.src = `${src}?retry=${Date.now()}`;
         }
       }, 500);
     } else {
       console.error(`Failed to load image after ${retryCount} retries: ${src}`);
+      setHasError(true);
     }
-  };
-  
-  // Calculate fixed height to prevent layout shifts
-  const style = {
-    height: getFixedHeight(width, height),
-    ...props.style
-  };
-  
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-    if (onLoad) onLoad();
   };
 
   return (
@@ -86,57 +106,41 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         fill ? "w-full h-full" : "",
         className
       )}
-      style={style}
+      style={props.style}
       data-testid="mobile-optimized-image"
     >
-      {/* Show preview/placeholder while loading */}
-      {showPlaceholder && previewSrc && !isLoaded && (
-        <MobileImagePreview
-          src={previewSrc}
-          alt={alt}
-          width={width}
-          height={height}
-        />
-      )}
-      
-      {/* Show loader if no preview available and not loaded */}
-      {!previewSrc && !isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted/20">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      {/* Show loader if not loaded */}
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/10">
+          <Loader2 className="h-8 w-8 animate-spin text-white/70" />
         </div>
       )}
       
       {/* Main image */}
-      {imageUrl && (
-        <img
-          id={uniqueId}
-          src={imageUrl}
-          alt={alt || ""}
-          className={cn(
-            "w-full h-full object-cover transition-opacity duration-300",
-            isLoaded ? "opacity-100" : "opacity-0",
-            previewSrc && !isLoaded ? "blur-up" : "",
-            isLoaded && previewSrc ? "blur-up loaded" : "",
-            hasError ? "border border-red-300" : "",
-            className
-          )}
-          width={width}
-          height={height}
-          loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
-          decoding={priority ? "sync" : "async"}
-          onLoad={handleImageLoad}
-          onError={handleError}
-          srcSet={getMobileSrcSet(src)}
-          sizes={sizes}
-          {...props}
-        />
-      )}
+      <img
+        id={uniqueId}
+        src={imageSource}
+        alt={alt || ""}
+        className={cn(
+          "w-full h-full object-cover transition-opacity duration-300",
+          isLoaded ? "opacity-100" : "opacity-0",
+          hasError ? "border border-red-300" : ""
+        )}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding={priority ? "sync" : "async"}
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+        sizes={sizes}
+        {...props}
+      />
 
       {/* Fallback for complete failure */}
-      {hasError && retryCount >= 2 && (
+      {hasError && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted/10 p-4">
-          <p className="text-sm text-muted-foreground text-center">Image could not be loaded</p>
+          <p className="text-sm text-white text-center">Image could not be loaded</p>
         </div>
       )}
     </div>
