@@ -51,83 +51,91 @@ const Hero: React.FC = () => {
             <h3 className="text-sm sm:text-base text-slate-600 font-medium uppercase tracking-wider">As Featured On</h3>
           </div>
           
-          <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 sm:p-8 shadow-sm border border-slate-100 overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 sm:p-6 shadow-sm border border-slate-100 overflow-hidden">
             <div className="logo-scroll-container">
               <div className="logo-scroll">
                 {/* Product Hunt Logo */}
                 <div className="logo-item">
-                  <div className="w-10 h-10 bg-[#DA552F] rounded-full flex items-center justify-center mb-1">
-                    <div className="text-white font-bold text-xl">P</div>
+                  <div className="w-8 h-8 bg-[#DA552F] rounded-full flex items-center justify-center">
+                    <div className="text-white font-bold text-lg">P</div>
                   </div>
-                  <div className="text-[#DA552F] font-bold text-xs sm:text-sm">Product Hunt</div>
+                  <span className="logo-item-name">Product Hunt</span>
                 </div>
                 
                 {/* NTV Kenya Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <path d="M10,10 L50,10 L50,50 L10,50 Z" fill="none" stroke="#E11D30" strokeWidth="4" />
-                    <text x="30" y="36" textAnchor="middle" fill="#E11D30" fontSize="26" fontWeight="bold">NTV</text>
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <path d="M5,5 L55,5 L55,35 L5,35 Z" fill="none" stroke="#E11D30" strokeWidth="4" />
+                    <text x="30" y="25" textAnchor="middle" fill="#E11D30" fontSize="16" fontWeight="bold">NTV</text>
                   </svg>
+                  <span className="logo-item-name">NTV Kenya</span>
                 </div>
                 
                 {/* Nation Africa Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <text x="100" y="30" textAnchor="middle" fill="#0F274D" fontSize="22" fontWeight="bold">NATION</text>
-                    <text x="100" y="50" textAnchor="middle" fill="#E11D30" fontSize="18" fontWeight="bold">AFRICA</text>
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <rect x="5" y="5" width="50" height="30" rx="2" fill="#0F274D" />
+                    <text x="30" y="20" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="bold">NATION</text>
+                    <text x="30" y="30" textAnchor="middle" fill="#E11D30" fontSize="8" fontWeight="bold">AFRICA</text>
                   </svg>
-                </div>
-                
-                {/* Stripe Climate Logo */}
-                <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <path d="M30,20 L45,35 L30,50" fill="none" stroke="#635BFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M170,20 L155,35 L170,50" fill="none" stroke="#635BFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                    <text x="100" y="38" textAnchor="middle" fill="#635BFF" fontSize="18" fontWeight="bold">CLIMATE</text>
-                  </svg>
+                  <span className="logo-item-name">Nation Africa</span>
                 </div>
                 
                 {/* UNESCO Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <circle cx="100" cy="30" r="20" fill="none" stroke="#1E88E5" strokeWidth="2" />
-                    <text x="100" y="35" textAnchor="middle" fill="#1E88E5" fontSize="12" fontWeight="bold">UNESCO</text>
-                    <path d="M70,50 L130,50" fill="none" stroke="#1E88E5" strokeWidth="2" />
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <circle cx="30" cy="20" r="15" fill="none" stroke="#1E88E5" strokeWidth="2" />
+                    <text x="30" y="24" textAnchor="middle" fill="#1E88E5" fontSize="9" fontWeight="bold">UNESCO</text>
                   </svg>
+                  <span className="logo-item-name">UNESCO</span>
                 </div>
                 
                 {/* Tony Elumelu Foundation Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-24 h-12">
-                    <rect x="50" y="15" width="100" height="30" rx="5" fill="none" stroke="#2E7D32" strokeWidth="2" />
-                    <text x="100" y="30" textAnchor="middle" fill="#2E7D32" fontSize="10" fontWeight="bold">TONY ELUMELU</text>
-                    <text x="100" y="42" textAnchor="middle" fill="#2E7D32" fontSize="8" fontWeight="bold">FOUNDATION</text>
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <rect x="5" y="5" width="50" height="30" rx="5" fill="none" stroke="#2E7D32" strokeWidth="2" />
+                    <text x="30" y="20" textAnchor="middle" fill="#2E7D32" fontSize="6" fontWeight="bold">TONY ELUMELU</text>
+                    <text x="30" y="28" textAnchor="middle" fill="#2E7D32" fontSize="5" fontWeight="bold">FOUNDATION</text>
                   </svg>
+                  <span className="logo-item-name">TEF</span>
+                </div>
+                
+                {/* Stripe Climate Logo */}
+                <div className="logo-item">
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <path d="M10,20 L20,30 L10,40" fill="none" stroke="#635BFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M50,20 L40,30 L50,40" fill="none" stroke="#635BFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <text x="30" y="25" textAnchor="middle" fill="#635BFF" fontSize="9" fontWeight="bold">CLIMATE</text>
+                  </svg>
+                  <span className="logo-item-name">Stripe Climate</span>
                 </div>
 
-                {/* Duplicate logos for continuous scrolling effect */}
+                {/* Repeat logos for continuous scrolling (without duplicates) */}
                 {/* Product Hunt Logo */}
                 <div className="logo-item">
-                  <div className="w-10 h-10 bg-[#DA552F] rounded-full flex items-center justify-center mb-1">
-                    <div className="text-white font-bold text-xl">P</div>
+                  <div className="w-8 h-8 bg-[#DA552F] rounded-full flex items-center justify-center">
+                    <div className="text-white font-bold text-lg">P</div>
                   </div>
-                  <div className="text-[#DA552F] font-bold text-xs sm:text-sm">Product Hunt</div>
+                  <span className="logo-item-name">Product Hunt</span>
                 </div>
                 
                 {/* NTV Kenya Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <path d="M10,10 L50,10 L50,50 L10,50 Z" fill="none" stroke="#E11D30" strokeWidth="4" />
-                    <text x="30" y="36" textAnchor="middle" fill="#E11D30" fontSize="26" fontWeight="bold">NTV</text>
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <path d="M5,5 L55,5 L55,35 L5,35 Z" fill="none" stroke="#E11D30" strokeWidth="4" />
+                    <text x="30" y="25" textAnchor="middle" fill="#E11D30" fontSize="16" fontWeight="bold">NTV</text>
                   </svg>
+                  <span className="logo-item-name">NTV Kenya</span>
                 </div>
                 
                 {/* Nation Africa Logo */}
                 <div className="logo-item">
-                  <svg viewBox="0 0 200 60" className="w-20 h-12">
-                    <text x="100" y="30" textAnchor="middle" fill="#0F274D" fontSize="22" fontWeight="bold">NATION</text>
-                    <text x="100" y="50" textAnchor="middle" fill="#E11D30" fontSize="18" fontWeight="bold">AFRICA</text>
+                  <svg viewBox="0 0 60 40" className="w-8 h-8">
+                    <rect x="5" y="5" width="50" height="30" rx="2" fill="#0F274D" />
+                    <text x="30" y="20" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="bold">NATION</text>
+                    <text x="30" y="30" textAnchor="middle" fill="#E11D30" fontSize="8" fontWeight="bold">AFRICA</text>
                   </svg>
+                  <span className="logo-item-name">Nation Africa</span>
                 </div>
               </div>
             </div>

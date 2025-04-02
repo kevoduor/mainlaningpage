@@ -24,11 +24,19 @@
 
 .logo-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: 0 1.5rem;
   min-width: 80px;
+}
+
+/* Logo name styling */
+.logo-item-name {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #666;
 }
 
 /* Responsive logo animations */
