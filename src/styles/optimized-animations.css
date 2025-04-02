@@ -1,17 +1,16 @@
 
 /* Optimized animations for better performance */
 
-/* Use hardware-accelerated properties (transform, opacity) instead of properties that trigger layout */
+/* Hardware acceleration and performance improvements */
 .will-change-transform {
   will-change: transform;
 }
 
-/* Avoid will-change except where absolutely necessary */
 .will-change-auto {
   will-change: auto;
 }
 
-/* Use transform for all animations instead of top/left/right/bottom properties */
+/* Hover transitions with transform for better performance */
 .hover-translate {
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0); /* Force GPU acceleration */
@@ -19,21 +18,6 @@
 
 .hover-translate:hover {
   transform: translate3d(0, -2px, 0);
-}
-
-/* Optimize float animation to use transform only */
-.float-animation {
-  animation: optimized-float 3s ease-in-out infinite;
-  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-}
-
-@keyframes optimized-float {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -5px, 0);
-  }
 }
 
 /* Reduce animation work for reduced motion preference */
