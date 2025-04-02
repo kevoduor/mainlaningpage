@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 import animatePlugin from "tailwindcss-animate";
@@ -54,6 +55,14 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        // New brand palette based on the image
+        brand: {
+          purple: "#4A154B",
+          blue: "#36C5F0",
+          green: "#2EB67D",
+          red: "#DF1E5A",
+          yellow: "#ECB22E",
         },
         slack: {
           '50': '#f5f0ff',
@@ -126,8 +135,11 @@ const config = {
         'wave-bg': 'waveAnimation 15s ease infinite',
       },
       fontFamily: {
-        sans: ["Lato", ...defaultTheme.fontFamily.sans],
-        slack: ["Lato", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        slack: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
+      letterSpacing: {
+        tighter: '-0.06em', // -6% letter spacing
       },
       backgroundImage: {
         'slack-gradient': "linear-gradient(135deg, #4A154B 0%, #611f69 50%, #7C3085 100%)",

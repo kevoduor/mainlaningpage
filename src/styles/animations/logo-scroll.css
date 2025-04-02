@@ -1,11 +1,12 @@
 
-/* Logo styling for static horizontal display */
+/* Logo styling */
 .logo-item-name {
   margin-top: 0.5rem;
   font-size: 0.75rem;
   font-weight: 500;
   color: #666;
   text-align: center;
+  letter-spacing: -0.06em;
 }
 
 /* Responsive adjustments for mobile */

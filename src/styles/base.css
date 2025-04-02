@@ -6,33 +6,33 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 213 30% 15%; /* Darker text for better contrast */
+    --foreground: 277 65% 19%; /* Brand purple */
 
     --card: 0 0% 100%;
-    --card-foreground: 213 30% 15%; /* Darker text for better contrast */
+    --card-foreground: 277 65% 19%; /* Brand purple */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 30% 15%; /* Darker text for better contrast */
+    --popover-foreground: 277 65% 19%; /* Brand purple */
 
-    /* Slack-inspired color palette with improved contrast */
-    --primary: 279 100% 40%; /* Slack purple */
+    /* Updated color palette based on the image */
+    --primary: 277 65% 19%; /* #4A154B - Purple */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 279 30% 95%;
-    --secondary-foreground: 279 100% 30%;
+    --secondary: 196 89% 58%; /* #36C5F0 - Blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 153 48% 45%; /* #2EB67D - Green */
+    --accent-foreground: 0 0% 100%;
 
     --muted: 213 10% 96%;
-    --muted-foreground: 213 50% 30%; /* Darker muted text for better contrast */
+    --muted-foreground: 213 50% 30%;
 
-    --accent: 279 30% 95%;
-    --accent-foreground: 279 100% 30%;
-
-    --destructive: 0 84.2% 50%; /* Darker destructive for better contrast */
+    --destructive: 343 85% 49%; /* #DF1E5A - Red */
     --destructive-foreground: 210 40% 98%;
 
     --border: 213 10% 90%;
     --input: 213 10% 90%;
-    --ring: 279 100% 40%;
+    --ring: 343 85% 49%; /* #DF1E5A - Red */
 
     --radius: 0.5rem;
 
@@ -47,51 +47,52 @@
   }
 
   .dark {
-    --background: 213 30% 10%;
+    --background: 277 65% 10%;
     --foreground: 213 10% 95%;
 
-    --card: 213 30% 15%;
+    --card: 277 65% 15%;
     --card-foreground: 213 10% 95%;
 
-    --popover: 213 30% 15%;
+    --popover: 277 65% 15%;
     --popover-foreground: 213 10% 95%;
 
-    --primary: 279 100% 50%; /* Brighter purple for dark mode contrast */
+    --primary: 277 65% 50%; /* Brighter purple for dark mode contrast */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 279 30% 20%;
-    --secondary-foreground: 279 100% 90%;
+    --secondary: 196 89% 40%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 213 30% 20%;
     --muted-foreground: 213 10% 70%;
 
-    --accent: 279 30% 20%;
-    --accent-foreground: 279 100% 90%;
+    --accent: 153 48% 35%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 40%; /* Brighter destructive for dark mode */
+    --destructive: 343 85% 40%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 213 30% 20%;
     --input: 213 30% 20%;
-    --ring: 279 100% 50%;
+    --ring: 343 85% 40%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.06em; /* -6% letter spacing */
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight;
+    @apply font-medium tracking-tighter;
   }
 
   /* Improved responsive text sizing */
@@ -108,7 +109,7 @@
   }
   
   p {
-    @apply text-sm sm:text-base text-slate-700 dark:text-slate-300;
+    @apply text-sm sm:text-base text-slate-700 dark:text-slate-300 tracking-tighter;
   }
   
   /* Improved accessibility for focus states */
@@ -117,5 +118,5 @@
   }
 }
 
-/* Import Lato font to match Slack's typography */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
+/* Import Inter font to match our new typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
