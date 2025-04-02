@@ -1,0 +1,21 @@
+
+/* Reveal animations for content */
+.reveal-animation > * {
+  @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+}
+
+.reveal-animation > *.in-viewport {
+  @apply opacity-100 translate-y-0;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end);
+}

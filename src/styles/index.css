@@ -10,6 +10,9 @@
 /* Import other styles (these will load after critical content renders) */
 @import './base.css';
 
+/* Import animations */
+@import './animations/index.css';
+
 /* Import optimized animations */
 @import './optimized-animations.css';
 

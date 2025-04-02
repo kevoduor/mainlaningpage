@@ -1,0 +1,49 @@
+
+/* Wave effect animations inspired by Slack's brand */
+@keyframes wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.wave-bg-animation {
+  background: linear-gradient(270deg, #4A154B, #611f69, #7C3085, #9F57B2);
+  background-size: 300% 300%;
+  animation: wave 15s ease infinite;
+}
+
+/* Logo wave effect */
+@keyframes waveEffect {
+  0% {
+    transform: translateX(-100%) translateY(0);
+  }
+  50% {
+    transform: translateX(100%) translateY(-5px);
+  }
+  100% {
+    transform: translateX(-100%) translateY(0);
+  }
+}
+
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: waveEffect 3s linear infinite;
+}

@@ -1,0 +1,40 @@
+
+/* Float animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Optimized float animation specifically for logos */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.logo-float {
+  animation: logoFloat 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+}
+
+/* Responsive optimizations */
+@media (max-width: 640px) {
+  .float-animation {
+    animation-duration: 4s; /* Slower on mobile for better performance */
+  }
+}

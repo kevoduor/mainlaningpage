@@ -1,0 +1,11 @@
+
+/* Main animations index file that imports all animation modules */
+@import './base.css';
+@import './float.css';
+@import './reveal.css';
+@import './pulse.css';
+@import './slide.css';
+@import './wave.css';
+@import './shimmer.css';
+@import './loading.css';
+@import './logo-scroll.css';

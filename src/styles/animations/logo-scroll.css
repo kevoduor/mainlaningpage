@@ -1,0 +1,44 @@
+
+/* Logo scroll animation */
+@keyframes logoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.logo-scroll-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.logo-scroll {
+  display: flex;
+  align-items: center;
+  animation: logoScroll 20s linear infinite;
+  width: max-content;
+}
+
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1.5rem;
+  min-width: 80px;
+}
+
+/* Responsive logo animations */
+@media (max-width: 640px) {
+  .logo-scroll {
+    animation-duration: 15s; /* Slower on mobile for better readability */
+  }
+  
+  .logo-item {
+    margin: 0 1rem;
+    min-width: 60px;
+  }
+}
