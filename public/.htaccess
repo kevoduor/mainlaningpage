@@ -137,19 +137,10 @@
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.webp -f
   RewriteRule ^(.+)\.(jpe?g|png)$ $1.$2.webp [T=image/webp,L]
   
+  # Custom 404 error document
+  ErrorDocument 404 /index.html
+  
   # Rewrite all non-file requests to index.html for SPA routing
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Add performance optimization headers
-<IfModule mod_headers.c>
-  # Preload key resources
-  Header add Link "</lovable-uploads/1143940d-5191-49f3-851b-44b67257b857-mobile.webp>; rel=preload; as=image"
-  
-  # Enable HTTP/2 Server Push for critical resources on mobile
-  <FilesMatch "index\.html">
-    Header add Link "</src/styles/critical.css>; rel=preload; as=style"
-    Header add Link "</src/styles/mobile.css>; rel=preload; as=style"
-    Header add Link "</src/main.tsx>; rel=modulepreload"
-  </FilesMatch>
-</IfModule>

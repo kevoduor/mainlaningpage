@@ -32,6 +32,12 @@ const initApp = () => {
       }
     }
     
+    // Preconnect to analytics to improve performance
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'preconnect';
+    linkElement.href = 'https://www.google-analytics.com';
+    document.head.appendChild(linkElement);
+    
     // Create the React root
     const root = createRoot(rootElement);
     
@@ -61,6 +67,40 @@ const initApp = () => {
     console.error('Application error:', error);
     if (error instanceof Error) {
       console.error('Error message:', error.message);
+      
+      // Add error reporting to help with debugging 404s
+      if (window.gtag && typeof window.gtag === 'function') {
+        window.gtag('event', 'js_error', {
+          error_message: error.message,
+          error_stack: error.stack,
+          page_location: window.location.href
+        });
+      }
+    }
+    
+    // Even if there's an error in the app, try to show the 404 page
+    if (document.getElementById('root')) {
+      try {
+        // Dynamically import the Error404 page if possible
+        import('./pages/Error404').then(module => {
+          const ErrorComponent = module.default;
+          const errorRoot = createRoot(document.getElementById('root')!);
+          errorRoot.render(<ErrorComponent />);
+        }).catch(() => {
+          // Fallback error message if the Error404 component can't be loaded
+          document.getElementById('root')!.innerHTML = `
+            <div style="text-align:center; padding:40px; font-family: Inter, sans-serif;">
+              <h1 style="font-size:3rem; margin-bottom:1rem;">Something went wrong</h1>
+              <p style="margin-bottom:2rem;">Please try refreshing the page</p>
+              <a href="/" style="padding:10px 20px; background:#6A38BC; color:white; text-decoration:none; border-radius:4px;">
+                Go to Homepage
+              </a>
+            </div>
+          `;
+        });
+      } catch (innerError) {
+        console.error('Failed to render error page:', innerError);
+      }
     }
   }
 };

@@ -13,11 +13,46 @@
     <meta property="og:url" content="https://www.heynia.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#4A154B">
+    <meta name="theme-color" content="#6A38BC">
     <link rel="canonical" href="https://www.heynia.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* Critical CSS to prevent layout shifts */
+      body {
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -0.06em;
+        margin: 0;
+      }
+      .js-loading {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+      /* Inline error styling to handle 404s even if CSS fails to load */
+      .error-fallback {
+        text-align: center;
+        padding: 40px;
+        margin: 0 auto;
+        max-width: 500px;
+      }
+      .error-fallback h1 {
+        font-size: 3rem;
+        color: #231B30;
+      }
+      .error-fallback p {
+        margin-bottom: 20px;
+        color: #6c757d;
+      }
+      .error-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #6A38BC;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+    </style>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BPD3BXK77Z"></script>
@@ -25,12 +60,52 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-BPD3BXK77Z');
+      
+      // Track 404 errors
+      window.addEventListener('error', function(e) {
+        if (e && e.target && e.target.nodeName === 'LINK' || e.target.nodeName === 'SCRIPT') {
+          gtag('event', 'resource_error', {
+            event_category: 'Error',
+            event_label: e.target.src || e.target.href,
+            event_action: '404_resource'
+          });
+        }
+      }, true);
     </script>
   </head>
   <body class="js-loading">
     <div id="root"></div>
+    <noscript>
+      <div class="error-fallback">
+        <h1>JavaScript Required</h1>
+        <p>Please enable JavaScript to use HeyNia. We use JavaScript to provide an interactive experience.</p>
+        <a href="/" class="error-btn">Reload</a>
+      </div>
+    </noscript>
+    <script>
+      // Fallback handler for fatal errors
+      window.addEventListener('error', function(e) {
+        if (document.getElementById('root') && document.getElementById('root').childElementCount === 0) {
+          document.getElementById('root').innerHTML = `
+            <div class="error-fallback">
+              <h1>Something went wrong</h1>
+              <p>We're sorry, but something went wrong. Please try refreshing the page.</p>
+              <a href="/" class="error-btn">Go to Homepage</a>
+            </div>
+          `;
+        }
+      });
+      
+      // Special handling for 404 errors
+      if (window.location.pathname !== '/' && 
+          !window.location.pathname.startsWith('/blog') && 
+          window.location.pathname !== '/terms' && 
+          window.location.pathname !== '/privacy' && 
+          window.location.pathname !== '/cookies') {
+        document.title = 'Page Not Found | HeyNia Dental Software';
+      }
+    </script>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
