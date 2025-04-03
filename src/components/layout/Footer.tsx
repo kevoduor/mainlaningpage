@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div>
             <div className="text-xl font-bold mb-4">
               <Link to="/" className="hover:text-slack-400 transition-colors">
-                <span className="text-slack-400">nia</span>.
+                <span className="text-slack-400">hey</span>nia.
               </Link>
             </div>
             <p className="text-slack-200 mb-4 max-w-xs">
@@ -49,9 +49,9 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-medium mb-4 text-white">Comparisons</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Nia vs Dentrix</Link></li>
-              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Nia vs Open Dental</Link></li>
-              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Nia vs Eaglesoft</Link></li>
+              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">HeyNia vs Dentrix</Link></li>
+              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">HeyNia vs Open Dental</Link></li>
+              <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">HeyNia vs Eaglesoft</Link></li>
               <li><Link to="/" className="text-slack-300 hover:text-white transition-colors">Best Dentrix Alternative</Link></li>
             </ul>
           </div>
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-slack-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-slack-400 text-sm mb-4 md:mb-0">
-              © {currentYear} <Link to="/" className="hover:text-white transition-colors">Nia</Link>. All rights reserved.
+              © {currentYear} <Link to="/" className="hover:text-white transition-colors">HeyNia</Link>. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-4 sm:gap-6 items-center justify-center sm:justify-end">
               <Link to="/terms" className="text-slack-400 hover:text-white transition-colors">Terms</Link>

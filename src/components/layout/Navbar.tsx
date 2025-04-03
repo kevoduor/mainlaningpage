@@ -50,11 +50,11 @@ const Navbar = () => {
     { name: 'FAQ', path: '/#faq', scrollTo: 'faq' },
   ];
   
-  // Updated Motia-inspired logo component with black color
-  const MotiaLogo = () => (
-    <div className="motia-logo">
-      <span className="motia-m font-motia text-xl font-medium text-black">
-        <span className="text-black">n</span>ia
+  // Updated logo component with black color
+  const HeyniaLogo = () => (
+    <div className="heynia-logo">
+      <span className="heynia-m font-motia text-xl font-medium text-black">
+        <span className="text-black">hey</span>nia
       </span>
     </div>
   );
@@ -63,9 +63,9 @@ const Navbar = () => {
     <nav className={navClasses}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo with updated color */}
+          {/* Logo with updated name */}
           <Link to="/" className="text-black text-xl font-bold font-motia tracking-tight">
-            <MotiaLogo />
+            <HeyniaLogo />
           </Link>
           
           {/* Desktop nav */}

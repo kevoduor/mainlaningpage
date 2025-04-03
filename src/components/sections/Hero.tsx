@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
             Grow Your Dental Practice Effortlessly
           </h1>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-700 mb-3 md:mb-5 text-balance max-w-3xl mx-auto px-1 tracking-tighter">
-            Nia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.
+            HeyNia gives you the tools to attract more patients, minimize no-shows, and streamline your operations.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
             <CTAButton 

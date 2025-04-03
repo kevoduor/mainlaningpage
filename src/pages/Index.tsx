@@ -21,17 +21,17 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col relative">
       <Helmet>
-        <title>Nia | Dental Practice Management Software</title>
-        <meta name="description" content="Nia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
+        <title>HeyNia | Dental Practice Management Software</title>
+        <meta name="description" content="HeyNia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <link rel="canonical" href="https://www.heynia.com/" />
         <meta name="robots" content="index, follow" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Nia | Dental Practice Management Software" />
-        <meta property="og:description" content="Nia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
+        <meta property="og:title" content="HeyNia | Dental Practice Management Software" />
+        <meta property="og:description" content="HeyNia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
         <meta property="og:url" content="https://www.heynia.com/" />
-        <meta property="og:site_name" content="Nia" />
+        <meta property="og:site_name" content="HeyNia" />
       </Helmet>
       
       <Navbar />
@@ -39,13 +39,13 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         
-        {/* Why Dentists Love Nia */}
+        {/* Why Dentists Love HeyNia */}
         <section className="py-12 sm:py-16 md:py-20 bg-nia-600 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-3 md:mb-4 lg:mb-6">Why Dentists Love Nia</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-3 md:mb-4 lg:mb-6">Why Dentists Love HeyNia</h2>
               <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-nia-100 mb-6 sm:mb-8 md:mb-12">
-                Nia isn't just software—it's the power-up your practice needs.
+                HeyNia isn't just software—it's the power-up your practice needs.
               </p>
             </div>
             
@@ -119,7 +119,7 @@ const Index = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-3 sm:mb-4 md:mb-6">Ready to Transform Your Dental Practice?</h2>
             <p className="text-base sm:text-lg md:text-xl mb-5 sm:mb-6 md:mb-8 max-w-2xl mx-auto text-nia-100">
-              Join dentists using Nia to attract more patients, reduce no-shows, and streamline operations.
+              Join dentists using HeyNia to attract more patients, reduce no-shows, and streamline operations.
             </p>
             <CTAButton 
               size={isMobile ? "md" : "lg"} 
