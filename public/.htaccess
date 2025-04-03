@@ -143,4 +143,3 @@
   # Rewrite all non-file requests to index.html for SPA routing
   RewriteRule ^ index.html [L]
 </IfModule>
-

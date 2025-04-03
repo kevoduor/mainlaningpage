@@ -84,7 +84,6 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   const handleImageError = () => {
     if (retryCount < 2) {
       setRetryCount(prev => prev + 1);
-      console.warn(`Retrying image load (${retryCount + 1}/2): ${src}`);
       
       // Force reload after a short delay
       setTimeout(() => {
@@ -94,7 +93,6 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         }
       }, 500);
     } else {
-      console.error(`Failed to load image after ${retryCount} retries: ${src}`);
       setHasError(true);
     }
   };

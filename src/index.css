@@ -14,18 +14,18 @@
 
 /* Critical animations that need to be first */
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(12px);}
+  from {opacity: 0; transform: translateY(10px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
 /* Critical image performance optimizations */
 .blur-up {
   filter: blur(5px);
-  transition: filter 0.4s ease-out;
+  transition: filter 0.3s ease-out;
 }
 
 .blur-up.loaded {
@@ -73,12 +73,14 @@ img {
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
+  /* Reduce base font size for faster rendering */
   body {
     font-size: 14px;
   }
   
+  /* Speed up animations on mobile */
   .animate-fade-in {
-    animation-duration: 0.4s;
+    animation-duration: 0.2s;
   }
   
   /* Optimize touch targets */
