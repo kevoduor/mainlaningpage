@@ -59,30 +59,32 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/cookies" element={<Cookies />} />
-            
-            {/* Domain canonicalization - redirect non-www to www */}
-            <Route 
-              path="*" 
-              element={
-                window.location.hostname === 'heynia.com' 
-                  ? <Navigate to={`https://www.heynia.com${window.location.pathname}`} replace /> 
-                  : <Error404 /> 
-              } 
-            />
-          </Routes>
-          <WhatsAppButton />
-        </BrowserRouter>
-        <Analytics />
+        <div className="min-h-screen bg-[#FAFAFA]">
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/cookies" element={<Cookies />} />
+              
+              {/* Domain canonicalization - redirect non-www to www */}
+              <Route 
+                path="*" 
+                element={
+                  window.location.hostname === 'heynia.com' 
+                    ? <Navigate to={`https://www.heynia.com${window.location.pathname}`} replace /> 
+                    : <Error404 /> 
+                } 
+              />
+            </Routes>
+            <WhatsAppButton />
+          </BrowserRouter>
+          <Analytics />
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );

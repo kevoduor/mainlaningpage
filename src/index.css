@@ -14,18 +14,18 @@
 
 /* Critical animations that need to be first */
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(8px);}
+  from {opacity: 0; transform: translateY(12px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
 /* Critical image performance optimizations */
 .blur-up {
   filter: blur(5px);
-  transition: filter 0.3s ease-out;
+  transition: filter 0.4s ease-out;
 }
 
 .blur-up.loaded {
@@ -43,11 +43,32 @@
   text-wrap: balance;
 }
 
+/* Luxury smooth transitions */
+a, button, .transition-element {
+  transition: all 0.3s ease;
+}
+
 /* Fix image loading */
 img {
   max-width: 100%;
   height: auto;
   transition: opacity 0.3s ease;
+}
+
+/* Luxury shadow */
+.luxury-shadow {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Float animation for subtle movement */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
 /* Mobile-specific optimizations */
@@ -57,7 +78,7 @@ img {
   }
   
   .animate-fade-in {
-    animation-duration: 0.3s;
+    animation-duration: 0.4s;
   }
   
   /* Optimize touch targets */
