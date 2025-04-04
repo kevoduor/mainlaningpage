@@ -1,13 +1,21 @@
 
 /* Critical path CSS - only what's needed for first render */
 
-/* Base layout for mobile devices */
+/* Base layout for all devices */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-text: #333;
+  --color-primary: #0087cc;
+  --color-background: #fff;
+  --color-button: #0087cc;
+}
+
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -29,12 +37,17 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-weight: 700;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
   font-weight: 600;
 }
 
@@ -45,14 +58,19 @@ p {
 
 /* Button essentials */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem 1rem;
-  background-color: #0087cc;
+  min-height: 44px; /* For mobile touch targets */
+  background-color: var(--color-button);
   color: white;
   border-radius: 0.25rem;
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
 }
 
 /* Flexbox essentials */
@@ -68,6 +86,14 @@ p {
   justify-content: center;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
 /* Basic spacing utilities */
 .mt-4 {
   margin-top: 1rem;
@@ -77,10 +103,16 @@ p {
   margin-bottom: 1rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Images */
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /* Accessibility improvements */
@@ -97,17 +129,109 @@ img {
   }
 }
 
-/* Responsive basics */
-@media (max-width: 640px) {
-  body {
-    font-size: 15px;
+/* Card base styles */
+.card-base {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Sections */
+.section {
+  padding: 3rem 1rem;
+}
+
+.section-alt {
+  padding: 3rem 1rem;
+  background-color: #f9fafb;
+}
+
+/* Container variants */
+.container-tight {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Text alignment on mobile */
+.text-center-mobile {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .text-center-mobile {
+    text-align: left;
+  }
+
+  .section, .section-alt {
+    padding: 4rem 2rem;
   }
   
-  h1 {
-    font-size: 1.75rem;
+  .container, .container-tight {
+    padding: 0 2rem;
   }
-  
-  h2 {
-    font-size: 1.35rem;
+}
+
+/* Safe area insets for mobile devices */
+.safe-padding-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-padding-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Consistent grid system */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Fix for iOS Safari overscrolling */
+html {
+  height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+body {
+  min-height: -webkit-fill-available;
+  overscroll-behavior: none;
+}
+
+/* Prevent layout shifts from images */
+.aspect-square {
+  aspect-ratio: 1/1;
+}
+
+.aspect-video {
+  aspect-ratio: 16/9;
+}
+
+/* Hide scrollbars but allow scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

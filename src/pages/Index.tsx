@@ -11,8 +11,9 @@ import FAQ from '@/components/sections/FAQ';
 import CTAButton from '@/components/ui/CTAButton';
 import { Clock, BrainCircuit, SmilePlus, TrendingUp, HeartHandshake, Coins } from 'lucide-react';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
-import { useBreakpoint } from '@/hooks/use-mobile';
+import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 import { Helmet } from 'react-helmet';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 const BenefitCard: React.FC<{
   title: string;
@@ -22,7 +23,7 @@ const BenefitCard: React.FC<{
 }> = ({ title, description, icon: Icon, index }) => {
   return (
     <div 
-      className="card-base animate-fade-in"
+      className="card-base animate-fade-in hover:shadow-lg transition-all"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className="flex items-start mb-3">
@@ -35,8 +36,7 @@ const BenefitCard: React.FC<{
 };
 
 const Index = () => {
-  const { isXs, isSm } = useBreakpoint();
-  const isMobile = isXs || isSm;
+  const { isMobile } = useDeviceDetection();
 
   const benefits = [
     {
@@ -76,15 +76,11 @@ const Index = () => {
       <Helmet>
         <title>HeyNia | Dental Practice Management Software</title>
         <meta name="description" content="HeyNia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0" />
         <link rel="canonical" href="https://www.heynia.com/" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="HeyNia | Dental Practice Management Software" />
-        <meta property="og:description" content="HeyNia gives you the tools to attract more patients, minimize no-shows, and streamline your dental practice operations." />
-        <meta property="og:url" content="https://www.heynia.com/" />
-        <meta property="og:site_name" content="HeyNia" />
+        {/* Preload critical assets */}
+        <link rel="preload" href="/lovable-uploads/0725958f-48c8-44c1-b455-27688e67d7f4-450w.webp" as="image" fetchPriority="high" />
       </Helmet>
       
       <Navbar />
@@ -95,7 +91,7 @@ const Index = () => {
         {/* Why Dentists Love HeyNia */}
         <section className="section-alt">
           <div className="container-tight">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-4">Why Dentists Love HeyNia</h2>
               <p className="text-base sm:text-lg max-w-2xl mx-auto text-slate-600 mb-8">
                 HeyNia isn't just software—it's the power-up your practice needs.
@@ -114,9 +110,9 @@ const Index = () => {
               ))}
             </div>
             
-            <div className="text-center mt-12">
+            <div className="text-center mt-8 md:mt-12">
               <CTAButton 
-                className="bg-primary text-white shadow" 
+                className="bg-primary text-white shadow-md" 
                 icon={false}
                 href="/signup"
                 size={isMobile ? "sm" : "md"}
@@ -142,7 +138,7 @@ const Index = () => {
             </p>
             <CTAButton 
               size={isMobile ? "md" : "lg"} 
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto shadow-md"
               icon={false}
               href="/signup"
             >

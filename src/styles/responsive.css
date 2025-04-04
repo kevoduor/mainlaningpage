@@ -1,14 +1,65 @@
 
 /* Enhanced responsive utilities */
+
+/* Basic device breakpoints */
+.xs\:only {
+  @media (max-width: 479px) { display: block; }
+  @media (min-width: 480px) { display: none; }
+}
+
+.sm\:only {
+  @media (max-width: 639px) { display: none; }
+  @media (min-width: 640px) and (max-width: 767px) { display: block; }
+  @media (min-width: 768px) { display: none; }
+}
+
+.md\:only {
+  @media (max-width: 767px) { display: none; }
+  @media (min-width: 768px) and (max-width: 1023px) { display: block; }
+  @media (min-width: 1024px) { display: none; }
+}
+
+.lg\:only {
+  @media (max-width: 1023px) { display: none; }
+  @media (min-width: 1024px) and (max-width: 1279px) { display: block; }
+  @media (min-width: 1280px) { display: none; }
+}
+
+.xl\:only {
+  @media (max-width: 1279px) { display: none; }
+  @media (min-width: 1280px) { display: block; }
+}
+
+/* Enhanced responsive visibility */
 @media (max-width: 640px) {
-  .container {
-    @apply px-4;
+  .hidden-sm-down {
+    display: none !important;
   }
 }
 
+@media (min-width: 641px) {
+  .hidden-sm-up {
+    display: none !important;
+  }
+}
+
+/* Device-specific utilities */
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.tablet-up {
+  @apply hidden sm:block;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
+}
+
+/* Responsive container padding */
 @media (max-width: 480px) {
-  .hidden-xs {
-    display: none;
+  .container {
+    @apply px-4;
   }
   
   .xs-full-width {
@@ -22,9 +73,18 @@
   .xs-mb-4 {
     margin-bottom: 1rem;
   }
+  
+  .xs-stack > * + * {
+    margin-top: 1rem;
+  }
 }
 
-/* Responsive container padding for different devices */
+@media (min-width: 481px) and (max-width: 640px) {
+  .container {
+    @apply px-5;
+  }
+}
+
 @media (min-width: 641px) and (max-width: 768px) {
   .container {
     @apply px-5;
@@ -37,64 +97,13 @@
   }
 }
 
-/* Device-specific utilities */
-.ipad-only {
-  @apply hidden md:block lg:hidden;
-}
-
-.tablet-only {
-  @apply hidden sm:block md:hidden;
-}
-
-.mobile-only {
-  @apply block sm:hidden;
-}
-
-.desktop-only {
-  @apply hidden lg:block;
-}
-
-/* Safe area insets for mobile devices */
-.safe-padding-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0);
-}
-
-.safe-padding-top {
-  padding-top: env(safe-area-inset-top, 0);
-}
-
-/* Improved touch targets for mobile */
-@media (max-width: 768px) {
-  button, 
-  a, 
-  .clickable {
-    @apply min-h-[44px] min-w-[44px];
-  }
-  
-  input, 
-  select, 
-  textarea {
-    @apply text-base; /* Prevents iOS zoom on focus */
-  }
-  
-  /* Fix for iOS Safari floating bottom ui */
-  .has-safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+@media (min-width: 1025px) {
+  .container {
+    @apply px-8;
   }
 }
 
-/* Fix for iOS Safari overscrolling */
-html {
-  height: -webkit-fill-available;
-  overscroll-behavior: none;
-}
-
-body {
-  min-height: -webkit-fill-available;
-  overscroll-behavior: none;
-}
-
-/* Responsive font sizes */
+/* Responsive typography */
 .text-responsive {
   font-size: clamp(1rem, 4vw, 1.25rem);
 }
@@ -103,36 +112,95 @@ body {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
-/* Media query for tablets in portrait mode */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .ipad-portrait-adjustment {
-    @apply py-4 px-4;
+.subtitle-responsive {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+/* Flex direction utilities */
+.flex-col-reverse-sm {
+  @media (max-width: 640px) {
+    flex-direction: column-reverse;
   }
 }
 
-/* Media query for small height screens */
-@media (max-height: 700px) {
-  .reduce-height-small-screen {
-    @apply py-2;
+.flex-col-sm {
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+/* Responsive grid systems */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive spacing */
+.responsive-gap {
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-gap {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-gap {
+    gap: 2rem;
+  }
+}
+
+/* Responsive padding */
+.responsive-padding {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-padding {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-padding {
+    padding: 2rem;
+  }
+}
+
+/* Responsive order */
+@media (max-width: 768px) {
+  .order-first-mobile {
+    order: -1;
   }
   
-  .reduce-margins-small-screen {
-    @apply my-2;
+  .order-last-mobile {
+    order: 999;
   }
 }
 
-/* Notch and Dynamic Island handling */
-@supports (padding-top: env(safe-area-inset-top)) {
-  .notch-aware {
-    padding-top: env(safe-area-inset-top);
+/* Consistent margin system */
+.responsive-section {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-section {
+    margin-bottom: 3.5rem;
   }
 }
 
-/* Foldable devices support */
-@media (screen-spanning: single-fold-vertical) {
-  .fold-aware {
-    flex-direction: row;
-    height: 100vh;
+@media (min-width: 1024px) {
+  .responsive-section {
+    margin-bottom: 5rem;
   }
 }
 
@@ -141,5 +209,73 @@ body {
   .landscape-height-limited {
     max-height: 80vh;
     overflow-y: auto;
+  }
+  
+  .landscape-padding-reduced {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Responsive image handling */
+.img-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Safe area insets for mobile */
+.safe-area-inset-padding-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Responsive font weights */
+@media (max-width: 640px) {
+  .font-normal-mobile {
+    font-weight: 400;
+  }
+  
+  .font-medium-mobile {
+    font-weight: 500;
+  }
+}
+
+/* Card grid layouts */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Consistent button sizes */
+.btn-responsive {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .btn-responsive {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn-responsive {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
   }
 }

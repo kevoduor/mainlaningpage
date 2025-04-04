@@ -30,20 +30,29 @@ export function useDeviceDetection(): DeviceInfo {
     isSlowConnection: false,
     saveData: false,
     viewport: {
-      width: 1200,
-      height: 800,
+      width: typeof window !== 'undefined' ? window.innerWidth : 1200,
+      height: typeof window !== 'undefined' ? window.innerHeight : 800,
     },
   });
 
   useEffect(() => {
+    // Skip on server
+    if (typeof window === 'undefined') return;
+    
     const updateDeviceInfo = () => {
       // Get viewport dimensions
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      // Device type detection
-      const isMobile = width < 768 || /iPhone|Android|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent);
-      const isTablet = (width >= 768 && width < 1024) || /iPad|Tablet/i.test(navigator.userAgent);
+      // Device type detection based on multiple signals
+      const isMobileByWidth = width < 768;
+      const isMobileByUA = /iPhone|Android|iPod|BlackBerry|IEMobile/i.test(navigator.userAgent);
+      const isMobile = isMobileByWidth || isMobileByUA;
+      
+      const isTabletByWidth = width >= 768 && width < 1024;
+      const isTabletByUA = /iPad|Tablet/i.test(navigator.userAgent);
+      const isTablet = (isTabletByWidth && !isMobileByUA) || isTabletByUA;
+      
       const isDesktop = !isMobile && !isTablet;
       
       // Orientation detection
@@ -58,8 +67,13 @@ export function useDeviceDetection(): DeviceInfo {
       const connection = (navigator as any).connection;
       if (connection) {
         connectionType = connection.effectiveType || 'unknown';
-        isSlowConnection = connectionType === '2g' || connectionType === 'slow-2g' || connection.downlink < 0.5;
+        isSlowConnection = connectionType === '2g' || connectionType === 'slow-2g' || 
+                           (connection.downlink && connection.downlink < 0.5);
         saveData = !!connection.saveData;
+      } else {
+        // Fallback detection if Network Information API is not available
+        const isSlow = isMobileByUA && /(2g|3g|slow)/i.test(navigator.userAgent);
+        isSlowConnection = isSlow;
       }
       
       setDeviceInfo({
@@ -71,10 +85,7 @@ export function useDeviceDetection(): DeviceInfo {
         connectionType,
         isSlowConnection,
         saveData,
-        viewport: {
-          width,
-          height
-        }
+        viewport: { width, height }
       });
     };
     

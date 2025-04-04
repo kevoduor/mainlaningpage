@@ -21,7 +21,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   style,
 }) => {
   return (
-    <div className={cn("card-base flex flex-col items-center text-center", className)} style={style}>
+    <div 
+      className={cn(
+        "card-base flex flex-col items-center text-center h-full",
+        "transform transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]",
+        className
+      )} 
+      style={style}
+    >
       {avatarSrc && (
         <div className="mb-4 rounded-full p-1 bg-gradient-to-r from-primary/30 to-primary/80 shadow-md">
           <Avatar className="h-20 w-20 border-4 border-white">
@@ -32,10 +39,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </Avatar>
         </div>
       )}
-      <blockquote className="text-sm text-slate-600 italic mb-4">
+      <blockquote className="text-sm md:text-base text-slate-600 italic mb-4">
         "{quote}"
       </blockquote>
-      <footer className="mt-auto">
+      <footer className="mt-auto pt-4">
         <p className="text-sm font-medium">{author}</p>
         <p className="text-xs text-slate-500">{role}</p>
       </footer>
