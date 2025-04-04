@@ -5,36 +5,47 @@ import { Toaster } from './components/ui/toaster';
 import { useDeviceDetection } from './hooks/useDeviceDetection';
 import './App.css';
 
-// Import components that should be loaded immediately
+// Import critical components only
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import PageContainer from './components/layout/PageContainer';
+import CriticalLoadingSkeleton from './components/ui/CriticalLoadingSkeleton';
 
-// Lazily load page components to optimize initial loading
-const Index = lazy(() => import('./pages/Index'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
-const Terms = lazy(() => import('./pages/Terms'));
-const Privacy = lazy(() => import('./pages/Privacy'));
-const Cookies = lazy(() => import('./pages/Cookies'));
-const Error404 = lazy(() => import('./pages/Error404'));
-
-// Loading fallback optimized for fast appearance
-const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-pulse flex space-x-1">
-      <div className="h-2 w-2 bg-primary rounded-full"></div>
-      <div className="h-2 w-2 bg-primary rounded-full animation-delay-200"></div>
-      <div className="h-2 w-2 bg-primary rounded-full animation-delay-500"></div>
-    </div>
-  </div>
-);
+// Lazily load page components with explicit chunks
+const Index = lazy(() => import(/* webpackChunkName: "index-page" */ './pages/Index'));
+const Blog = lazy(() => import(/* webpackChunkName: "blog-page" */ './pages/Blog'));
+const BlogPost = lazy(() => import(/* webpackChunkName: "blog-post" */ './pages/BlogPost'));
+const Terms = lazy(() => import(/* webpackChunkName: "legal-pages" */ './pages/Terms'));
+const Privacy = lazy(() => import(/* webpackChunkName: "legal-pages" */ './pages/Privacy'));
+const Cookies = lazy(() => import(/* webpackChunkName: "legal-pages" */ './pages/Cookies'));
+const Error404 = lazy(() => import(/* webpackChunkName: "error-page" */ './pages/Error404'));
 
 const App: React.FC = () => {
   const { isMobile, isSlowConnection } = useDeviceDetection();
   
+  // Preload critical pages based on current path
+  React.useEffect(() => {
+    const currentPath = window.location.pathname;
+    
+    // Always preload the index page
+    const preloadIndexPage = () => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'script';
+      link.href = '/src/pages/Index.tsx';
+      document.head.appendChild(link);
+    };
+    
+    // Preload based on current route
+    if (currentPath === '/') {
+      preloadIndexPage();
+    } else if (currentPath === '/blog' || currentPath.startsWith('/blog/')) {
+      import('./pages/Blog');
+    }
+  }, []);
+  
   return (
     <BrowserRouter>
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<CriticalLoadingSkeleton />}>
         <PageContainer>
           <Routes>
             <Route path="/" element={<Index />} />

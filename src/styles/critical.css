@@ -1,97 +1,146 @@
 
-/* Critical CSS for core functionality - only what's needed for first render */
-@tailwind base;
-@tailwind components;
+/* Critical path CSS - only what's needed for first render */
 
-/* Core layout utilities */
+/* Base layout for mobile devices */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Basic layout */
 .container {
   width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
+/* Critical typography */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 0;
 }
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-/* Critical typography with improved contrast */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-medium tracking-tight text-slate-800;
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 p {
-  @apply text-slate-700;
+  margin-bottom: 1rem;
 }
 
-/* Critical animation utilities */
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out;
+/* Button basics */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #6A38BC;
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
+/* Basic grid systems */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+/* Flexbox utilities */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: #6A38BC;
+}
+
+/* Spacing utilities */
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* Responsive image default */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Basic animation for loading */
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(8px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-/* LCP (Largest Contentful Paint) optimizations */
-.lcp-target {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 300px;
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* Mobile specific critical styles */
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    color: black;
+    background: white;
+  }
+  
+  .btn {
+    color: white;
+    background: black;
+    border: 2px solid black;
+  }
+}
+
+/* Responsive base for mobile */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
   
   h1 {
-    font-size: 24px;
-    line-height: 1.2;
+    font-size: 1.5rem;
   }
   
-  p {
-    font-size: 14px;
-    line-height: 1.4;
+  h2 {
+    font-size: 1.25rem;
   }
   
   .container {
     padding: 0 0.75rem;
-  }
-  
-  /* Smaller animation distance on mobile for better performance */
-  @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(6px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  
-  /* Ensure images have explicit dimensions to prevent layout shifts */
-  img {
-    height: auto;
-  }
-  
-  /* Optimize mobile hero container */
-  .lcp-target {
-    contain-intrinsic-size: auto 200px;
   }
 }

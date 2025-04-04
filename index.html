@@ -3,110 +3,140 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/lovable-uploads/611ce3aa-c93e-42c4-9b72-3b60a6292c91.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/lovable-uploads/611ce3aa-c93e-42c4-9b72-3b60a6292c91.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>HeyNia - Dental Clinic</title>
     <meta name="description" content="Cutting-edge dental clinic providing comprehensive dental care services including cleanings, fillings, whitening, and more. Book your appointment today!">
-    <meta property="og:title" content="HeyNia - Dental Clinic">
-    <meta property="og:description" content="Cutting-edge dental clinic providing comprehensive dental care services. Book your appointment today!">
-    <meta property="og:image" content="https://www.heynia.com/og-image.png">
-    <meta property="og:url" content="https://www.heynia.com">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#6A38BC">
-    <link rel="canonical" href="https://www.heynia.com" />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/styles/critical.css" as="style" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical fonts - only load a subset -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"></noscript>
+    
+    <!-- Critical inline CSS -->
     <style>
-      /* Critical CSS to prevent layout shifts */
-      body {
-        font-family: 'Inter', sans-serif;
-        letter-spacing: -0.06em;
-        margin: 0;
+      /* Critical CSS for fast rendering */
+      :root {
+        --brand-purple: #6A38BC;
+        --brand-purple-light: #9b87f5;
+        --brand-red: #DF1E5A;
       }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      
       .js-loading {
         opacity: 0;
-        transition: opacity 0.3s ease-in;
       }
-      /* Inline error styling to handle 404s even if CSS fails to load */
-      .error-fallback {
-        text-align: center;
-        padding: 40px;
-        margin: 0 auto;
-        max-width: 500px;
+      
+      .js-loading.loaded {
+        opacity: 1;
+        transition: opacity 0.3s ease;
       }
-      .error-fallback h1 {
-        font-size: 3rem;
-        color: #231B30;
+      
+      /* Loading animation */
+      .loading-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
-      .error-fallback p {
-        margin-bottom: 20px;
-        color: #6c757d;
+      
+      .loading-dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+        border-radius: 50%;
+        background-color: var(--brand-purple);
+        animation: pulse 0.8s infinite alternate;
       }
-      .error-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #6A38BC;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
+      
+      .loading-dot:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      
+      .loading-dot:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(0.7); opacity: 0.5; }
+        100% { transform: scale(1.2); opacity: 1; }
       }
     </style>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BPD3BXK77Z"></script>
+    <!-- Defer non-critical JavaScript -->
+    <script type="module" src="/src/main.tsx" defer></script>
+    
+    <!-- Preload first image -->
+    <link rel="preload" fetchpriority="high" as="image" type="image/webp" href="/lovable-uploads/0725958f-48c8-44c1-b455-27688e67d7f4-450w.webp">
+    
+    <!-- Inline minimal analytics -->
     <script>
+      // Minimal analytics script
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-BPD3BXK77Z');
+      gtag('config', 'G-BPD3BXK77Z', { 'send_page_view': false });
       
-      // Track 404 errors
-      window.addEventListener('error', function(e) {
-        if (e && e.target && e.target.nodeName === 'LINK' || e.target.nodeName === 'SCRIPT') {
-          gtag('event', 'resource_error', {
-            event_category: 'Error',
-            event_label: e.target.src || e.target.href,
-            event_action: '404_resource'
-          });
-        }
-      }, true);
+      // Load full analytics later
+      window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-BPD3BXK77Z";
+        script.async = true;
+        document.head.appendChild(script);
+        
+        // Send pageview after load
+        setTimeout(() => gtag('event', 'page_view'), 2000);
+      });
+      
+      // Performance monitoring
+      const navEntry = performance.getEntriesByType('navigation')[0];
+      if (navEntry) {
+        window.addEventListener('load', function() {
+          setTimeout(() => {
+            const loadTime = performance.now();
+            console.info(`Page fully loaded in ${Math.round(loadTime)}ms`);
+          }, 0);
+        });
+      }
     </script>
   </head>
   <body class="js-loading">
+    <!-- Initial loading indicator -->
+    <div id="initial-loader" class="loading-dots">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
+    
     <div id="root"></div>
+    
     <noscript>
-      <div class="error-fallback">
+      <div style="text-align: center; padding: 2rem;">
         <h1>JavaScript Required</h1>
-        <p>Please enable JavaScript to use HeyNia. We use JavaScript to provide an interactive experience.</p>
-        <a href="/" class="error-btn">Reload</a>
+        <p>Please enable JavaScript to use HeyNia.</p>
       </div>
     </noscript>
+    
     <script>
-      // Fallback handler for fatal errors
-      window.addEventListener('error', function(e) {
-        if (document.getElementById('root') && document.getElementById('root').childElementCount === 0) {
-          document.getElementById('root').innerHTML = `
-            <div class="error-fallback">
-              <h1>Something went wrong</h1>
-              <p>We're sorry, but something went wrong. Please try refreshing the page.</p>
-              <a href="/" class="error-btn">Go to Homepage</a>
-            </div>
-          `;
+      // Remove initial loader when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('loaded');
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.display = 'none';
         }
       });
-      
-      // Special handling for 404 errors
-      if (window.location.pathname !== '/' && 
-          !window.location.pathname.startsWith('/blog') && 
-          window.location.pathname !== '/terms' && 
-          window.location.pathname !== '/privacy' && 
-          window.location.pathname !== '/cookies') {
-        document.title = 'Page Not Found | HeyNia Dental Software';
-      }
     </script>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
