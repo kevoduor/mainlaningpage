@@ -92,26 +92,6 @@ img {
     min-height: 44px;
     min-width: 44px;
   }
-  
-  /* Improve performance by reducing animation complexity */
-  * {
-    will-change: auto !important;
-  }
-  
-  /* Ensure consistent sizing to prevent layout shifts */
-  .aspect-ratio-preserved {
-    height: 0;
-    position: relative;
-  }
-  
-  .aspect-ratio-preserved img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 /* Disable animations for users who prefer reduced motion */
@@ -122,33 +102,4 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Page-specific background colors */
-.bg-home {
-  background: linear-gradient(to bottom, #f7f9fc, #ffffff);
-}
-
-.bg-blog {
-  background: linear-gradient(to bottom, #f0f4ff, #ffffff);
-}
-
-.bg-blog-post {
-  background: linear-gradient(to bottom, #eef2ff, #ffffff);
-}
-
-.bg-terms {
-  background: linear-gradient(to bottom, #ecfdf5, #ffffff);
-}
-
-.bg-privacy {
-  background: linear-gradient(to bottom, #fef3c7, #ffffff);
-}
-
-.bg-cookies {
-  background: linear-gradient(to bottom, #fce7f3, #ffffff);
-}
-
-.bg-error {
-  background: linear-gradient(to bottom, #fee2e2, #ffffff);
 }

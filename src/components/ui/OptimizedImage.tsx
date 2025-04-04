@@ -30,9 +30,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   priority = false,
   sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px'
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(priority);
   const [imgSrc, setImgSrc] = useState<string>(placeholder || '');
   const { isMobile, isSlowConnection } = useDeviceDetection();
+  
+  // Generate unique ID for lazy loading
+  const imageId = `img-${src.replace(/[^a-zA-Z0-9]/g, '-')}`;
   
   // Generate srcSet based on image URL
   const generateSrcSet = () => {
@@ -73,18 +76,44 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     // Only load immediately if priority or no placeholder
     if (priority || !placeholder) {
       setImgSrc(optimizedSrc);
-    } else {
-      // For non-priority images, use the placeholder initially
-      // then load the actual image after a delay
+    } else if (placeholder) {
+      // Use the placeholder initially
       const timer = setTimeout(() => {
         setImgSrc(optimizedSrc);
-      }, 100);
+      }, 100); // Small delay to prioritize critical content
       return () => clearTimeout(timer);
     }
   }, [src, isMobile, isSlowConnection, placeholder, priority]);
+
+  // Use Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority || typeof window === 'undefined' || !window.IntersectionObserver) return;
+    
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setIsLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px', threshold: 0.01 }
+    );
+    
+    const imgElement = document.getElementById(imageId);
+    if (imgElement) observer.observe(imgElement);
+    
+    return () => observer.disconnect();
+  }, [imageId, priority]);
   
   return (
-    <div className={`relative ${className}`} style={{ aspectRatio: width && height ? `${width}/${height}` : undefined }}>
+    <div 
+      className={`relative ${className}`} 
+      style={{ 
+        aspectRatio: width && height ? `${width}/${height}` : undefined,
+        width: width ? `${width}px` : undefined,
+        height: height ? `${height}px` : undefined
+      }}
+    >
       {placeholder && !isLoaded && (
         <img 
           src={placeholder}
@@ -93,10 +122,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           aria-hidden="true"
           width={width}
           height={height}
+          loading="eager"
         />
       )}
       
       <img
+        id={imageId}
         src={imgSrc}
         alt={alt}
         width={width}

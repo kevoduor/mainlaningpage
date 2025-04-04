@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Basic layout */
+/* Base layout utilities */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -23,10 +23,14 @@ body {
 }
 
 /* Critical typography */
-h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
+h1, h2, h3 {
   margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 h2 {
@@ -35,10 +39,11 @@ h2 {
 }
 
 p {
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
-/* Button basics */
+/* Button essentials */
 .btn {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -50,14 +55,7 @@ p {
   transition: background-color 0.2s;
 }
 
-/* Basic grid systems */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-}
-
-/* Flexbox utilities */
+/* Flexbox essentials */
 .flex {
   display: flex;
 }
@@ -70,49 +68,22 @@ p {
   justify-content: center;
 }
 
-.flex-col {
-  flex-direction: column;
-}
-
-/* Text utilities */
-.text-center {
-  text-align: center;
-}
-
-.text-primary {
-  color: #6A38BC;
-}
-
-/* Spacing utilities */
-.mt-2 {
-  margin-top: 0.5rem;
+/* Basic spacing utilities */
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .mb-4 {
   margin-bottom: 1rem;
 }
 
-/* Responsive image default */
+/* Images */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Basic animation for loading */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* High contrast mode support */
+/* Accessibility improvements */
 @media (prefers-contrast: more) {
   body {
     color: black;
@@ -126,21 +97,17 @@ img {
   }
 }
 
-/* Responsive base for mobile */
-@media (max-width: 768px) {
+/* Responsive basics */
+@media (max-width: 640px) {
   body {
     font-size: 15px;
   }
   
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   h2 {
-    font-size: 1.25rem;
-  }
-  
-  .container {
-    padding: 0 0.75rem;
+    font-size: 1.35rem;
   }
 }

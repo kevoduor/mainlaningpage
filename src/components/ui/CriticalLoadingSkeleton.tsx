@@ -2,8 +2,8 @@
 import React from 'react';
 
 /**
- * Minimal, high-performance loading skeleton for critical path rendering
- * Uses inline styles to avoid CSS loading and minimize FCP
+ * Ultra-lightweight loading skeleton for critical path rendering
+ * Uses minimal inline styles to avoid CSS loading and reduce FCP
  */
 const CriticalLoadingSkeleton: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const CriticalLoadingSkeleton: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: '25vh',
+        paddingTop: '15vh',
         width: '100%',
         height: '100vh',
         background: 'linear-gradient(to bottom, #f9f9f9, #ffffff)'

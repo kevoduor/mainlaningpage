@@ -7,7 +7,7 @@ import './index.css';
 // Mark start time for performance measurement
 performance.mark('app-init');
 
-// Preconnect to critical domains
+// Preconnect to critical domains - do this as early as possible
 const preconnectDomains = [
   'https://www.google-analytics.com',
   'https://fonts.gstatic.com'
@@ -31,6 +31,13 @@ if (isMobileDevice) {
   if (viewport) {
     viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover');
   }
+  
+  // Dynamically load mobile-specific CSS to reduce initial bundle size
+  const mobileStyles = document.createElement('link');
+  mobileStyles.rel = 'stylesheet';
+  mobileStyles.href = '/src/styles/mobile.css';
+  mobileStyles.media = 'screen and (max-width: 768px)';
+  document.head.appendChild(mobileStyles);
 }
 
 // Initialize app
@@ -52,15 +59,16 @@ if (rootElement) {
   performance.mark('app-mounted');
   performance.measure('app-startup', 'app-init', 'app-mounted');
   
-  // Report Core Web Vitals
-  // Import web-vitals dynamically to avoid bundling it unnecessarily
-  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-    getCLS(console.log);
-    getFID(console.log);
-    getFCP(console.log);
-    getLCP(console.log);
-    getTTFB(console.log);
-  }).catch(err => {
-    console.warn('Failed to load web-vitals', err);
-  });
+  // Report Core Web Vitals - import dynamically to reduce initial bundle
+  setTimeout(() => {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(console.log);
+      getFID(console.log);
+      getFCP(console.log);
+      getLCP(console.log);
+      getTTFB(console.log);
+    }).catch(err => {
+      console.warn('Failed to load web-vitals', err);
+    });
+  }, 2000); // Delay web-vitals loading to prioritize rendering
 }

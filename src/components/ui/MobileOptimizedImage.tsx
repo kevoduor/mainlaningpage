@@ -35,7 +35,7 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   onLoad,
   ...props
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(!!priority); // Priority images consider loaded by default
   const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const { isMobile, isSlowConnection, saveData } = useDeviceDetection();
@@ -75,9 +75,10 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   
   // Preload critical images
   useEffect(() => {
-    if (priority && !isLoaded) {
+    if (priority && !isLoaded && typeof window !== 'undefined') {
       const img = new Image();
       img.src = imageSource;
+      img.fetchPriority = "high";
       img.onload = () => setIsLoaded(true);
     }
   }, [priority, imageSource, isLoaded]);
@@ -99,7 +100,7 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         if (imgElement) {
           imgElement.src = `${src}?retry=${Date.now()}`;
         }
-      }, 500);
+      }, 300);
     } else {
       setHasError(true);
     }
@@ -115,13 +116,16 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         fill ? "w-full h-full" : "",
         className
       )}
-      style={props.style}
+      style={{
+        ...props.style,
+        aspectRatio: width && height ? `${width}/${height}` : undefined
+      }}
       data-testid="mobile-optimized-image"
     >
       {/* Show loader if not loaded and not showing placeholder */}
       {!isLoaded && !hasError && !shouldShowPlaceholder && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted/10">
-          <Loader2 className="h-6 w-6 animate-spin text-white/70" />
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100/40 dark:bg-gray-800/20">
+          <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
         </div>
       )}
       
@@ -132,6 +136,9 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
           alt=""
           className="absolute inset-0 w-full h-full object-cover blur-up"
           aria-hidden="true"
+          loading="eager"
+          width={width}
+          height={height}
         />
       )}
       
@@ -158,8 +165,8 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
 
       {/* Fallback for complete failure - minimal version */}
       {hasError && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted/10 p-4">
-          <p className="text-sm text-white text-center">Image could not be loaded</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/40 dark:bg-gray-800/20 p-2">
+          <p className="text-xs text-gray-600 text-center">Image could not be loaded</p>
         </div>
       )}
     </div>

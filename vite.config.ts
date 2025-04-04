@@ -64,26 +64,33 @@ export default defineConfig(({ mode }) => {
       minify: isProd ? 'esbuild' : false,
       // Generate compatible JavaScript
       target: 'es2018',
+      // Limit the size of chunk files for better caching
+      chunkSizeWarningLimit: 600,
       // Use chunk splitting for better caching
       rollupOptions: {
         output: {
-          manualChunks: {
-            react: ['react', 'react-dom', 'react-router-dom'],
-            ui: [
-              '@radix-ui/react-accordion',
-              '@radix-ui/react-dialog',
-              '@radix-ui/react-dropdown-menu',
-              '@radix-ui/react-select',
-              '@radix-ui/react-toast',
-            ],
-            utils: ['date-fns', 'clsx', 'tailwind-merge', 'class-variance-authority'],
-            // Keep third-party dependencies in separate chunks
-            vendor: [
-              '@tanstack/react-query',
-              'recharts',
-              'zod',
-              'lucide-react',
-            ],
+          manualChunks: (id) => {
+            // Create specific chunks for better loading
+            if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('node_modules/@radix-ui')) {
+              return 'ui-vendor';
+            }
+            if (id.includes('node_modules')) {
+              return 'vendor'; 
+            }
+            // Split CSS into its own chunk
+            if (id.endsWith('.css')) {
+              return 'styles';
+            }
+            // Group components by type
+            if (id.includes('/components/ui/')) {
+              return 'ui-components';
+            }
+            if (id.includes('/components/')) {
+              return 'components';
+            }
           },
           // Simplified naming for better debugging
           chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -109,15 +116,13 @@ export default defineConfig(({ mode }) => {
     css: {
       devSourcemap: !isProd,
     },
-    // Split large routes for better performance
+    // Optimize dependency prebundling
     optimizeDeps: {
-      include: ['react', 'react-dom', 'react-router-dom'],
+      include: ['react', 'react-dom', 'react-router-dom', 'clsx', 'tailwind-merge'],
       exclude: ['@vercel/analytics'],
       esbuildOptions: {
         target: 'es2018',
       },
     },
-    // Basic logging of build process
-    logLevel: 'info',
   };
 });
