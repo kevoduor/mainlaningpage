@@ -53,13 +53,14 @@ if (rootElement) {
   performance.measure('app-startup', 'app-init', 'app-mounted');
   
   // Report Core Web Vitals
-  if ('web-vitals' in window) {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(console.log);
-      getFID(console.log);
-      getFCP(console.log);
-      getLCP(console.log);
-      getTTFB(console.log);
-    });
-  }
+  // Import web-vitals dynamically to avoid bundling it unnecessarily
+  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    getCLS(console.log);
+    getFID(console.log);
+    getFCP(console.log);
+    getLCP(console.log);
+    getTTFB(console.log);
+  }).catch(err => {
+    console.warn('Failed to load web-vitals', err);
+  });
 }
