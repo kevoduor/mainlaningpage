@@ -60,7 +60,7 @@ const App: React.FC = () => {
       {/* Only show WhatsApp button if not on a slow connection */}
       {!isSlowConnection && <WhatsAppButton />}
       
-      {/* Optimize toast positioning for mobile */}
+      {/* Pass appropriate position prop to Toaster */}
       <Toaster position={isMobile ? "bottom-center" : "top-right"} />
     </BrowserRouter>
   );
