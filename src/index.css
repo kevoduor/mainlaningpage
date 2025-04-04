@@ -12,20 +12,20 @@
 @import './styles/optimized-animations.css' layer(non-critical);
 @import './styles/responsive.css' layer(non-critical);
 
-/* Critical animations that need to be first */
+/* Critical animations that need to be first - optimized for performance */
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
+  from {opacity: 0; transform: translateY(8px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
 /* Critical image performance optimizations */
 .blur-up {
   filter: blur(5px);
-  transition: filter 0.3s ease-out;
+  transition: filter 0.2s ease-out;
 }
 
 .blur-up.loaded {
@@ -43,32 +43,34 @@
   text-wrap: balance;
 }
 
-/* Luxury smooth transitions */
+/* Optimize transitions */
 a, button, .transition-element {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 /* Fix image loading */
 img {
   max-width: 100%;
   height: auto;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* Luxury shadow */
-.luxury-shadow {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+/* Animation delay utilities */
+.animation-delay-100 {
+  animation-delay: 0.1s;
 }
 
-/* Float animation for subtle movement */
-.float-animation {
-  animation: float 6s ease-in-out infinite;
+.animation-delay-200 {
+  animation-delay: 0.2s;
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Page background color transitions */
+.page-gradient {
+  transition: background-color 0.5s ease-in-out;
 }
 
 /* Mobile-specific optimizations */
@@ -110,10 +112,6 @@ img {
     height: 100%;
     object-fit: cover;
   }
-  
-  .aspect-ratio-3-2 {
-    padding-bottom: 66.66%; /* 2:3 aspect ratio */
-  }
 }
 
 /* Disable animations for users who prefer reduced motion */
@@ -124,4 +122,33 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Page-specific background colors */
+.bg-home {
+  background: linear-gradient(to bottom, #f7f9fc, #ffffff);
+}
+
+.bg-blog {
+  background: linear-gradient(to bottom, #f0f4ff, #ffffff);
+}
+
+.bg-blog-post {
+  background: linear-gradient(to bottom, #eef2ff, #ffffff);
+}
+
+.bg-terms {
+  background: linear-gradient(to bottom, #ecfdf5, #ffffff);
+}
+
+.bg-privacy {
+  background: linear-gradient(to bottom, #fef3c7, #ffffff);
+}
+
+.bg-cookies {
+  background: linear-gradient(to bottom, #fce7f3, #ffffff);
+}
+
+.bg-error {
+  background: linear-gradient(to bottom, #fee2e2, #ffffff);
 }

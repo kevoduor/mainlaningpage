@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
+import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 
 interface MobileOptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -18,7 +19,7 @@ interface MobileOptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEle
 }
 
 /**
- * Simplified and reliable MobileOptimizedImage component for better mobile display
+ * Highly optimized image component with device-aware loading strategies
  */
 const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   src,
@@ -37,35 +38,33 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const { isMobile, isSlowConnection, saveData } = useDeviceDetection();
   
   // Generate a unique ID for this image
   const uniqueId = `img-${src.replace(/[^a-zA-Z0-9]/g, '-')}`;
   
-  // Determine if we should use a mobile-optimized version
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  
-  // Get the appropriate image source
+  // Get the appropriate image source based on device capabilities
   const getImageSource = () => {
     if (!src) return '';
+    
+    // For slow connections or save-data mode, use smallest image possible
+    if (isSlowConnection || saveData) {
+      const srcWithoutExtension = src.substring(0, src.lastIndexOf('.'));
+      return `${srcWithoutExtension}-300w.webp`;
+    }
     
     // Basic mobile image handling - check for mobile version
     if (isMobile && src.includes('/lovable-uploads/')) {
       const srcWithoutExtension = src.substring(0, src.lastIndexOf('.'));
-      const extension = src.substring(src.lastIndexOf('.'));
       
       // Try to use webp on mobile if available
       if (window.navigator.userAgent.includes('Mobile')) {
-        // Check for different mobile variants
-        const possibleSources = [
-          `${srcWithoutExtension}-mobile.webp`,
-          `${srcWithoutExtension}-450w.webp`,
-          `${srcWithoutExtension}-300w.webp`,
-          `${srcWithoutExtension}.webp`,
-          src // Fallback to original
-        ];
-        
-        // Return the first source that's available
-        return possibleSources[0];
+        // Choose appropriate size based on device characteristics
+        if (window.devicePixelRatio > 2) {
+          return `${srcWithoutExtension}-450w.webp`;
+        } else {
+          return `${srcWithoutExtension}-300w.webp`;
+        }
       }
     }
     
@@ -74,13 +73,22 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
   
   const imageSource = getImageSource();
   
+  // Preload critical images
+  useEffect(() => {
+    if (priority && !isLoaded) {
+      const img = new Image();
+      img.src = imageSource;
+      img.onload = () => setIsLoaded(true);
+    }
+  }, [priority, imageSource, isLoaded]);
+  
   // Handle image loading
   const handleImageLoad = () => {
     setIsLoaded(true);
     if (onLoad) onLoad();
   };
   
-  // Handle image error
+  // Handle image error with retry logic
   const handleImageError = () => {
     if (retryCount < 2) {
       setRetryCount(prev => prev + 1);
@@ -97,6 +105,9 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
     }
   };
 
+  // Only show placeholder on slow connections
+  const shouldShowPlaceholder = showPlaceholder && !isLoaded && !priority;
+
   return (
     <div 
       className={cn(
@@ -107,14 +118,24 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
       style={props.style}
       data-testid="mobile-optimized-image"
     >
-      {/* Show loader if not loaded */}
-      {!isLoaded && !hasError && (
+      {/* Show loader if not loaded and not showing placeholder */}
+      {!isLoaded && !hasError && !shouldShowPlaceholder && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted/10">
-          <Loader2 className="h-8 w-8 animate-spin text-white/70" />
+          <Loader2 className="h-6 w-6 animate-spin text-white/70" />
         </div>
       )}
       
-      {/* Main image */}
+      {/* Show lightweight placeholder if needed */}
+      {shouldShowPlaceholder && previewSrc && (
+        <img
+          src={previewSrc}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-up"
+          aria-hidden="true"
+        />
+      )}
+      
+      {/* Main image with optimized loading strategy */}
       <img
         id={uniqueId}
         src={imageSource}
@@ -135,7 +156,7 @@ const MobileOptimizedImage: React.FC<MobileOptimizedImageProps> = ({
         {...props}
       />
 
-      {/* Fallback for complete failure */}
+      {/* Fallback for complete failure - minimal version */}
       {hasError && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted/10 p-4">
           <p className="text-sm text-white text-center">Image could not be loaded</p>
