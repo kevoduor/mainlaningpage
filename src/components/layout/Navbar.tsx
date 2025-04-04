@@ -50,11 +50,11 @@ const Navbar = () => {
     { name: 'FAQ', path: '/#faq', scrollTo: 'faq' },
   ];
   
-  // Updated logo component with black color
+  // Logo component 
   const HeyniaLogo = () => (
     <div className="heynia-logo">
-      <span className="heynia-m font-motia text-xl font-medium text-black">
-        <span className="text-black">hey</span>nia
+      <span className="text-xl font-medium">
+        <span className="text-primary">hey</span>nia
       </span>
     </div>
   );
@@ -63,8 +63,8 @@ const Navbar = () => {
     <nav className={navClasses}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo with updated name */}
-          <Link to="/" className="text-black text-xl font-bold font-motia tracking-tight">
+          {/* Logo */}
+          <Link to="/" className="text-xl font-medium tracking-tight">
             <HeyniaLogo />
           </Link>
           
@@ -77,11 +77,11 @@ const Navbar = () => {
                     key={link.name}
                     href={link.path}
                     onClick={handleScrollToSection(link.scrollTo)}
-                    className={`text-xs lg:text-sm hover:text-motia-600 transition-colors font-motia ${
+                    className={`text-xs lg:text-sm hover:text-primary transition-colors ${
                       (location.pathname === link.path || 
                        (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                        ? 'text-motia-600 font-medium' 
-                        : 'text-motia-800'
+                        ? 'text-primary font-medium' 
+                        : 'text-slate-700'
                     }`}
                   >
                     {link.name}
@@ -92,11 +92,11 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`text-xs lg:text-sm hover:text-motia-600 transition-colors font-motia ${
+                  className={`text-xs lg:text-sm hover:text-primary transition-colors ${
                     (location.pathname === link.path || 
                      (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                      ? 'text-motia-600 font-medium' 
-                      : 'text-motia-800'
+                      ? 'text-primary font-medium' 
+                      : 'text-slate-700'
                   }`}
                 >
                   {link.name}
@@ -109,7 +109,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             <CTAButton 
               size={isMd ? "sm" : "md"} 
-              className="bg-motia-600 text-white shiny-button"
+              className="shiny-button"
               href="/signup"
               icon={true}
             >
@@ -120,7 +120,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden text-motia-800 p-1"
+            className="md:hidden text-slate-800 p-1"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -139,10 +139,10 @@ const Navbar = () => {
                     key={link.name}
                     href={link.path}
                     onClick={handleScrollToSection(link.scrollTo)}
-                    className={`text-base hover:text-motia-600 transition-colors py-2 font-motia ${
+                    className={`text-base hover:text-primary transition-colors py-2 ${
                       (location.pathname === link.path || 
                        (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                        ? 'text-motia-600 font-medium' 
+                        ? 'text-primary font-medium' 
                         : 'text-gray-700'
                     }`}
                   >
@@ -154,10 +154,10 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`text-base hover:text-motia-600 transition-colors py-2 font-motia ${
+                  className={`text-base hover:text-primary transition-colors py-2 ${
                     (location.pathname === link.path || 
                      (link.path !== '/' && location.pathname.startsWith(link.path))) 
-                      ? 'text-motia-600 font-medium' 
+                      ? 'text-primary font-medium' 
                       : 'text-gray-700'
                   }`}
                 >

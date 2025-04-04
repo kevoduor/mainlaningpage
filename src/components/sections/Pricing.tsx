@@ -9,7 +9,7 @@ const Pricing: React.FC = () => {
   
   const pricingPlans = [
     {
-      title: 'Basic Plan – Get Started Easily',
+      title: 'Basic Plan',
       price: '$99/month',
       description: 'Perfect for small dental practices taking their first step toward automation.',
       features: [
@@ -22,7 +22,7 @@ const Pricing: React.FC = () => {
       popular: false
     },
     {
-      title: 'Professional Plan – Grow with Ease',
+      title: 'Professional Plan',
       price: '$249/month',
       description: 'For growing clinics ready to streamline operations and attract more patients.',
       features: [
@@ -36,7 +36,7 @@ const Pricing: React.FC = () => {
       popular: true
     },
     {
-      title: 'Premium Plan – Run a High-Performing Clinic',
+      title: 'Premium Plan',
       price: '$349/month',
       description: 'For established practices looking to simplify and scale.',
       features: [
@@ -52,15 +52,15 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-12 sm:py-16 md:py-20 bg-slate-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="section">
+      <div className="container-tight">
         <SectionHeading
           title="Intelligent Software to Grow Your Practice"
           subtitle="Flexible plans designed to help your clinic run smoother—whether you're just starting or expanding."
           center={true}
         />
         
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               key={index}
@@ -69,7 +69,8 @@ const Pricing: React.FC = () => {
               description={plan.description}
               features={plan.features}
               popular={plan.popular}
-              className={`flex-1 animate-fade-in ${plan.popular && isMd ? 'sm:transform sm:scale-105 sm:shadow-lg sm:z-10' : ''}`}
+              className="flex-1 animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
             />
           ))}
         </div>

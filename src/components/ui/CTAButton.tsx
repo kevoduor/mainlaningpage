@@ -12,7 +12,6 @@ interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   fullWidthOnMobile?: boolean;
   shine?: boolean;
-  sticky?: boolean;
 }
 
 const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
@@ -27,7 +26,6 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     onClick, 
     fullWidthOnMobile = true,
     shine = false,
-    sticky = false,
     ...props 
   }, ref) => {
     const { isXs, isSm } = useBreakpoint();
@@ -79,9 +77,9 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
         className={cn(
           'relative inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',
           {
-            'bg-slack-700 text-white hover:bg-slack-800 shadow-lg shadow-slack-600/20': variant === 'primary',
-            'bg-slack-100 text-slack-800 hover:bg-slack-200': variant === 'secondary',
-            'border border-slate-400 bg-transparent hover:bg-slate-50 text-slate-800': variant === 'outline',
+            'bg-primary text-white hover:bg-primary/90 shadow': variant === 'primary',
+            'bg-secondary text-primary hover:bg-secondary/80': variant === 'secondary',
+            'border border-slate-300 bg-transparent hover:bg-slate-50 text-slate-800': variant === 'outline',
             'bg-transparent text-slate-800 hover:bg-slate-50': variant === 'ghost',
             'h-8 px-3 text-xs': size === 'sm',
             'h-10 px-4 sm:px-5 text-sm': size === 'md',
@@ -89,7 +87,6 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
             'w-full sm:w-auto': fullWidthOnMobile && isMobile,
             'touch-manipulation': isMobile, // Better touch handling on mobile
             'shiny-button': shine, // Add shine effect
-            'sticky-cta': sticky, // Add sticky positioning
           },
           className
         )}

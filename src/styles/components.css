@@ -1,3 +1,4 @@
+
 /* Blog specific styles */
 .blog-card {
   @apply transition-all duration-300 hover:shadow-md;
@@ -33,16 +34,16 @@
   text-wrap: balance;
 }
 
-/* Shiny Button Effect - Updated for Slack colors */
+/* Shiny Button Effect */
 .shiny-button {
-  @apply relative overflow-hidden bg-gradient-to-r from-slack-600 to-slack-800 hover:from-slack-700 hover:to-slack-900 transition-all duration-300;
+  @apply relative overflow-hidden bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300;
   background-size: 200% auto;
   animation: gradientShift 3s ease infinite;
-  box-shadow: 0 5px 15px rgba(121, 40, 222, 0.25);
+  box-shadow: 0 5px 15px rgba(0, 135, 204, 0.25);
 }
 
 .shiny-button:hover {
-  box-shadow: 0 8px 25px rgba(121, 40, 222, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 135, 204, 0.4);
   transform: translateY(-2px);
 }
 
@@ -116,76 +117,14 @@
   }
 }
 
-/* Slack-inspired logo styles */
-.slack-logo {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  color: white;
-  display: inline-flex;
-  align-items: center;
+/* Logo styles */
+.heynia-logo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
-.slack-logo-text {
-  position: relative;
-  display: inline-block;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-.slack-wave-bg {
-  position: relative;
-  background: linear-gradient(135deg, #4A154B 0%, #611f69 50%, #7C3085 100%);
-  background-size: 400% 400%;
-  animation: wave 15s ease infinite;
-  border-radius: 0.25rem;
-}
-
-.slack-wave-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.1;
-  mix-blend-mode: overlay;
-}
-
-/* Motia-inspired logo styles */
-.motia-logo {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.05em;
-  color: white;
-  display: inline-flex;
-  align-items: center;
-}
-
-.motia-m {
-  position: relative;
-  display: inline-block;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  margin-right: 0.1em;
-}
-
-.motia-wave-bg {
-  position: relative;
-  background: linear-gradient(135deg, #004466 0%, #0087cc 50%, #33baff 100%);
-  background-size: 400% 400%;
-  animation: wave 15s ease infinite;
-  border-radius: 0.25rem;
-}
-
-.motia-wave-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.1;
-  background-image: url('/lovable-uploads/091d74e9-e1ae-406b-8b54-9aaa3d328542.png');
-  background-size: cover;
-  background-position: center;
-  mix-blend-mode: overlay;
+/* Consistent card styles */
+.feature-card {
+  @apply bg-white rounded-lg p-6 border border-slate-100 shadow-sm transition-shadow duration-300 hover:shadow-md;
 }

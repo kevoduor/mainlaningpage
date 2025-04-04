@@ -1,10 +1,29 @@
 
 import React from 'react';
 import SectionHeading from '../ui/SectionHeading';
-import FeatureCard from '../ui/FeatureCard';
 import { Calendar, FileClock, CreditCard, BrainCircuit, Users, Link } from 'lucide-react';
 import CTAButton from '../ui/CTAButton';
 import { useBreakpoint } from '@/hooks/use-mobile';
+
+const FeatureItem: React.FC<{
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  index: number;
+}> = ({ icon: Icon, title, description, index }) => {
+  return (
+    <div 
+      className="card-base flex flex-col animate-fade-in"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <div className="mb-4 inline-flex items-center justify-center p-2 rounded-lg bg-primary/10 text-primary w-12 h-12">
+        <Icon className="h-6 w-6" strokeWidth={1.5} />
+      </div>
+      <h3 className="text-lg font-medium mb-2">{title}</h3>
+      <p className="text-slate-600 text-sm">{description}</p>
+    </div>
+  );
+};
 
 const Features: React.FC = () => {
   const { isXs, isSm } = useBreakpoint();
@@ -44,8 +63,8 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="section-alt">
+      <div className="container-tight">
         <SectionHeading
           title="Essential Tools for Smarter Dental Practice Management"
           subtitle="From AI-driven scheduling to automated billing and patient engagement, Nia equips your clinic with everything needed to grow—without the hassle."
@@ -54,17 +73,17 @@ const Features: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <FeatureCard
+            <FeatureItem
               key={index}
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              className={`animate-fade-in delay-${(index % 5 + 1) * 100}`}
+              index={index}
             />
           ))}
         </div>
         
-        <div className="text-center mt-10 md:mt-12">
+        <div className="text-center mt-10">
           <CTAButton 
             size={isMobile ? "md" : "lg"} 
             href="/signup"
