@@ -37,7 +37,7 @@ jobs:
           npm --version
         
       - name: Build with debug
-        run: npm run build -- --debug
+        run: npm run build
         
       - name: Debug HTML content
         run: |
@@ -57,8 +57,8 @@ jobs:
         
       - name: Setup CNAME file
         run: |
-          # Create CNAME file
-          echo "www.heynia.com" > dist/CNAME
+          # Create CNAME file - using the one from public directory
+          cp public/CNAME dist/CNAME
           # Make CNAME file visible in output for debugging
           echo "CNAME content:"
           cat dist/CNAME
