@@ -48,7 +48,7 @@ if (rootElement) {
   // Remove loading indicator immediately
   document.body.classList.remove('js-loading');
   
-  // Render app
+  // Render app with Strict Mode in development for better debugging
   root.render(
     process.env.NODE_ENV === 'production' 
       ? <App />
