@@ -58,7 +58,7 @@ jobs:
       - name: Setup CNAME file
         run: |
           # Create CNAME file
-          echo "heynia.com" > dist/CNAME
+          echo "www.heynia.com" > dist/CNAME
           # Make CNAME file visible in output for debugging
           echo "CNAME content:"
           cat dist/CNAME

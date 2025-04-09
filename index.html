@@ -64,8 +64,9 @@
       }
     </style>
     
-    <!-- Defer non-critical JavaScript -->
-    <script type="module" src="/src/main.tsx" defer></script>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="script" />
   </head>
   <body class="js-loading">
     <!-- Initial loading indicator -->
@@ -86,6 +87,9 @@
     
     <!-- Required Lovable script tag -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Defer non-critical JavaScript -->
+    <script type="module" src="/src/main.tsx"></script>
     
     <script>
       // Remove initial loader when DOM is ready

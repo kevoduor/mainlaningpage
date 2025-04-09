@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
-// Function to initialize the app
+// Function to initialize the app with proper error handling
 function initializeApp() {
   // Get the root element
   const rootElement = document.getElementById('root');
@@ -18,6 +18,10 @@ function initializeApp() {
   
   // Remove loading indicator immediately
   document.body.classList.remove('js-loading');
+  const initialLoader = document.getElementById('initial-loader');
+  if (initialLoader) {
+    initialLoader.style.display = 'none';
+  }
   
   try {
     // Initialize app with clean rendering approach
