@@ -2,13 +2,4 @@
 User-agent: *
 Allow: /
 
-# Optimize crawling rate
-Crawl-delay: 10
-
-# Sitemap location
 Sitemap: https://www.heynia.com/sitemap.xml
-
-# Block only sensitive paths
-Disallow: /admin/
-Disallow: /api/
-Disallow: /private/
