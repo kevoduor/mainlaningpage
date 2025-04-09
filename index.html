@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,16 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>HeyNia - Dental Clinic</title>
     <meta name="description" content="Cutting-edge dental clinic providing comprehensive dental care services including cleanings, fillings, whitening, and more. Book your appointment today!">
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/src/index.css" as="style" />
-    <link rel="preload" href="/src/styles/critical.css" as="style" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical fonts - only load a subset -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"></noscript>
     
     <!-- Critical inline CSS -->
     <style>
@@ -27,7 +18,7 @@
       }
       
       body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: sans-serif;
         margin: 0;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
@@ -75,40 +66,6 @@
     
     <!-- Defer non-critical JavaScript -->
     <script type="module" src="/src/main.tsx" defer></script>
-    
-    <!-- Preload first image -->
-    <link rel="preload" fetchpriority="high" as="image" type="image/webp" href="/lovable-uploads/0725958f-48c8-44c1-b455-27688e67d7f4-450w.webp">
-    
-    <!-- Inline minimal analytics -->
-    <script>
-      // Minimal analytics script
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BPD3BXK77Z', { 'send_page_view': false });
-      
-      // Load full analytics later
-      window.addEventListener('load', function() {
-        const script = document.createElement('script');
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-BPD3BXK77Z";
-        script.async = true;
-        document.head.appendChild(script);
-        
-        // Send pageview after load
-        setTimeout(() => gtag('event', 'page_view'), 2000);
-      });
-      
-      // Performance monitoring
-      const navEntry = performance.getEntriesByType('navigation')[0];
-      if (navEntry) {
-        window.addEventListener('load', function() {
-          setTimeout(() => {
-            const loadTime = performance.now();
-            console.info(`Page fully loaded in ${Math.round(loadTime)}ms`);
-          }, 0);
-        });
-      }
-    </script>
   </head>
   <body class="js-loading">
     <!-- Initial loading indicator -->
