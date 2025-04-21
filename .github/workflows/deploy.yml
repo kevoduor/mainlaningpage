@@ -39,33 +39,44 @@ jobs:
       - name: Build project
         run: npm run build
         
-      - name: Debug HTML content
+      - name: Debug Build Output
         run: |
-          echo "Checking index.html content:"
-          cat dist/index.html | head -n 30
-        
-      - name: Verify build output
-        run: |
-          echo "Checking build output directory contents:"
+          echo "Build directory contents:"
           ls -la dist/
-          echo "Checking JS files:"
-          find dist -name "*.js" | sort
-          echo "File sizes:"
-          du -h dist/assets/js/* | sort -h
-          echo "First 10 lines of main JS file:"
-          head -n 10 $(find dist/assets/js -name "*main*.js" | head -n 1)
-        
-      - name: Setup CNAME file and GitHub Pages config
+          echo "CNAME setup check:"
+          if [ -f "public/CNAME" ]; then
+            echo "✅ public/CNAME exists"
+            cat public/CNAME
+          else
+            echo "❌ public/CNAME missing"
+          fi
+          
+      - name: Setup GitHub Pages files
         run: |
-          # Copy the CNAME file from public directory
-          cp public/CNAME dist/CNAME
-          # Make CNAME file visible in output for debugging
-          echo "CNAME content:"
-          cat dist/CNAME
-          # Disable Jekyll processing
+          echo "Setting up GitHub Pages configuration..."
+          # Ensure dist directory exists
+          mkdir -p dist
+          
+          # Copy CNAME file
+          if [ -f "public/CNAME" ]; then
+            cp public/CNAME dist/CNAME
+            echo "✅ CNAME file copied to dist/"
+            echo "CNAME content:"
+            cat dist/CNAME
+          else
+            echo "❌ CNAME file missing. Creating one..."
+            echo "www.heynia.com" > dist/CNAME
+            echo "Created CNAME with content:"
+            cat dist/CNAME
+          fi
+          
+          # Add .nojekyll file to disable Jekyll
           touch dist/.nojekyll
+          echo "✅ .nojekyll file created"
+          
           # Ensure permissions are correct
           chmod -R 755 dist
+          echo "✅ Permissions set"
         
       - name: Setup Pages
         uses: actions/configure-pages@v3

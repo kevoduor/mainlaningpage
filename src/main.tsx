@@ -6,6 +6,8 @@ import './index.css';
 
 // Function to initialize the app with proper error handling
 function initializeApp() {
+  console.log('Initializing application...');
+  
   // Get the root element
   const rootElement = document.getElementById('root');
 
