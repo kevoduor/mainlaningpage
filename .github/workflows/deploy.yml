@@ -39,17 +39,12 @@ jobs:
       - name: Build project
         run: npm run build
         
-      - name: Debug Build Output
+      - name: Verify CNAME file
         run: |
-          echo "Build directory contents:"
-          ls -la dist/
-          echo "CNAME setup check:"
-          if [ -f "public/CNAME" ]; then
-            echo "✅ public/CNAME exists"
-            cat public/CNAME
-          else
-            echo "❌ public/CNAME missing"
-          fi
+          echo "Creating CNAME file directly in dist directory"
+          echo "heynia.com" > dist/CNAME
+          echo "CNAME content:"
+          cat dist/CNAME
           
       - name: Setup GitHub Pages files
         run: |
@@ -57,22 +52,25 @@ jobs:
           # Ensure dist directory exists
           mkdir -p dist
           
-          # Copy CNAME file
-          if [ -f "public/CNAME" ]; then
-            cp public/CNAME dist/CNAME
-            echo "✅ CNAME file copied to dist/"
+          # Add .nojekyll file to disable Jekyll
+          touch dist/.nojekyll
+          echo "✅ .nojekyll file created"
+          
+          # Double check CNAME file presence and content
+          if [ -f "dist/CNAME" ]; then
+            echo "✅ CNAME file exists in dist/"
             echo "CNAME content:"
             cat dist/CNAME
           else
-            echo "❌ CNAME file missing. Creating one..."
-            echo "www.heynia.com" > dist/CNAME
+            echo "❌ CNAME file missing in dist/. Creating one..."
+            echo "heynia.com" > dist/CNAME
             echo "Created CNAME with content:"
             cat dist/CNAME
           fi
           
-          # Add .nojekyll file to disable Jekyll
-          touch dist/.nojekyll
-          echo "✅ .nojekyll file created"
+          # List all files in dist to verify
+          echo "Files in dist directory:"
+          ls -la dist/
           
           # Ensure permissions are correct
           chmod -R 755 dist
@@ -96,3 +94,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+      
+      - name: Verify Deployment
+        run: |
+          echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "If your site is still not available at heynia.com, please check:"
+          echo "1. GitHub repository settings -> Pages -> Custom domain is set to heynia.com"
+          echo "2. DNS records are correctly configured in your domain provider"
+          echo "3. Wait for DNS propagation (can take up to 24-48 hours)"
