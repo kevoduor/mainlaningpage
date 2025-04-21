@@ -36,7 +36,7 @@ jobs:
           node --version
           npm --version
         
-      - name: Build with debug
+      - name: Build project
         run: npm run build
         
       - name: Debug HTML content
@@ -55,15 +55,17 @@ jobs:
           echo "First 10 lines of main JS file:"
           head -n 10 $(find dist/assets/js -name "*main*.js" | head -n 1)
         
-      - name: Setup CNAME file
+      - name: Setup CNAME file and GitHub Pages config
         run: |
-          # Create CNAME file - using the one from public directory
+          # Copy the CNAME file from public directory
           cp public/CNAME dist/CNAME
           # Make CNAME file visible in output for debugging
           echo "CNAME content:"
           cat dist/CNAME
           # Disable Jekyll processing
           touch dist/.nojekyll
+          # Ensure permissions are correct
+          chmod -R 755 dist
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
